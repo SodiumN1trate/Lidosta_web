@@ -25,6 +25,7 @@ body{
 #navigation-bar-logo{
     width: 140px;
     margin: 1% 0 0 2%;
+    user-select: none;
 }
 
 #navigation-bar-left-side{ /* Piedāvajat savus variantus, kā uzlabot šo koda bloku. Varbūt ir kāds cits variants kā šo bloku pielīdzināt pie labās malas uz navigation bar */
@@ -95,6 +96,7 @@ li{
     display: block;
     margin: 0 auto;
     padding-top: 10%;
+    user-select: none;
 }
 
 #motivation-text{
