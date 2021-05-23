@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 *{
     margin: 0;
     padding: 0;
@@ -100,7 +102,7 @@ body{
 #choose-trip-box{
     display: flex;
     justify-content: center;
-    width: 500px;
+    max-width: 500px;
     height: 40px;
     margin: 0 auto;
     margin-top: 3%;
@@ -149,7 +151,6 @@ body{
     border-top: 1px solid #D7D7D7;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    float: left;
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.25);
     display: none;
     line-height: 25px;

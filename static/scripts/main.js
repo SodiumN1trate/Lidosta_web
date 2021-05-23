@@ -13,7 +13,7 @@ let arrival_countries_input = document.getElementById("arrival-countries-input-v
 
 DEPARTURE_COUNTRIES_BOX.addEventListener("click", (e) =>{
     if(departure_countries_box_status === false){
-        document.getElementById("select-departure-counties").style.display = "initial";
+        document.getElementById("select-departure-counties").style.display = "block";
         departure_countries_box_status = !departure_countries_box_status;
     }
     else{
@@ -24,7 +24,7 @@ DEPARTURE_COUNTRIES_BOX.addEventListener("click", (e) =>{
 
 ARRIVAL_COUNTRIES_BOX.addEventListener("click", (e) =>{
     if(arrival_countries_box_status === false){
-        document.getElementById("select-arrival-countries").style.display = "initial";
+        document.getElementById("select-arrival-countries").style.display = "block";
         arrival_countries_box_status = !arrival_countries_box_status;
     }
     else{
