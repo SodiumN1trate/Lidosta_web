@@ -98,9 +98,10 @@ body{
 }
 
 #choose-trip-box{
-    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    width: 500px;
     height: 40px;
-    display: block;
     margin: 0 auto;
     margin-top: 3%;
     background-color: white;
@@ -108,13 +109,12 @@ body{
 }
 
 #departure-country-input, #arrival-countries-input{
-    width: 48%;
-    height: 40px;
     line-height: 40px;
     color: #D7D7D7;
     font-size: 13px;
     user-select: none;
     cursor: pointer;
+    width: 50%;
 }
 
 .vl { /* Vertical line */ 
@@ -124,12 +124,7 @@ body{
 }
 
 #departure-country-input{
-    float: left;
     padding-left:10px;
-}
-
-#arrival-countries-input{
-    float: right;
 }
 
 #trip-search-button{
@@ -147,7 +142,7 @@ body{
     cursor: pointer;
 }
 
-#select-departure-country, #select-arrival-countries{
+#select-departure-counties, #select-arrival-countries{
     position: relative;
     background-color: #FEFEFE;
     margin: 0 auto;
@@ -159,16 +154,11 @@ body{
     display: none;
     line-height: 25px;
 }
-#select-departure-country{
-    width: 97%;
-    float: right;
+#select-departure-counties, #select-arrival-countries{
+    width: 96%;
 }
 
- #select-arrival-countries{
-    width: 97%;
-    margin-left: -3%;
- }
- .select-country{
+.select-country{
     font-size: 13px;
     padding-left: 2%;
  }
@@ -212,7 +202,7 @@ article{
         height: 100px;
         justify-content: center;
     }
-    
+
     /*=====Article====== */
     article{
         width: 100%;
