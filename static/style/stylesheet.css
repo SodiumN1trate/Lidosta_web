@@ -9,11 +9,15 @@ body{
 
 /* =======Header======= */
 
-/*
-#wrapper{
-    wrapper vispar vajag? div pa default der, manuprat ir ok bez 
+
+#wrapper {
+    max-width: 1500px;
+    padding-inline: 40px;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
 }
-*/
+
 
 #navigation-bar {
     display: flex;
@@ -83,33 +87,33 @@ body{
     background-image: url(../images/Banner_adobespark.png);
     background-position-x: center;
     background-size: cover;
-    height: 500px;
+    height: 400px;
     width: 100%;
 }
 
-#banner-logo{
+#banner-logo {
     width: 250px;
     display: block;
     margin: 0 auto;
-    padding-top: 10%;
+    padding-top: 100px;
     user-select: none;
 }
 
-#motivation-text{
-    margin-top: 3%;
+#motivation-text {
+    margin-top: 17px;
     text-align: center;
     color: #F1F1F1;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 50%);
     font-size: 15px;
 }
 
-#choose-trip-box{
+#choose-trip-box {
     display: flex;
     justify-content: center;
     width: 500px;
     height: 40px;
     margin: 0 auto;
-    margin-top: 3%;
+    margin-top: 18px;
     background-color: white;
     border-radius: 20px;
 }
@@ -133,12 +137,12 @@ body{
     padding-left:10px;
 }
 
-#trip-search-button{
+#trip-search-button {
     background-color: #49EA5B;
     color: #FEFEFE;
     border: none;
     display: block;
-    margin: 2% auto;
+    margin: 22px auto;
     height: 30px;
     width: 140px;
     text-align: center;
