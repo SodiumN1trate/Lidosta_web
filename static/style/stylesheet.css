@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 *{
     margin: 0;
     padding: 0;
@@ -8,151 +10,206 @@ body{
 }
 
 /* =======Header======= */
-#wrapper{
-    max-width: 1200px;
+
+
+#wrapper {
+    max-width: 1500px;
+    padding-inline: 40px;
     width: 100%;
     margin: 0 auto;
     top: 0;
 }
 
-#navigation-bar{
-    height: 60px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+
+#navigation-bar {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    height: 58px;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 20%);
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#navigation-bar-logo{
-    width: 140px;
-    margin: 1% 0 0 2%;
+#navigation-bar-logo {
+    width: auto;
+    height: 50%;
     user-select: none;
+    padding-left: 15px;
 }
 
-#navigation-bar-left-side{ /* Piedāvajat savus variantus, kā uzlabot šo koda bloku. Varbūt ir kāds cits variants kā šo bloku pielīdzināt pie labās malas uz navigation bar */
+#navigation-bar-right-side {
     display: flex;
-    margin: 1.5% 0 0 2%;
-    justify-content: flex-end;
-    margin-right: 3%;
-    align-items: flex-end;
-    margin-top: -2.4%;
+    justify-content: center;
+    align-items: center;
+    padding-right: 22px;
+    width: fit-content;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-li{
-    display: inline;
-}
-
-#search-bar{
+#search-bar {
     display: flex;
     align-items: center;
-    margin-right: 3%;
-    width: 200px;
-    height: 25px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    margin-right: 24px;
+    width: 210px;
+    height: 45%;
+    border-radius: 10vmax;
     padding-left: 10px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 15%);
+    justify-content: flex-start;
 }
 
-#search-bar-input{
+#search-bar-input {
     border: none;
     outline: none;
-    width: 150px;
+    width: 177px;
+    height: auto;
+    color: #9c9c9c;
 }
 
-#search-bar-search-icon{
-    margin-left: 20px;
-    vertical-align: middle;
-    width: 20px;
+#search-bar-search-icon {
+    margin-left: 5px;
+    padding-top: 2px;
+    align-items: center;
+    width: 23px;
 }
 
-#login-button{
-    width: 7%;
-    height: 25px;
-    line-height: 25px;
+#login-button {
+    width: 65px;
+    height: 45%;
+    line-height: 27px;
     text-align: center;
-    vertical-align: center;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 10vmax;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 15%);
     font-size: 13px;
-    color: #c8c8c8;
+    color: #9c9c9c;
 }
 
-#banner{
-    background-image: url("../images/Banner_adobespark.png");
-    height: 500px;
+#banner {
+    background-image: url(../images/Banner_adobespark.png);
+    background-position-x: center;
+    background-size: cover;
+    height: 400px;
     width: 100%;
-    margin-top: 0.1%;
+
 }
 
-#banner-logo{
+#banner-logo {
     width: 250px;
     display: block;
     margin: 0 auto;
-    padding-top: 10%;
+    padding-top: 100px;
     user-select: none;
 }
 
-#motivation-text{
-    margin-top: 3%;
+#motivation-text {
+    margin-top: 17px;
     text-align: center;
     color: #F1F1F1;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 50%);
     font-size: 15px;
 }
 
-#choose-trip-box{
-    max-width: 500px;
+#choose-trip-box {
+    display: flex;
+    justify-content: center;
+    width: 500px;
     height: 40px;
-    display: block;
     margin: 0 auto;
-    margin-top: 3%;
+    margin-top: 18px;
     background-color: white;
     border-radius: 20px;
 }
 
-#trip-from-input, #trip-to-input{
-    width: 48%;
-    height: 40px;
+#departure-country-input, #arrival-countries-input{
     line-height: 40px;
     color: #D7D7D7;
     font-size: 13px;
+    user-select: none;
+    cursor: pointer;
+    width: 50%;
 }
 
 .vl { /* Vertical line */ 
     position: absolute;
-    border-left: 2px solid #D7D7D7;
-    height:40px;
+    border-left: 1px solid #D7D7D7;
+    height: 40px;
 }
 
-#trip-from-input{
-    float: left;
+#departure-country-input{
     padding-left:10px;
 }
 
-#trip-to-input{
-    float: right;
-}
-
-#trip-search-button{
+#trip-search-button {
     background-color: #49EA5B;
     color: #FEFEFE;
     border: none;
     display: block;
-    margin: 2% auto;
+    margin: 22px auto;
     height: 30px;
     width: 140px;
     text-align: center;
     line-height: 30px;
     border-radius: 15px;
     font-weight: 10;
+    cursor: pointer;
 }
+
+#select-departure-counties, #select-arrival-countries{
+    position: relative;
+    background-color: #FEFEFE;
+    margin: 0 auto;
+    border-top: 1px solid #D7D7D7;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    float: left;
+
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.25);
+    display: none;
+    line-height: 25px;
+}
+#select-departure-counties, #select-arrival-countries{
+    width: 96%;
+}
+
+.select-country{
+    font-size: 13px;
+    padding-left: 2%;
+ }
+
+
+/* ========Article======= */
+article{
+    display: table;
+    background: #FEFEFE;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+#article-header{
+    width: 100%;
+    height: 40px;
+    background-image: linear-gradient(to right, rgb(187, 203, 210, 0.50) , #F8F8F8);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#article-name{
+    color: #ffffff;
+    text-shadow: 0px 1px 5px rgba(169, 169, 169, 0.6);
+    line-height: 40px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+#article-content{
+    color: #9A9A9A;
+    padding: 2%;
+    font-size: 15px;
+}
+
 #footer{
     max-width: 1200px;
     width: 100%;
