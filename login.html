@@ -23,28 +23,27 @@
                 <div id="login-button">Ienākt</div>
             </div>
         </div>
-        <form id="login-form-container">
-            <article>
+        <div id="login-form-container">
+            <article id="login">
                 <div id="article-header">
-                    <span id="article-name">Nosaukums</span>
+                    <span id="article-name">Ieiet</span>
                 </div>
                 <div id="article-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue massa, auctor dignissim placerat ac,
-                    ullamcorper ut
-                    tellus. Curabitur lacinia volutpat risus nec tincidunt. Integer sit amet iaculis tortor. Nullam at dolor non leo
-                    ornare
-                    auctor. Nulla erat turpis, interdum id congue vel, sodales ac purus. Integer ex est, egestas ut ipsum vitae,
-                    condimentum
-                    lacinia tortor. Maecenas eu leo massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos
-                    himenaeos. Donec sapien velit, rutrum at tristique nec, facilisis eget est. Nullam viverra orci ut elit cursus
-                    luctus.
-                    Vivamus condimentum bibendum ipsum, in semper dolor aliquam in. Nam nec nulla placerat, mattis purus quis,
-                    vestibulum
-                    lorem.
+                    <form id="login-form">
+                        <input type="text" name="email" placeholder="E-pasts" id="login-emai">
+                        <input type="password" name="password" placeholder="Parole">
+                        <div id="remember-password-checkbox">
+                            <input type="checkbox" name="remember-password" id="remember-password" value="1">
+                            <label for="remember-password">Atcerēties mani</label>
+                        </div>
+                        <button class="submit-button">Pieslēgties</button>
+                        <a href="#">Aizmirsāt paroli?</a><br>
+                        Neēsat reģistrējušies?
+                        <button class="submit-button register-button">Reģistrēties</button>
+                    </form>
                 </div>
             </article>
-        </form>   
+        </div>   
     </header>
     <script src="static/scripts/main.js"></script>
 </body>
