@@ -11,7 +11,6 @@ body {
 
 /* =======Header======= */
 
-
 #wrapper {
     max-width: 1500px;
     width: 100%;
@@ -284,16 +283,28 @@ article {
 }
 
 /* About us article */
-#about-us-article{
+#about-us-article {
     flex: 50%;
 }
 
 /* History article */
-#history-article{
+#history-article {
     flex: 40%;
 }
-
-#we-offer-article{
+/* We offer article */
+#we-offer-article {
     flex: 100%;
     max-width: none;
 }
+
+
+/* login-form */
+#login-form-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+
+
+
