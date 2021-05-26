@@ -7,6 +7,7 @@
 
 body{
     font-family: Roboto;
+    height: 2000px;
 }
 
 /* =======Header======= */
@@ -14,10 +15,8 @@ body{
 
 #wrapper {
     max-width: 1500px;
-    padding-inline: 40px;
     width: 100%;
     margin: 0 auto;
-    top: 0;
 }
 
 
@@ -208,6 +207,260 @@ article{
     color: #9A9A9A;
     padding: 2%;
     font-size: 15px;
+}
+
+
+
+footer{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    bottom: 0;
+}
+#bottom-navigation{
+    height: 100px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    background-color: rgb(243, 243, 243);
+}
+#bottom-left{
+    display: flex;
+    margin: 0% 0 0 2%;
+    margin-right: 3%;
+    margin-top: -1%;
+}
+#bottom-navigation-text-position{
+    display: flex;
+    margin: 20px 0 0 100px;
+}
+.bottom-navigation-text{
+    margin-right: 20px;
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+}
+#footer-search-bar{
+    margin-left: 250px;
+    display: flex;
+    width: 220px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    align-items: center;
+}
+.bottom-navigation-input-search-bar{
+    width: 220px;
+    height: 25px;
+    outline: none;
+    border: none;
+}
+.bottom-navigation-input-button{
+    width: 30px;
+    align-items: stretch;
+    outline: none;
+    border: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#footer-seperate{
+    display: flex;
+    margin-top: 9px;
+    width: 1000px;
+    margin-left: 120px;
+}
+#copyright-text{
+    display: flex;
+    font-size: 12px;
+    margin: 12px 0 0 440px;
+    color: rgb(200, 200, 200);
+}
+
+.Card {
+    display: flex;
+    width: -webkit-fill-available;
+    height: 100%;
+    box-shadow: 0 0 18px 1px #d6d6d6;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.CardHeader {
+    display: flex;
+    position: relative;
+    height: 40px;
+    justify-content: space-between;
+    align-items: stretch;
+    box-shadow: 0 0 10px 2px #80808063;
+    z-index: 3;
+}
+
+.CardDestination {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 40px;
+    align-items: center;
+    padding-left: 10px;
+    color: #7D7D7D;
+}
+
+.CardCost {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 40px;
+    align-items: center;
+    padding-right: 10px;
+    color: #7D7D7D;
+    justify-content: flex-end;
+}
+
+.CardLeftField {
+    display: flex;
+    width: 50%;
+    height: inherit;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CardDescription {
+    position: static;
+    font-family: Roboto;
+    font-size: 15px;
+    padding: 6px 10px;
+    color: #7D7D7D;
+    height: -webkit-fill-available;
+}
+
+.CardParameters {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.CardParametersFlightDate {
+    font-family: Roboto;
+    font-size: 18px;
+    padding: 4px 8px;
+    color: #7D7D7D;
+}
+
+.CardParametersFlightTime {
+    font-family: Roboto;
+    font-size: 18px;
+    padding: 4px 8px;
+    color: #7D7D7D;
+}
+
+.CardInformationField {
+    display: flex;
+    height: -webkit-fill-available;
+}
+
+.CardDestinationImage {
+    object-fit: cover;
+    width: 50%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    gap: 10px 20px;
+    grid-template-areas:
+        "Header Header Header Header Header"
+        "Left Field1 Field2 Field3 Right"
+        "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
+    justify-content: center;
+}
+  
+.Header {
+    grid-area: Header;
+    font-family: Roboto;
+    font-size: 28px;
+    padding-left: 40px;
+    padding-top: 15px;
+    color: #7D7D7D;
+}
+
+.Field1 {
+    grid-area: Field1;
+    width: 25vw;
+    height: 35vh;
+}
+
+.Field2 {
+    grid-area: Field2;
+    width: 25vw;
+    height: 35vh;
+}
+
+.Field3 {
+    grid-area: Field3;
+    width: 25vw;
+    height: 35vh;
+}
+
+.Right {
+    grid-area: Right;
+    align-self: center;
+}
+
+.Left {
+    grid-area: Left;
+    align-self: center;
+}
+
+.NavigationButtons {
+    grid-area: NavigationButtons;
+    display: flex;
+    height: 20px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 3px;
+}
+
+.NavDirectionButton {
+    stroke: #dcdcdc;
+    stroke-width: 10;
+    stroke-linecap: round;
+}
+
+.MoveRightButton {
+    fill: grey;
+}
+
+.MoveLeftButton {
+    fill: grey;
+}
+
+.NavButtonOff {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 7px 2px #9c9c9c5c;
+    border-radius: 7vmax;
+    margin: 5px;
+}
+
+.NavButtonOn {
+    width: 10px;
+    height: 10px;
+    background-color: #b6b6b6bf;
+    box-shadow: 0px 0px 7px 2px #5c5c5c5c;
+    border-radius: 7vmax;
+    margin: 5px;
+}
+
+footer {
+    bottom: 0px;
 }
 
 /* ========For phone========= */
