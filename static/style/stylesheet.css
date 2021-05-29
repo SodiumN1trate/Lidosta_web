@@ -84,6 +84,14 @@ body {
     color: #9c9c9c;
 }
 
+
+#login-button > a:link, #login-button > a:visited{
+    color: #9c9c9c;
+    text-decoration: none;
+}
+
+
+
 #banner {
     background-image: url(../images/Banner_adobespark.png);
     background-position-x: center;
@@ -302,7 +310,7 @@ article {
 #login-form-container{
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 #login{
@@ -310,7 +318,7 @@ article {
 }
 
 
-#login-form{
+#form{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -318,8 +326,8 @@ article {
 }
 
 
-#login-form > input{
-    margin: 0% 20%;
+#form > input{
+    margin: 0% 10%;
     background-color: #f1f1f1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
     border-radius: 5px;
@@ -330,16 +338,17 @@ article {
     padding-left: 3%;
 }
 
-#login-form:first-child input{
+#form:first-child input{
     margin-top: 10%;
 }
 
 #remember-password-checkbox{
-    margin: 0% 20%;
+    margin: 0% 10%;
 }
 
+
 .submit-button{
-    margin: 5% auto;
+    margin: 5% auto ;
     background-color: #f1f1f1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
     border-radius: 5px;
@@ -353,4 +362,33 @@ article {
 .submit-button:hover{
     cursor: pointer;
     transform: scale(1.1);
+}
+
+/* Register */
+#top-of-form{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    grid-column-gap: 10px;
+}
+#top-of-form > #name, #top-of-form > #lastname{
+    width: 100%;
+}
+
+#top-of-form > input{
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #9A9A9A;
+    outline: none;
+    border: none;
+    height: 40px;
+    padding-left: 3%;
+}
+
+
+#form:first-child input{
+    margin-top: 5%;
 }

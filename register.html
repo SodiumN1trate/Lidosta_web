@@ -26,24 +26,23 @@
         <div id="login-form-container">
             <article id="login">
                 <div id="article-header">
-                    <span id="article-name">Ieiet</span>
+                    <span id="article-name">Reģistrēties</span>
                 </div>
                 <div id="article-content">
                     <form id="form">
-                        <input type="text" name="email" placeholder="E-pasts" id="login-emai">
-                        <input type="password" name="password" placeholder="Parole">
-                        <div id="remember-password-checkbox">
-                            <input type="checkbox" name="remember-password" id="remember-password" value="1">
-                            <label for="remember-password">Atcerēties mani</label>
+                        <div id="top-of-form">
+                            <input type="text" name="name" placeholder="Vārds" id="name">
+                            <input type="text" name="lastaname" placeholder="Uzvārds" id="lastname">
                         </div>
-                        <button class="submit-button">Pieslēgties</button>
-                        <a href="#">Aizmirsāt paroli?</a><br>
-                        Neēsat reģistrējušies?
-                        <button class="submit-button register-button">Reģistrēties</button>
+                        <input type="text" name="name" placeholder="E-pasts">
+                        <input type="password" name="password" placeholder="Parole">
+                        <input type="password" name="re-password" placeholder="Atkāroti parole">
+                        <!-- Captcha -->
+                        <button class="submit-button">Reģistrēties</button>
                     </form>
                 </div>
             </article>
-        </div>   
+        </div>
     </header>
     <script src="static/scripts/main.js"></script>
 </body>
