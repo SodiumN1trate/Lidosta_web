@@ -33,4 +33,8 @@ def flight_customization():
 def booking_overview():
     return render_template("booking overview.html")
 
-app.run(host='0.0.0.0', port=8080)
+@app.route("/travel menu")
+def travel_menu():
+    return render_template("standarta piedavajums.html")
+
+app.run(host='192.168.8.101', port=8080)
