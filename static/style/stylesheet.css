@@ -7,6 +7,7 @@
 
 body {
     font-family: Roboto;
+    height: 2000px;
 }
 
 
@@ -269,15 +270,15 @@ footer {
     border-top-right-radius: 5px;
 }
 
-#footer-seperate{
+
+#footer-seperate {
     display: flex;
     margin-top: 9px;
     width: 1000px;
     margin-left: 40px;
     margin-right: 40px;
 }
- 
-#copyright-text{
+#copyright-text {
     display: flex;
     font-size: 12px;
     justify-content: center;
@@ -285,6 +286,345 @@ footer {
     margin-top: 10px;
 }
 
+.Card {
+    display: flex;
+    width: -webkit-fill-available;
+    height: 100%;
+    box-shadow: 0 0 18px 1px #d6d6d6;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.CardHeader {
+    display: flex;
+    position: relative;
+    height: 40px;
+    justify-content: space-between;
+    align-items: stretch;
+    box-shadow: 0 0 10px 2px #80808063;
+    z-index: 3;
+}
+
+.CardDestination {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 40px;
+    align-items: center;
+    padding-left: 10px;
+    color: #7D7D7D;
+}
+
+.CardCost {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 40px;
+    align-items: center;
+    padding-right: 10px;
+    color: #7D7D7D;
+    justify-content: flex-end;
+}
+
+.CardLeftField {
+    display: flex;
+    width: 50%;
+    height: inherit;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CardDescription {
+    position: static;
+    font-family: Roboto;
+    font-size: 15px;
+    padding: 6px 10px;
+    color: #7D7D7D;
+    height: -webkit-fill-available;
+}
+
+.CardParameters {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.CardParametersFlightDate {
+    font-family: Roboto;
+    font-size: 18px;
+    padding: 4px 8px;
+    color: #7D7D7D;
+}
+
+.CardParametersFlightTime {
+    font-family: Roboto;
+    font-size: 18px;
+    padding: 4px 8px;
+    color: #7D7D7D;
+}
+
+.CardInformationField {
+    display: flex;
+    height: -webkit-fill-available;
+}
+
+.CardDestinationImage {
+    object-fit: cover;
+    width: 50%;
+}
+
+.three-field-grid {
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    gap: 10px 20px;
+    grid-template-areas:
+        "Header Header Header Header Header"
+        "Left Field1 Field2 Field3 Right"
+        "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.three-field-grid-comment {
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    gap: 10px 20px;
+    grid-template-areas:
+        "Header Header Header Header Header"
+        "Left Field1 Field2 Field3 Right"
+        "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.Header {
+    grid-area: Header;
+    font-family: Roboto;
+    font-size: 28px;
+    padding-left: 40px;
+    padding-top: 15px;
+    color: #7D7D7D;
+}
+
+.three-field-grid-comment .Field1 {
+    grid-area: Field1;
+    width: 320px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid-comment .Field2 {
+    grid-area: Field2;
+    width: 320px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid-comment .Field3 {
+    grid-area: Field3;
+    width: 320px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field1 {
+    grid-area: Field1;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field2 {
+    grid-area: Field2;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field3 {
+    grid-area: Field3;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
+}
+
+.Right {
+    grid-area: Right;
+    align-self: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.Left {
+    grid-area: Left;
+    align-self: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.NavigationButtons {
+    grid-area: NavigationButtons;
+    display: flex;
+    height: 20px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 3px;
+}
+
+.NavDirectionButton {
+    stroke: #dcdcdc;
+    stroke-width: 10;
+    stroke-linecap: round;
+}
+
+.MoveRightButton {
+    fill: grey;
+}
+
+.MoveLeftButton {
+    fill: grey;
+}
+
+.NavButtonOff {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 7px 2px #9c9c9c5c;
+    border-radius: 7vmax;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.NavButtonOn {
+    width: 10px;
+    height: 10px;
+    background-color: #b6b6b6bf;
+    box-shadow: 0px 0px 7px 2px #5c5c5c5c;
+    border-radius: 7vmax;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.NewsLayoutGrid {
+    display: grid;
+    grid-template-columns: min-content 180px min-content;
+    grid-template-rows: min-content min-content;
+    gap: 25px 15px;
+    grid-template-areas:
+        "Description1 Description1 Photo1"
+        "Photo2 Description2 Description2";
+    margin: 0px auto;
+    justify-content: center;
+    padding-top: 40px;
+}
+.Description1 { grid-area: Description1; }
+.Description2 { grid-area: Description2; }
+.Photo1 { grid-area: Photo1; }
+.Photo2 { grid-area: Photo2; }
+
+.Photo1 img {
+    object-fit: cover;
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 18px 0px #80808096;
+}
+
+.Photo2 img {
+    object-fit: cover;
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 18px 0px #80808096;
+}
+
+.NewsHeader {
+    font-size: 25px;
+    color: #7D7D7D;
+    padding-bottom: 10px;
+}
+
+.NewsDescription {
+    font-size: 18.7px;
+    color: #9e9e9e;
+}
+
+.LargeInformationBubble {
+    display: flex;
+    width: 800px;
+    height: 250px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px auto;
+    justify-content: space-between;
+    padding-top: 57px;
+}
+
+.MainSquare {
+    display: flex;
+    height: -webkit-fill-available;
+    background-color: #f1f4f6;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-radius: 17px;
+    box-shadow: 0 0 11px 0 rgb(0 0 0 / 17%);
+}
+
+.backgroundCircle {
+    display: flex;
+    background-color: #ECF0F3;
+    width: 110px;
+    height: 110px;
+    border-radius: 10vmax;
+    align-items: center;
+    justify-content: center;
+}
+
+.BubbleInfoField {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    padding-top: 15px;
+    align-items: center;
+}
+
+.AirplaneSVG {
+    height: 73px;
+}
+
+.BookSVG {
+    height: 60px;
+}
+
+.CashSVG {
+    height: 40px;
+}
+
+.BellSVG {
+    height: 63px;
+}
+
+.BottomTriangleSVG {filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.17));}
+
+.TextField {width: 175px;text-align: center;color: #c0c0c0;padding-top: 12px;}
+
+footer {
+    bottom: 0px;
+}
+
+  
 /* About us */
 
 #about-us-container {
@@ -469,6 +809,7 @@ footer {
     margin-top: 10%;
 }
 
+
 #remember-password-checkbox{
     margin: 0% 20%;
 }
@@ -489,8 +830,6 @@ footer {
     cursor: pointer;
     transform: scale(1.1);
 }
-
-
 .Card {
     display: flex;
     width: -webkit-fill-available;
@@ -770,4 +1109,42 @@ footer {
 
 .standart-offer-last-row{
     margin-bottom: 7%;
+
+.comment-frame {
+    display: flex;
+    width: auto;
+    height: auto;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 12px;
+    box-shadow: 0px 0px 14px 0px #8080805e;
+}
+
+img.profile-image {
+    width: 50px;
+    height: 50px;
+}
+
+img.profile-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 10vmax;
+    margin-left: 2px;
+}
+
+.comment-part {
+    width: 212px;
+    padding-top: 4px;
+}
+
+.commenter-name {
+    font-size: 18px;
+    color: #7D7D7D;
+}
+
+.commenter-comment {
+    font-size: 14px;
+    color: #a1a1a1;
 }
