@@ -93,7 +93,7 @@ body {
 
 
 #banner {
-    background-image: url(../images/Banner_adobespark.png);
+    background-image: url(../images/Banner.png);
     background-position-x: center;
     background-size: cover;
     height: 400px;
@@ -128,7 +128,7 @@ body {
     border-radius: 20px;
 }
 
-#departure-country-input, #arrival-countries-input {
+#departure-country-input, #arrival-country-input {
     line-height: 40px;
     color: #D7D7D7;
     font-size: 13px;
@@ -162,7 +162,7 @@ body {
     cursor: pointer;
 }
 
-#select-departure-counties, #select-arrival-countries {
+#select-departure-countries, #select-arrival-countries {
     position: relative;
     background-color: #FEFEFE;
     margin: 0 auto;
@@ -170,12 +170,11 @@ body {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     float: left;
-
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.25);
     display: none;
     line-height: 25px;
 }
-#select-departure-counties, #select-arrival-countries {
+#select-departure-countries, #select-arrival-countries {
     width: 96%;
 }
 
@@ -432,15 +431,27 @@ footer {
     font-size: 13px;
     width: 10px;
 }
-/* login-form */
 
-#login-form-container{
+/* Global for forms */
+#form-banner-background{
+    background-image: url(../images/Banner_for_forms.png);
+    background-position-x: center;
+    background-size: cover;
+    height: 600px;
+    width: 100%;
+}
+
+
+#form-container{
     display: flex;
     justify-content: center;
     padding-top: 100px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-#login-form-container
+
+/* login-form */
 
 #login{
     width: 350px;
@@ -451,7 +462,7 @@ footer {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    margin: 0 auto;
 }
 
 
@@ -488,7 +499,7 @@ footer {
     width: 100px;
 }
 
-.submit-button:hover{
+.submit-button:hover, #remove-person > img:hover, #add-person > img:hover{
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -520,4 +531,211 @@ footer {
 
 #form:first-child input{
     margin-top: 5%;
+}
+
+
+.submit-button{
+    margin: 5% auto;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #8f8f8f;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 100px;
+}
+
+.submit-button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.submit-button> a:link, .submit-button > a:visited{
+    color: #8f8f8f;
+    text-decoration: none;
+}
+
+
+/* status bar */
+#status-bar {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    height: 58px;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 20%);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(216, 216, 216);
+}
+
+#status-position{
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+
+#active-section{
+    text-decoration: underline;
+    color: #8a8a8a;
+    padding: 0 10px;
+}
+
+#closed-section{
+    color: #b1b1b1;
+    padding: 0 10px;
+}
+
+/* ticket reservation passanger info */
+#form-for-birthday-date{
+    display: grid;
+    max-width: 300px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 10%;
+    margin-right: 10%;
+    grid-column-gap: 10px;
+    vertical-align: middle;
+}
+
+#form-for-birthday-date > input{
+    width: 100%;
+    text-align: center;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #9A9A9A;
+    outline: none;
+    border: none;
+    height: 40px;
+    padding-left: 3%;
+}
+
+#date-text{
+    text-align: left;
+    padding-top: 5%;
+    padding-bottom: 1%;
+    margin-left: 10%;
+}
+
+/* remove person */
+#remove-person{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5%;
+    padding-top: 2%;
+    border-top: 1px solid rgb(184, 184, 184);
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+}
+
+#remove-person > img{
+    margin-right: 5%;
+}
+
+#continue-button{
+    margin: -2% auto;
+    text-align: center;
+}
+
+#add-person{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FEFEFE;
+    border-radius: 10px;
+    width: 250px;
+    height: 60px;
+    box-shadow: 0px 2px 6px rgb(0 0 0 / 25%);
+    color: #9A9A9A;
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+    margin: 10% auto 0%;
+}
+
+#add-person > img{
+    margin-right: 5%;
+}
+
+#flying-class-input, #departure-date-input{
+    color: #D7D7D7;
+    font-size: 13px;
+    user-select: none;
+    cursor: pointer;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+#flying-class-input-value, #departure-date-input-value{
+    background-color: #FEFEFE;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #9A9A9A;
+    outline: none;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 3%;
+}
+
+#select-flying-class, #select-departure-date{
+    display: none;
+    line-height: 30px;
+    background-color: #FEFEFE;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    position: absolute;
+    width: 270px;
+    color: #9A9A9A;
+}
+
+#booking-info-container, #sum-of-all-conatiner{
+    margin: 5% 10%;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #9A9A9A;
+    outline: none;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 3%;
+    font-size: 12px;
+}
+
+#sum-of-all-conatiner{
+    margin: 5% 35%;
+    text-align: right;
+    padding-right: 3%;
+}
+
+
+#book-button-container{
+    width: 100%;
+    margin: 10% auto;
+    text-align: center;
+}
+
+
+#book-button{
+    margin: 5% auto;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
+    border-radius: 5px;
+    color: #8f8f8f;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 100px;
+}
+
+#book-button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#departure-country, #arrive-country, #people-count, #departure-date, #arrive-date, #fly-number, #sum-of-all{
+    font-size: 13px;
+    color: #777777;;
 }
