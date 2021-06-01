@@ -376,7 +376,7 @@ article {
     width: 50%;
 }
 
-.NewestDestinationsGrid {
+.three-field-grid {
     display: grid;
     grid-template-rows: min-content min-content min-content;
     gap: 10px 20px;
@@ -385,9 +385,21 @@ article {
         "Left Field1 Field2 Field3 Right"
         "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
     justify-content: center;
-    padding-top: 5px;
+    padding-top: 10px;
 }
-  
+
+.three-field-grid-comment {
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    gap: 10px 20px;
+    grid-template-areas:
+        "Header Header Header Header Header"
+        "Left Field1 Field2 Field3 Right"
+        "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
+    justify-content: center;
+    padding-top: 10px;
+}
+
 .Header {
     grid-area: Header;
     font-family: Roboto;
@@ -397,32 +409,60 @@ article {
     color: #7D7D7D;
 }
 
-.Field1 {
+.three-field-grid-comment .Field1 {
     grid-area: Field1;
     width: 350px;
-    height: 218px;
+    height: fit-content;
+    user-select: text;
 }
 
-.Field2 {
+.three-field-grid-comment .Field2 {
     grid-area: Field2;
     width: 350px;
-    height: 218px;
+    height: fit-content;
+    user-select: text;
 }
 
-.Field3 {
+.three-field-grid-comment .Field3 {
     grid-area: Field3;
     width: 350px;
-    height: 218px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field1 {
+    grid-area: Field1;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field2 {
+    grid-area: Field2;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
+}
+
+.three-field-grid .Field3 {
+    grid-area: Field3;
+    width: 350px;
+    height: fit-content;
+    user-select: text;
 }
 
 .Right {
     grid-area: Right;
     align-self: center;
+    cursor: pointer;
+    user-select: none;
 }
 
 .Left {
     grid-area: Left;
     align-self: center;
+    cursor: pointer;
+    user-select: none;
 }
 
 .NavigationButtons {
@@ -456,6 +496,7 @@ article {
     box-shadow: 0px 0px 7px 2px #9c9c9c5c;
     border-radius: 7vmax;
     margin: 5px;
+    cursor: pointer;
 }
 
 .NavButtonOn {
@@ -465,6 +506,7 @@ article {
     box-shadow: 0px 0px 7px 2px #5c5c5c5c;
     border-radius: 7vmax;
     margin: 5px;
+    cursor: pointer;
 }
 
 .NewsLayoutGrid {
@@ -511,17 +553,74 @@ article {
     color: #9e9e9e;
 }
 
+.LargeInformationBubble {
+    display: flex;
+    width: 800px;
+    height: 250px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px auto;
+    justify-content: space-between;
+    padding-top: 57px;
+}
+
+.MainSquare {
+    display: flex;
+    height: -webkit-fill-available;
+    background-color: #f1f4f6;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-radius: 17px;
+    box-shadow: 0 0 11px 0 rgb(0 0 0 / 17%);
+}
+
+.backgroundCircle {
+    display: flex;
+    background-color: #ECF0F3;
+    width: 110px;
+    height: 110px;
+    border-radius: 10vmax;
+    align-items: center;
+    justify-content: center;
+}
+
+.BubbleInfoField {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    padding-top: 15px;
+    align-items: center;
+}
+
+.AirplaneSVG {
+    height: 73px;
+}
+
+.BookSVG {
+    height: 60px;
+}
+
+.CashSVG {
+    height: 40px;
+}
+
+.BellSVG {
+    height: 63px;
+}
+
+.BottomTriangleSVG {filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.17));}
+
+.TextField {width: 175px;text-align: center;color: #c0c0c0;padding-top: 12px;}
+
 footer {
     bottom: 0px;
 }
 
-/* ========For phone========= */
-@media only screen and (max-width: 650px) {
-    /*=====Header====== */
-    #navigation-bar{
-        height: 100px;
-        justify-content: center;
-    }
   
 /* About us */
 
@@ -603,4 +702,42 @@ footer {
 .submit-button:hover{
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.comment-frame {
+    display: flex;
+    width: auto;
+    height: auto;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 12px;
+    box-shadow: 0px 0px 14px 0px #8080805e;
+}
+
+img.profile-image {
+    width: 50px;
+    height: 50px;
+}
+
+img.profile-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 10vmax;
+    margin-left: 2px;
+}
+
+.comment-part {
+    width: 241px;
+}
+
+.commenter-name {
+    font-size: 18px;
+    color: #7D7D7D;
+}
+
+.commenter-comment {
+    font-size: 14px;
+    color: #a1a1a1;
 }
