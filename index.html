@@ -11,7 +11,7 @@
 <body>
     <header> 
         <div id="navigation-bar">
-            <img src="static/images/Logo.png" id="navigation-bar-logo"> <!-- Bilde izskatās labāk neka svg -->
+            <img src="static/images/Logo.png" id="navigation-bar-logo">
             <div  id="navigation-bar-right-side">
                 <div id="search-bar">
                     <div><input type="text" name="search-bar-input" id="search-bar-input" placeholder="Meklēt..."></div>
@@ -64,7 +64,111 @@
         </div>
     </header>
     <div id="wrapper">
-        temp
+        <div class="NewestDestinationsGrid">
+            <div class="Header">Jaunākie galamērķi</div>
+            <div class="Field1">
+                <div class="Card">
+                    <div class="CardHeader">
+                        <div class="CardDestination">Ņujorka</div>
+                        <div class="CardCost">359$</div>
+                    </div>
+                    <div class="CardInformationField">
+                        <div class="CardLeftField">
+                            <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                            <div class="CardParameters">
+                                <div class="CardParametersFlightDate">14.05.2021</div>
+                                <div class="CardParametersFlightTime">20:20</div>
+                            </div>
+                        </div>
+                        <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                    </div>
+                </div>
+            </div>
+            <div class="Field2">
+                <div class="Card">
+                    <div class="CardHeader">
+                        <div class="CardDestination">Ņujorka</div>
+                        <div class="CardCost">359$</div>
+                    </div>
+                    <div class="CardInformationField">
+                        <div class="CardLeftField">
+                            <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                            <div class="CardParameters">
+                                <div class="CardParametersFlightDate">14.05.2021</div>
+                                <div class="CardParametersFlightTime">20:20</div>
+                            </div>
+                        </div>
+                        <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                    </div>
+                </div>
+            </div>
+            <div class="Field3">
+                <div class="Card">
+                    <div class="CardHeader">
+                        <div class="CardDestination">Ņujorka</div>
+                        <div class="CardCost">359$</div>
+                    </div>
+                    <div class="CardInformationField">
+                        <div class="CardLeftField">
+                            <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                            <div class="CardParameters">
+                                <div class="CardParametersFlightDate">14.05.2021</div>
+                                <div class="CardParametersFlightTime">20:20</div>
+                            </div>
+                        </div>
+                        <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                    </div>
+                </div>
+            </div>
+            <div class="Right"><img class="MoveRightButton">
+                <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
+                    <line x1="5" y1="5" x2="105" y2="105"/>
+                    <line x1="105" y1="105" x2="5" y2="200"/>
+                </svg>
+            </div>
+            <div class="Left"><img class="MoveLeftButton">
+                <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
+                    <line x1="105" y1="5" x2="5" y2="105"/>
+                    <line x1="5" y1="105" x2="105" y2="200"/>
+                </svg>
+            </div>
+            <div class="NavigationButtons">
+                <div class="NavButtonOff"></div>
+                <div class="NavButtonOn"></div>
+                <div class="NavButtonOff"></div>
+                <div class="NavButtonOff"></div>
+            </div>
+        </div>
+        <div class="NewsLayoutGrid">
+            <div class="Description1">
+                <div class="NewsHeader">
+                    Lidostas “Rīga” darbinieki aktīvi izmanto iespēju vakcinēties
+                </div>
+                <div class="NewsDescription">
+                    Daudzi lidostā strādājošie jau ir izmantojuši iespēju pret Covid-19 vakcinēties citur, tomēr, ņemot vērā  lielo interesi, lidosta  “Rīga” piedāvā saviem darbiniekiem iespēju vakcinēties arī darba vietā.
+                    <br>
+                    <br>
+                    Divās vakcinēšanās dienās 8. un 14.maijā  pirmo vakcīnas devu ir saņēmuši 242 jeb 26% lidostas darbinieku...
+                </div>
+            </div>
+            <div class="Description2">
+                <div class="NewsHeader">
+                    RIX Internacionālajā lidostā pazaudēta jau trešā kravas lidmašīna
+                </div>
+                <div class="NewsDescription">
+                    Kā ir iespējams pazaudēt lidmašīnu? Tā nemaz nav maza, un lidostās ir 24 stundu apsardze. Vai lidostās drošībai vajadzētu būt stingrākai?
+                    <br>
+                    <br>
+                    Aizvakar RIX izsludināja lūgumu atgriezt jau trešo zagto 41 tonnu smago kravas pārvadāšanai pārveidoto Boeing 737, tomēt tie vēl nav saņēmuši nekādu ziņu par zudušās lidmašīnas atrasšanās vietu, tomēr valsts policija turpina izmeklējumu...
+                </div>
+            </div>
+            <div class="Photo1">
+                <img src="static\images\Story\StoryImage1.jpg" alt="Bilde1">
+            </div>
+            <div class="Photo2">
+                <img src="static\images\Story\StoryImage2.jpg" alt="Bilde2">
+            </div>
+        </div>
     </div>
     <div id="wrapper">
         <footer>
@@ -98,6 +202,7 @@
     <script src="static/scripts/main.js"></script>
 </body>
 </html>
+
 
 <!-- atbilstoši SVG un attēli atradīsies elements folderī -->
 <!-- atbilstoši pašlaik ir pievienoti tikai SVG un attēli no galvenas lapas-->
