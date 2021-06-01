@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="lv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/style/stylesheet.css" type="text/css" rel="stylesheet">
+    <link
+        rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <title>Lidosta</title>
+</head>
+
+<body>
+    <header>
+        <div id="navigation-bar">
+            <img src="static/images/Logo.png" id="navigation-bar-logo"> 
+            <div id="navigation-bar-right-side">
+                <div id="search-bar">
+                    <div><input type="text" name="search-bar-input" id="search-bar-input"></div>
+                    <img src="static/Vector/SpyGlass.svg" id="search-bar-search-icon">
+                </div>
+                <div id="login-button">Ienākt</div>
+            </div>
+        </div>
+        <div id="form-banner-background">
+            <div id="status-bar">
+                <div id="status-position">
+                    <span id="active-section">1. Pasažiera inormācija</span>
+                    <span id="closed-section">2. Lidojuma kustomizācija</span>
+                    <span id="closed-section">3. Kopskats un rezervēšana</span>
+                </div>
+            </div>
+            <div id="form-container">
+                <article id="login">
+                    <div id="article-header">
+                        <span id="article-name">Pasažiera informācija</span>
+                    </div>
+                    <div id="article-content">
+                        <form id="form">
+                            <input type="text" name="name" placeholder="Vārds">
+                            <input type="text" name="lastname" placeholder="Uzvārds">
+                            <span id="date-text">Dzimšanas datums:</span>
+                            <div id="form-for-birthday-date">
+                                <input type="text" name="year" placeholder="Gads">
+                                <input type="text" name="month" placeholder="Mēnesis">
+                                <input type="text" name="date" placeholder="Diena">
+                            </div>
+                            <input type="text" name="person_id" placeholder="Personas kods">
+                            <input type="email" name="email" placeholder="E-pasts">
+                            <input type="text" name="telephone_number" placeholder="Tālr.:">
+                            <div id="remove-person">
+                                <img src="static/Vector/RemoveSign.svg">
+                                Noņemt cilvēku
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div id="add-person">
+            <img src="static/Vector/AddSign.svg">
+            Pievienot cilvēku
+        </div>
+        <div id="continue-button">
+            <button class="submit-button"><a href="flying customization.html">Turpināt</a></button>
+        </div>
+    </header>
+    <script src="static/scripts/main.js"></script>
+</body>
+
+</html>
