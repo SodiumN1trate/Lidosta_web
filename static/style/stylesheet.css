@@ -411,21 +411,21 @@ article {
 
 .three-field-grid-comment .Field1 {
     grid-area: Field1;
-    width: 350px;
+    width: 320px;
     height: fit-content;
     user-select: text;
 }
 
 .three-field-grid-comment .Field2 {
     grid-area: Field2;
-    width: 350px;
+    width: 320px;
     height: fit-content;
     user-select: text;
 }
 
 .three-field-grid-comment .Field3 {
     grid-area: Field3;
-    width: 350px;
+    width: 320px;
     height: fit-content;
     user-select: text;
 }
@@ -729,7 +729,8 @@ img.profile-image {
 }
 
 .comment-part {
-    width: 241px;
+    width: 212px;
+    padding-top: 4px;
 }
 
 .commenter-name {
