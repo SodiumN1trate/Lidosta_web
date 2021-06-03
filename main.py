@@ -33,4 +33,8 @@ def flight_customization():
 def booking_overview():
     return render_template("booking overview.html")
 
+@app.route("/profile")
+def profole():
+    return render_template("profile.html")
+
 app.run(host='0.0.0.0', port=8080)
