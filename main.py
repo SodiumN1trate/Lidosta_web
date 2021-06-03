@@ -37,4 +37,9 @@ def booking_overview():
 def travel_menu():
     return render_template("standarta_piedavajums.html")
 
-app.run(host='192.168.8.101', port=8080)
+@app.route("/profile")
+def profole():
+    return render_template("profile.html")
+
+app.run(host='0.0.0.0', port=8080)
+
