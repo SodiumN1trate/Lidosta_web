@@ -14,7 +14,7 @@ let arrival_countries_input = document.getElementById("arrival-country-input-val
 DEPARTURE_COUNTRIES_BOX.addEventListener("click", (e) =>{
     if(departure_countries_box_status === false){
         document.getElementById("select-departure-countries").style.display = "initial";
-         document.getElementById("select-arrival-countries").style.display = "none";
+        document.getElementById("select-arrival-countries").style.display = "none";
         departure_countries_box_status = !departure_countries_box_status;
         arrival_countries_box_status = false;
     }
