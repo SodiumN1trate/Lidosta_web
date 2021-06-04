@@ -34,7 +34,11 @@ def booking_overview():
     return render_template("booking overview.html")
 
 @app.route("/profile")
-def profole():
+def profile():
     return render_template("profile.html")
+
+@app.route("/standart flights")
+def standart_flights():
+    return render_template("standarta piedavajums.html")
 
 app.run(host='0.0.0.0', port=8080)
