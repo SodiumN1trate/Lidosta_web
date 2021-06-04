@@ -824,7 +824,7 @@ footer {
 }
 
 
-#form{
+#form, form{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -832,7 +832,7 @@ footer {
 }
 
 
-#form > input{
+form > input{
     margin: 0% 10%;
     background-color: #f1f1f1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
@@ -844,11 +844,11 @@ footer {
     padding-left: 3%;
 }
 
-#form:first-child input{
+form:first-child input{
     margin-top: 10%;
 }
 
-#form > a, #form > p{
+form > a, form > p{
     text-align: center;
 }
 
@@ -1291,6 +1291,7 @@ footer {
 }
 
 #add-person{
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1301,7 +1302,7 @@ footer {
     box-shadow: 0px 2px 6px rgb(0 0 0 / 25%);
     color: #9A9A9A;
     text-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
-    margin: 10% auto 0%;
+    margin: 5% auto 0%;
 }
 
 #add-person > img{

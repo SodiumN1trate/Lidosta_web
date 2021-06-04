@@ -5,13 +5,13 @@ app = Flask('app')
 def index():
     return render_template("index.html")
 
-@app.route("/about us")
+@app.route("/about_us")
 def about_us():
-    return render_template("about us.html")
+    return render_template("about_us.html")
 
-@app.route("/travel info")
+@app.route("/travel_info")
 def travel_info():
-    return render_template("reissa informacija.html")
+    return render_template("reissa_informacija.html")
 
 @app.route("/login")
 def login():
@@ -21,17 +21,21 @@ def login():
 def register():
     return render_template("register.html")
 
-@app.route("/passanger info")
+@app.route("/passanger_info")
 def passanger_ticket_info():
-    return render_template("passangers ticket info.html")
+    return render_template("passangers_ticket_info.html")
 
-@app.route("/flight customization")
+@app.route("/flight_customization")
 def flight_customization():
-    return render_template("flight customization.html")
+    return render_template("flight_customization.html")
 
-@app.route("/booking overview")
+@app.route("/booking_overview")
 def booking_overview():
-    return render_template("booking overview.html")
+    return render_template("booking_overview.html")
+
+@app.route("/travel_menu")
+def travel_menu():
+    return render_template("standarta_piedavajums.html")
 
 @app.route("/profile")
 def profile():
@@ -42,3 +46,4 @@ def standart_flights():
     return render_template("standarta piedavajums.html")
 
 app.run(host='0.0.0.0', port=8080)
+
