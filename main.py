@@ -38,8 +38,12 @@ def travel_menu():
     return render_template("standarta_piedavajums.html")
 
 @app.route("/profile")
-def profole():
+def prfile():
     return render_template("profile.html")
+
+@app.route("/profile2")
+def prfile2():
+    return render_template("profile2.html")
 
 app.run(host='0.0.0.0', port=8080)
 
