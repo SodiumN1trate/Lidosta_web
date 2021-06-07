@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/style/stylesheet.css" type="text/css" rel="stylesheet">
-    <link
-        rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <title>Lidosta</title>
 </head>
 
@@ -26,8 +26,8 @@
         <div id="form-banner-background">
             <div id="status-bar">
                 <div id="status-position">
-                    <span id="active-section">1. Pasažiera inormācija</span>
-                    <span id="closed-section">2. Lidojuma kustomizācija</span>
+                    <span id="closed-section">1. Lidojuma kustomizācija</span>
+                    <span id="active-section">2. Pasažiera inormācija</span>
                     <span id="closed-section">3. Kopskats un rezervēšana</span>
                 </div>
             </div>
@@ -38,17 +38,17 @@
                     </div>
                     <div id="article-content">
                         <form>
-                            <input type="text" name="name" placeholder="Vārds">
-                            <input type="text" name="lastname" placeholder="Uzvārds">
+                            <input type="text" name="name" placeholder="Vārds" id="name">
+                            <input type="text" name="lastname" placeholder="Uzvārds" id="lastname">
                             <span id="date-text">Dzimšanas datums:</span>
                             <div id="form-for-birthday-date">
-                                <input type="text" name="year" placeholder="Gads">
-                                <input type="text" name="month" placeholder="Mēnesis">
-                                <input type="text" name="date" placeholder="Diena">
+                                <input type="text" name="year" placeholder="Gads" id="birth-year"  maxlength="4">
+                                <input type="text" name="month" placeholder="Mēnesis" id="birth-month" maxlength="2">
+                                <input type="text" name="date" placeholder="Diena" id="birth-day"  maxlength="2">
                             </div>
-                            <input type="text" name="person_id" placeholder="Personas kods">
-                            <input type="email" name="email" placeholder="E-pasts">
-                            <input type="text" name="telephone_number" placeholder="Tālr.:">
+                            <input type="text" name="person_id" placeholder="Personas kods" id="person-id">
+                            <input type="email" name="email" placeholder="E-pasts" id="email">
+                            <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number">
                             <div id="remove-person">
                                 <img src="static/Vector/RemoveSign.svg">
                                 Noņemt cilvēku
@@ -57,44 +57,28 @@
                     </div>
                 </article>
             </div>
+            <div id="pop-up-passangers-info-data-accept">
+                <div id="pop-up-form">
+                    <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                    <div id="continue-button">
+                        <a href="/booking_overview"><button class="submit-button">Jā</button></a>
+                    </div>
+                    <div id="continue-button">
+                        <a><button class="submit-button" id="return">Nē</button></a>
+                    </div>
+                </div>
+            </div>
             <div id="add-person">
                 <img src="static/Vector/AddSign.svg">
                 Pievienot cilvēku
             </div>
-            <div id="continue-button">
-                <button class="submit-button"><a href="/flight_customization">Turpināt</a></button>
+            <div id="input-check">
+                <div id="continue-button">
+                    <button class="submit-button">Turpināt</button>
+                </div>
             </div>
         </div>
     </header>
-    <div id="wooper">
-        <footer>
-            <div id="bottom-navigation">
-                <div>
-                    <div id="bottom-left">
-                        <div id="bottom-navigation-text-position">
-                            <span><a href="/about us" class="bottom-navigation-text">Par mums</a></span>
-                            <span><a href="" class="bottom-navigation-text">Palīdzība</a></span>
-                            <span><a hre class="bottom-navigation-text">Klientu atbalsts</a></span>
-                            <span><a hre class="bottom-navigation-text">Informācija</a></span>
-                            <span><a hre class="bottom-navigation-text">Kompānijas</a></span>
-                            <div id="footer-search-bar">
-                                <input type="text" class="bottom-navigation-input-search-bar">
-                                <img src="static/images/Footer search bar check mark.png" class="bottom-navigation-input-button">
-                            </div>
-                        </div>
-                    </div>
-                    <span>
-                        <hr id="footer-seperate">
-                    </span>
-                    <div>
-                        <p id="copyright-text">
-                            Copyright 2021 RVT DP1-3. Pilnīgi nevienas tiesības netiek aizsargātas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
     <script src="static/scripts/passangers_info_script.js"></script>
 </body>
 
