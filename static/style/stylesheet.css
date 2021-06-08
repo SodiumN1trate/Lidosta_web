@@ -17,10 +17,9 @@ body {
 
 #wrapper {
     max-width: 100%;
-    width: 100%;
+    width: 1150px;
     margin: 0 auto;
 }
-
 
 #navigation-bar {
     display: flex;
@@ -42,6 +41,8 @@ body {
     height: 50%;
     user-select: none;
     padding-left: 15px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #navigation-bar-right-side {
