@@ -26,8 +26,8 @@
         <div id="form-banner-background">
             <div id="status-bar">
                 <div id="status-position">
-                    <span id="closed-section">1. Pasažiera inormācija</span>
-                    <span id="active-section">2. Lidojuma kustomizācija</span>
+                    <span id="active-section">1. Lidojuma kustomizācija</span>
+                    <span id="closed-section">2. Pasažiera inormācija</span>
                     <span id="closed-section">3. Kopskats un rezervēšana</span>
                 </div>
             </div>
@@ -37,10 +37,10 @@
                         <span id="article-name">Lidojuma kustomizācija</span>
                     </div>
                     <div id="article-content">
-                        <form id="form">
-                            <div id="flying-class-input">
-                                <div id="flying-class-input-value">Izvēlēties lidojuma klasi</div>
-                                <div id="select-flying-class">
+                        <form>
+                            <div id="dropdown-box">
+                                <div id="dropdown-box-value">No:</div>
+                                <div id="dropdown-box-select">
                                     <option class="select-country">Standarta klase</option>
                                     <hr>
                                     <option class="select-country">Komforta klase</option>
@@ -48,9 +48,29 @@
                                     <option class="select-country">VIP klase</option>
                                 </div>
                             </div>
-                            <div id="departure-date-input">
-                                <div id="departure-date-input-value">Izvēlēties izlidošanas datumu</div>
-                                <div id="select-departure-date">
+                            <div id="dropdown-box">
+                                <div id="dropdown-box-value">Uz:</div>
+                                <div id="dropdown-box-select">
+                                    <option class="select-country">Standarta klase</option>
+                                    <hr>
+                                    <option class="select-country">Komforta klase</option>
+                                    <hr>
+                                    <option class="select-country">VIP klase</option>
+                                </div>
+                            </div>
+                            <div id="dropdown-box">
+                                <div id="dropdown-box-value">Izvēlēties lidojuma klasi</div>
+                                <div id="dropdown-box-select">
+                                    <option class="select-country">Standarta klase</option>
+                                    <hr>
+                                    <option class="select-country">Komforta klase</option>
+                                    <hr>
+                                    <option class="select-country">VIP klase</option>
+                                </div>
+                            </div>
+                            <div id="dropdown-box">
+                                <div id="dropdown-box-value">Izvēlēties izlidošanas datumu</div>
+                                <div id="dropdown-box-select">
                                     <option class="select-country">12.maijs 2021.gads</option>
                                     <hr>
                                     <option class="select-country">19.maijs 2021.gads</option>
@@ -66,10 +86,10 @@
             </div>
         </div>
         <div id="continue-button">
-            <button class="submit-button"><a href="booking overview.html">Turpināt</a></button>
+            <a href="/passanger_info"><button class="submit-button">Turpināt</button></a>
         </div>
     </header>
-    <script src="static/scripts/forms.js"></script>
+    <script src="static/scripts/flight_customization_form.js"></script>
 </body>
 
 </html>
