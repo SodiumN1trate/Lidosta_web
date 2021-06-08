@@ -2,12 +2,12 @@ console.log("JS for forms scripts working");
 
 // Dropdown
 
-let last_opened_dropdowsn_id;
+let last_opened_dropdowns_id;
 
 for (let input_index = 0; input_index < document.querySelectorAll("#dropdown-box").length; input_index++) {
     document.querySelectorAll("#dropdown-box #dropdown-box-value")[input_index].addEventListener("click", (e) =>{
-        if (last_opened_dropdowsn_id >= 0){
-            document.querySelectorAll("#dropdown-box-select")[last_opened_dropdowsn_id].style.display = "none";
+        if (last_opened_dropdowns_id >= 0){
+            document.querySelectorAll("#dropdown-box-select")[last_opened_dropdowns_id].style.display = "none";
         }
         document.querySelectorAll("#dropdown-box-select")[input_index].style.display = "block";
         for (let index = 0; index < document.querySelectorAll("#dropdown-box-select > .select-country").length; index++) {
@@ -16,6 +16,38 @@ for (let input_index = 0; input_index < document.querySelectorAll("#dropdown-box
                 document.querySelectorAll("#dropdown-box-select")[input_index].style.removeProperty('display');
             });        
         }
-        last_opened_dropdowsn_id = input_index;
+        last_opened_dropdowns_id = input_index;
     }
 )};
+
+// Gap checker
+let gap = false;
+document.querySelector("#continue-button > .submit-button").addEventListener("click", (e)=>{
+    for (let index = 0; index < document.querySelectorAll("#dropdown-box").length; index++) {
+        if( document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "No:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Uz:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties lidojuma klasi" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties izlidošanas datumu"){
+            console.log(`Tukšs ${index}`);
+            gap = true;
+        }
+    }
+    console.log("Tests");
+    if(gap === true){
+        alert("Aizpildiet visus dotos laukus!")
+    }
+    else{
+        raise_popup();
+    }
+    gap = false;
+});
+
+//pop up
+function raise_popup() {
+    document.getElementById("pop-up-passangers-info-data-accept").style.display = "block";
+    document.querySelectorAll("#continue-button").forEach(element => {
+        element.addEventListener("click", (e)=>{
+            if( e.target.innerHTML === "Nē"){
+                document.getElementById("pop-up-passangers-info-data-accept").style.display = "none";
+            };
+        }); 
+    });
+};
+
