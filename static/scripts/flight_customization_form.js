@@ -22,11 +22,17 @@ for (let input_index = 0; input_index < document.querySelectorAll("#dropdown-box
 
 // Gap checker
 let gap = false;
+
+let flight_customization = [];
+
 document.querySelector("#continue-button > .submit-button").addEventListener("click", (e)=>{
     for (let index = 0; index < document.querySelectorAll("#dropdown-box").length; index++) {
         if( document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "No:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Uz:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties lidojuma klasi" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties izlidošanas datumu"){
             console.log(`Tukšs ${index}`);
             gap = true;
+        }
+        else{
+            flight_customization.push(document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML);
         }
     }
     console.log("Tests");
@@ -35,6 +41,7 @@ document.querySelector("#continue-button > .submit-button").addEventListener("cl
     }
     else{
         raise_popup();
+        document.cookie = `flight_customization=${Base64.encode(JSON.stringify(flight_customization))}` // To do: Nepieciešams atlidošanas datums un summa par cilvēku
     }
     gap = false;
 });
