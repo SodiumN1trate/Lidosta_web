@@ -51,5 +51,9 @@ def standart_flights():
     return render_template("standarta piedavajums.html")
 
 
+@app.route("/admin")
+def admin():
+    return render_template("administration.html")
+
 app.run(host='0.0.0.0', port=8080)
 
