@@ -13,7 +13,7 @@ def about_us():
 
 @app.route("/travel_info")
 def travel_info():
-    return render_template("reissa_informacija.html")
+    return render_template("travel_info.html")
 
 @app.route("/login")
 def login():
@@ -38,18 +38,13 @@ def booking_overview():
     resp.set_cookie('persons', '', expires=0)
     return resp
 
-@app.route("/travel_menu")
-def travel_menu():
-    return render_template("standarta_piedavajums.html")
-
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
 
 @app.route("/standart_flights")
 def standart_flights():
-    return render_template("standarta piedavajums.html")
-
+    return render_template("standart_flights.html")
 
 @app.route("/admin")
 def admin():

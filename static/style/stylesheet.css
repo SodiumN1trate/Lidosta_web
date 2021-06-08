@@ -229,6 +229,7 @@ article {
 footer {
     display: flex;
     justify-content: center;
+    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 8;
@@ -418,6 +419,7 @@ footer {
         "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
     justify-content: center;
     padding-top: 10px;
+    margin-bottom: 7%;
 }
 
 .Header {
@@ -637,6 +639,7 @@ footer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 7%;
 }
 
 /* About us article */
@@ -1461,6 +1464,7 @@ img.profile-image {
     height: fit-content;
     min-height: 470px;
     margin: 0px auto;
+    margin-bottom: 7%;
     flex-direction: row;
     justify-content: space-between;
     padding-top: 25px;
