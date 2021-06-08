@@ -48,7 +48,7 @@ function remove_button_render() {
 // Get data from user inputs
 let persons = [];
 let gaps = false;
-document.getElementById("input-check").addEventListener("click", (e) =>{
+document.querySelector("#continue-button > .submit-button").addEventListener("click", (e) =>{
     for (let index = 0; index < document.querySelectorAll('#login').length; index++) {
         if (document.querySelectorAll('#name')[index].value === "" || document.querySelectorAll('#lastname')[index].value === "" || document.querySelectorAll('#birth-year')[index].value === "" || document.querySelectorAll('#birth-month')[index].value === "" || document.querySelectorAll('#birth-day')[index].value === "" || document.querySelectorAll('#person-id')[index].value === "" || document.querySelectorAll('#email')[index].value === "" || document.querySelectorAll('#telephone-number')[index].value === ""){
             gaps = true;
