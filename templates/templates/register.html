@@ -1,0 +1,28 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Reģistrēties{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Reģistrēties</span>
+                </div>
+                <div id="article-content">
+                    <form>
+                        <div id="top-of-form">
+                            <input type="text" name="name" placeholder="Vārds" id="name">
+                            <input type="text" name="lastaname" placeholder="Uzvārds" id="lastname">
+                        </div>
+                        <input type="text" name="name" placeholder="E-pasts">
+                        <input type="password" name="password" placeholder="Parole">
+                        <input type="password" name="re-password" placeholder="Atkāroti parole">
+                        <!-- Captcha -->
+                        <button class="submit-button">Reģistrēties</button>
+                    </form>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

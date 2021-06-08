@@ -1,0 +1,60 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Pasažieri{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="status-bar">
+            <div id="status-position">
+                <span id="closed-section">1. Lidojuma kustomizācija</span>
+                <span id="active-section">2. Pasažiera inormācija</span>
+                <span id="closed-section">3. Kopskats un rezervēšana</span>
+            </div>
+        </div>
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Pasažiera informācija</span>
+                </div>
+                <div id="article-content">
+                    <form>
+                        <input type="text" name="name" placeholder="Vārds" id="name">
+                        <input type="text" name="lastname" placeholder="Uzvārds" id="lastname">
+                        <span id="date-text">Dzimšanas datums:</span>
+                        <div id="form-for-birthday-date">
+                            <input type="text" name="year" placeholder="Gads" id="birth-year"  maxlength="4">
+                            <input type="text" name="month" placeholder="Mēnesis" id="birth-month" maxlength="2">
+                            <input type="text" name="date" placeholder="Diena" id="birth-day"  maxlength="2">
+                        </div>
+                        <input type="text" name="person_id" placeholder="Personas kods" id="person-id">
+                        <input type="email" name="email" placeholder="E-pasts" id="email">
+                        <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number">
+                        <div id="remove-person">
+                            <img src="static/Vector/RemoveSign.svg">
+                            Noņemt cilvēku
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </div>
+        <div id="pop-up-passangers-info-data-accept">
+            <div id="pop-up-form">
+                <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                <div id="continue-button">
+                    <a href="/booking_overview"><button class="submit-button">Jā</button></a>
+                </div>
+                <div id="continue-button">
+                    <a><button class="submit-button" id="return">Nē</button></a>
+                </div>
+            </div>
+        </div>
+        <div id="add-person">
+            <img src="static/Vector/AddSign.svg">
+            Pievienot cilvēku
+        </div>
+        <div id="continue-button">
+            <button class="submit-button">Turpināt</button>
+        </div>
+    </div>
+    <script type="text/javascript" charset="UTF-8" src="static/scripts/passangers_info_script.js"></script>
+{% endblock %}

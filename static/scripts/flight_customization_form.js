@@ -28,7 +28,6 @@ let flight_customization = [];
 document.querySelector("#continue-button > .submit-button").addEventListener("click", (e)=>{
     for (let index = 0; index < document.querySelectorAll("#dropdown-box").length; index++) {
         if( document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "No:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Uz:" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties lidojuma klasi" || document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML === "Izvēlēties izlidošanas datumu"){
-            console.log(`Tukšs ${index}`);
             gap = true;
         }
         else{
@@ -41,7 +40,9 @@ document.querySelector("#continue-button > .submit-button").addEventListener("cl
     }
     else{
         raise_popup();
-        document.cookie = `flight_customization=${Base64.encode(JSON.stringify(flight_customization))}` // To do: Nepieciešams atlidošanas datums un summa par cilvēku
+        flight_customization.push(document.querySelector("#booking-info-container > #arrive-date").innerHTML);
+        flight_customization.push(document.querySelector("#sum-of-all-conatiner  #sum-of-all").innerHTML);
+        document.cookie = `flight_customization=${Base64.encode(JSON.stringify(flight_customization))}`;
     }
     gap = false;
 });

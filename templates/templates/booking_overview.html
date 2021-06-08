@@ -1,0 +1,38 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Kopskats{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="status-bar">
+            <div id="status-position">
+                <span id="closed-section">1. Lidojuma kustomizācija</span>
+                <span id="closed-section">2. Pasažiera inormācija</span>
+                <span id="active-section">3. Kopskats un rezervēšana</span>
+            </div>
+        </div>
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Kopskats</span>
+                </div>
+                <div id="article-content">
+                    <form>
+                        <div id="booking-info-container">No: <span id="departure-country">{{ departure_country }}</span></div>
+                        <div id="booking-info-container">Uz: <span id="arrive-country">{{ arrive_country }}</span></div>
+                        <div id="booking-info-container">Lidojuma klase: <span id="flight_class">{{ flight_class }}</span></div>
+                        <div id="booking-info-container">Cilvēku skaits: <span id="people-count">{{ passengers }}</span></div>
+                        <div id="booking-info-container">Izlidošanas laiks: <span id="departure-date">{{ departure_time }}</span></div>
+                        <div id="booking-info-container">Ielidošanas laiks: <span id="arrive-date">{{ arrive_time }}</span></div>
+                        <div id="booking-info-container">Lidojuma numurs: <span id="fly-number">{{ flight_number }}</span></div>
+                        <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all">{{ sum_of_all }}</span> $</div>
+                    </form>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div id="book-button-container">
+        <button id="book-button">Rezervēt</button>
+    </div>
+    <script src="static/scripts/main.js"></script>
+{% endblock %}

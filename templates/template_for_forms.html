@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="lv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/style/stylesheet.css" type="text/css" rel="stylesheet">
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <title>{% block title %}Lidosta{% endblock %}</title>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1014.0" data-gr-ext-installed="" >
+    <div id="navigation-bar">
+        <a href="/"><img src="static/images/Logo.png" id="navigation-bar-logo"></a>
+        <div id="navigation-bar-right-side">
+            <div id="search-bar">
+                <div><input type="text" name="search-bar-input" id="search-bar-input" placeholder="Meklēt..."></div>
+                <img src="static/Vector/SpyGlass.svg" id="search-bar-search-icon">
+            </div>
+            <div id="login-button"><a href="/login">Ienākt</a></div>
+        </div>
+    </div>
+    <header>
+        {% block content %}
+            Opps nekā nav!
+        {% endblock %}
+    </header>
+</body>
+
+</html>

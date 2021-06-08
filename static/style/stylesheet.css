@@ -37,12 +37,9 @@ body {
 }
 
 #navigation-bar-logo {
-    width: auto;
+    width: 125px;
     height: 50%;
-    user-select: none;
     padding-left: 15px;
-    cursor: pointer;
-    user-select: none;
 }
 
 #navigation-bar-right-side {
@@ -421,6 +418,7 @@ footer {
     justify-content: center;
     padding-top: 10px;
     margin-bottom: 7%;
+    margin-top: 2%;
 }
 
 .Header {
@@ -1414,7 +1412,7 @@ form > a, form > p{
     transform: scale(1.1);
 }
 
-#departure-country, #arrive-country, #people-count, #departure-date, #arrive-date, #fly-number, #sum-of-all{
+#departure-country, #arrive-country, #people-count, #departure-date, #arrive-date, #fly-number, #sum-of-all, #flight_class{
     font-size: 13px;
     color: #777777;;
 }
