@@ -10,16 +10,19 @@
                     <span id="article-name">Reģistrēties</span>
                 </div>
                 <div id="article-content">
-                    <form>
+                    <form action="/register_user" method="POST">
                         <div id="top-of-form">
-                            <input type="text" name="name" placeholder="Vārds" id="name">
-                            <input type="text" name="lastaname" placeholder="Uzvārds" id="lastname">
+                            <input type="text" name="name" placeholder="Vārds" id="name" value="{{ name }}">
+                            <input type="text" name="lastname" placeholder="Uzvārds" id="lastname" value="{{ lastname }}">
                         </div>
-                        <input type="text" name="name" placeholder="E-pasts">
+                        <input type="email" name="email" placeholder="E-pasts" value="{{ email }}">
                         <input type="password" name="password" placeholder="Parole">
                         <input type="password" name="re-password" placeholder="Atkāroti parole">
-                        <!-- Captcha -->
-                        <button class="submit-button">Reģistrēties</button>
+                        <div id="recaptcha">{{ recaptcha }}</div>
+                        {% if message_value != "" %}
+                            <div class="{{ message_type }}">{{ message_value }}</div>
+                        {% endif %}
+                        <button class="submit-button" type="submit">Reģistrēties</button>
                     </form>
                 </div>
             </article>

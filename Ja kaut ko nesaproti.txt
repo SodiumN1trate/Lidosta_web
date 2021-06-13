@@ -1,0 +1,63 @@
+Projekta dokumentācija developeriem:
+
+Termināla komandas tiek apzīmētas šādi: ' komanda '. Rakstot to termināli jānoņem tās ķepiņas (apostrofi).
+
+Kā palaist serveri?
+    - Sākumā biju nepareizi teicis ka vajaga laist caur main.py (tagad tas ir views.py).
+    - 1. lai palaistu serveri jādefinē aplikācija, tas ir termināli jāuzraksta ` set FLASK_APP=views.py `
+    - 2. servera palaišana notiek ar komandu ' flask run ' termināli, ip adrese un ports būs cits (skaties terminālī).
+
+Kas ar html?
+    - Tātad tur es esmu izmantojis šablonizātoru, viegli saprotams.
+    - Dokumentācija: https://flask.palletsprojects.com/en/2.0.x/tutorial/templates/#:~:text=Templates%20are%20files%20that%20contain,display%20in%20the%20user%27s%20browser.
+
+Kapēc es nevaru palaist serveri?
+    - Droši vien tas ir tāpēc ka tev nav ielādēti visi vajadzīgie moduļi, kurus vari apskatīt "requirements.txt".
+    - pip install (mododuļa nosaukums)
+
+Savienojums ar datubāzi:
+    - Lai savienotos ar datubāzi ir nepiciešams Sqlite.
+    - Pamācība kā ielādēt Sqlite: https://www.sqlitetutorial.net/download-install-sqlite/
+    - Pēc ielādēšanas lidosta_db.db datubāzi ir nepieciešams savienot ar pašu sqlite.
+        Iekš GUI augšā ir redzams datubāzes ikona ar plus zīmīti un uz tās ir jānospiež, pēc kā mēs izvēlamies atvērtajā logā mapes ikonu
+        un atrodam projekta lidosta_db.db datubāzi un notestējam savienojumu pēc kā izveidojam savienojumu.
+
+Kapēc tik daudz .py faili ir parādījušies?
+    - Tas ir tapēc ka projekts tiek veidots MVC struktūrā.
+    - Vairāk info: https://en.wikipedia.org/wiki/Model–view–controller
+    - Model: Mums ir business_logic.py
+    - View: Mums ir views.py
+    - Controller: Mums ir templates mapē.
+
+Kas ir migrations mape?
+    - Šajā mapē tiek saglabātas visas datubāzes table struktūras upgrad'i un downgrad'i.
+
+Kur var atrast datubāzes table struktūras?
+    - To var atrast models.py.
+    - Projektā mēs neizmantosim parastos SQL requestus, bet gan izmantosim ORM "SQLAlchemy".
+    - Dokomentācija kā to lietot: https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#a-minimal-application 
+
+Kas ir migrācija?
+    - Migrācija ir datu pārsūtīšana
+    - Vairāk info par migrāciju šeit: https://searchstorage.techtarget.com/definition/data-migration#:~:text=Data%20migration%20is%20the%20process,data%20formats%20or%20computer%20systems.
+
+Kad un kā veidot migrāciju?
+    - Tā tad pēc models.py table pievienošanas vai kāda cita table rediģēšan ir jāveido migrācija.
+    - 1. Ja iepriekš vel neēsam veidojuši migrāciju, tad ' flask db init '. Ja jau ir bijusi veidota migrācija, tad nevajaga šo rakstīt.
+    - 2. Tas ir tāpat kā veidot git commitu, rakstam ' flask db migration -m "(Migrācijas nosaukums)" '
+    - 3. ' flask db upgrade ', ja izmetas errors saistībā ar sqlite_sequence atveram mapi migrations/versions/(Jūsu izveidotā migrācija).py atveram šo failu
+        un pie funkcijas upgrade() izdzēšam šo rindiņu "op.drop_table('sqlite_sequence')",
+        ja bez tās rindiņas funkcija palikusi tukša uzrakstam vienkārši apakšā " pass ".
+    P:S.
+        Migrāciju nevarēs izveidot ja jūs vienkārši vērtību nomainīsiet piem. : nullable=False nomainīsiet uz nullable=True vai .String(100) nomainīsiet uz .String(24).
+        Lai nomainītu kādu no vērtībām sākumā nomainiet to iekš models.py un saglabājiet. Pēc tam pašā datubāzes GUI nomainiet to vērtību.
+
+        Kapēc jādzēš rindiņa "op.drop_table('sqlite_sequence')"?
+            -Tas ir tāpēc ka šis table datubāzē man personīgi nav izveidojies, viss visādas metodes mēģināju nesanāca.
+            Tāpēc man tas ir jādžēš ārā, ja jums ir tāds table tad jums nevajaga droši vien dzēst to rindiņu ārā.
+
+
+Ja kādas problēmas rakstiet: SodiumNitrate#2007
+
+
+Datubāzēs fails githubā stāvēs līdz 18/06/2021

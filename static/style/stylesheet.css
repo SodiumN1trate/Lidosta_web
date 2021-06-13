@@ -858,7 +858,6 @@ form > a, form > p{
 
 
 .submit-button{
-    margin: 5% auto ;
     background-color: #f1f1f1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
     border-radius: 5px;
@@ -920,6 +919,11 @@ form > a, form > p{
     cursor: pointer;
     transform: scale(1.1);
 }
+
+#recaptcha{
+    margin: 8% auto;
+}
+
 .Card {
     display: flex;
     width: -webkit-fill-available;
@@ -1776,4 +1780,10 @@ div#admin-pannel-search-bar {
 
 .ticket-info:first-child{
     margin: 0;
+}
+
+
+.error{
+    text-align: center;
+    color: #c01111;
 }
