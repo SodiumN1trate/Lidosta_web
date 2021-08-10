@@ -19,7 +19,6 @@ ADD_PERSON_BUTTON.addEventListener("click", (e) =>{
                                 <input type="text" name="date" placeholder="Diena" id="birth-day" maxlength="2">
                             </div>
                             <input type="text" name="person_id" placeholder="Personas kods" id="person-id">
-                            <input type="email" name="email" placeholder="E-pasts" id="email">
                             <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number">
                             <div id="remove-person">
                                 <img src="static/Vector/RemoveSign.svg">
@@ -34,7 +33,7 @@ ADD_PERSON_BUTTON.addEventListener("click", (e) =>{
 
 // Remove person button render
 function remove_button_render() {
-    const REMOVE_PERSON_BUTTON = document.querySelectorAll("#remove-person");
+    const REMOVE_PERSON_BUTTON = document.querySelectorAll("#remove-person > img");
     for (let index = 0; index < REMOVE_PERSON_BUTTON.length; index++) {
         REMOVE_PERSON_BUTTON[index].addEventListener("click", (e) => {
         e.target.parentNode.parentNode.parentNode.parentNode.remove();
@@ -50,7 +49,7 @@ let persons = [];
 let gaps = false;
 document.querySelector("#continue-button > .submit-button").addEventListener("click", (e) =>{
     for (let index = 0; index < document.querySelectorAll('#login').length; index++) {
-        if (document.querySelectorAll('#name')[index].value === "" || document.querySelectorAll('#lastname')[index].value === "" || document.querySelectorAll('#birth-year')[index].value === "" || document.querySelectorAll('#birth-month')[index].value === "" || document.querySelectorAll('#birth-day')[index].value === "" || document.querySelectorAll('#person-id')[index].value === "" || document.querySelectorAll('#email')[index].value === "" || document.querySelectorAll('#telephone-number')[index].value === ""){
+        if (document.querySelectorAll('#name')[index].value === "" || document.querySelectorAll('#lastname')[index].value === "" || document.querySelectorAll('#birth-year')[index].value === "" || document.querySelectorAll('#birth-month')[index].value === "" || document.querySelectorAll('#birth-day')[index].value === "" || document.querySelectorAll('#person-id')[index].value === "" || document.querySelectorAll('#telephone-number')[index].value === ""){
             gaps = true;
         }
         else{
@@ -61,7 +60,6 @@ document.querySelector("#continue-button > .submit-button").addEventListener("cl
                     "birth-month":document.querySelectorAll('#birth-month')[index].value,
                     "birth-day":document.querySelectorAll('#birth-day')[index].value,
                     "person-id":document.querySelectorAll('#person-id')[index].value,
-                    "email":document.querySelectorAll('#email')[index].value,
                     "telephone-number":document.querySelectorAll('#telephone-number')[index].value
                 });
         }

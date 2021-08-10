@@ -44,7 +44,7 @@ Kas ir migrācija?
 Kad un kā veidot migrāciju?
     - Tā tad pēc models.py table pievienošanas vai kāda cita table rediģēšan ir jāveido migrācija.
     - 1. Ja iepriekš vel neēsam veidojuši migrāciju, tad ' flask db init '. Ja jau ir bijusi veidota migrācija, tad nevajaga šo rakstīt.
-    - 2. Tas ir tāpat kā veidot git commitu, rakstam ' flask db migration -m "(Migrācijas nosaukums)" '
+    - 2. Tas ir tāpat kā veidot git commitu, rakstam ' flask db migrate -m "(Migrācijas nosaukums)" '
     - 3. ' flask db upgrade ', ja izmetas errors saistībā ar sqlite_sequence atveram mapi migrations/versions/(Jūsu izveidotā migrācija).py atveram šo failu
         un pie funkcijas upgrade() izdzēšam šo rindiņu "op.drop_table('sqlite_sequence')",
         ja bez tās rindiņas funkcija palikusi tukša uzrakstam vienkārši apakšā " pass ".
@@ -61,3 +61,8 @@ Ja kādas problēmas rakstiet: SodiumNitrate#2007
 
 
 Datubāzēs fails githubā stāvēs līdz 18/06/2021
+
+
+User roles:
+    0 - Lietotājs
+    1 - Administrators

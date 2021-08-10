@@ -50,3 +50,6 @@ for (let index = 0; index < ARRIVAL_COUNTRIES_OPTIONS.length; index++) {
     })
     
 }
+
+
+

@@ -1,11 +1,12 @@
 from flask import Flask
-
-# Šeit var un vajaga veidot aplikācijas globālos mainīgo, ja nepieciešams
+from os import urandom
 
 APP_NAME = "Lidosta"
 
 app = Flask(APP_NAME)
 
-SECRET_KEY = '\x9c2;\xeew5d/.)_\x00\xf0:\xc8\x92x?\x8bwo\xf2NB'
+SECRET_KEY = '&m\xd6\x1d\xb7N\xe8\x07\xd5;\xcd\xd8\xcf)\x1f\xed\xf8\xfd\xb3 \xcb6\x99'
 
 app.secret_key = SECRET_KEY
+
+

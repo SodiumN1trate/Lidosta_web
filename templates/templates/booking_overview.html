@@ -17,7 +17,7 @@
                     <span id="article-name">Kopskats</span>
                 </div>
                 <div id="article-content">
-                    <form>
+                    <form action="/make_reservation">
                         <div id="booking-info-container">No: <span id="departure-country">{{ departure_country }}</span></div>
                         <div id="booking-info-container">Uz: <span id="arrive-country">{{ arrive_country }}</span></div>
                         <div id="booking-info-container">Lidojuma klase: <span id="flight_class">{{ flight_class }}</span></div>
@@ -26,13 +26,25 @@
                         <div id="booking-info-container">Ielidošanas laiks: <span id="arrive-date">{{ arrive_time }}</span></div>
                         <div id="booking-info-container">Lidojuma numurs: <span id="fly-number">{{ flight_number }}</span></div>
                         <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all">{{ sum_of_all }}</span> $</div>
+                        <div id="pop-up-passangers-info-data-accept">
+                            <div id="pop-up-form">
+                                <div>Vai vēlaties biļeti rezervēt? Pēc rezervācijas biļeti var iegādāties pārejot uz profilu un pie nodaļas
+                                    "Rezervētās biļetes" nospiest uz biļetes kuru vēlaties iegādāties.</div>
+                                <div id="continue-button">
+                                    <a href="/"></a><button class="submit-button" type="submit">Jā</button></a>
+                                </div>
+                                <div id="continue-button">
+                                    <a><button class="submit-button" id="return">Nē</button></a>
+                                </div>
+                            </div>
+                        </div>
                     </form>
+                    <div id="book-button-container">
+                        <button id="book-button">Rezervēt</button>
+                    </div>
                 </div>
             </article>
         </div>
     </div>
-    <div id="book-button-container">
-        <button id="book-button">Rezervēt</button>
-    </div>
-    <script src="static/scripts/main.js"></script>
+    <script src="static/scripts/booking_overview.js"></script>
 {% endblock %}

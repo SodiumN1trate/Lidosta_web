@@ -10,8 +10,11 @@
                     <span id="article-name">Ieiet</span>
                 </div>
                 <div id="article-content">
-                    <form>
-                        <input type="text" name="email" placeholder="E-pasts" id="login-emai">
+                    <form action="/login_check" method="POST">
+                        {% if message_value != "" %}
+                            <div class="{{ message_type }}">{{ message_value }}</div>
+                        {% endif %}
+                        <input type="text" name="email" placeholder="E-pasts" id="login-emai" value="{{ email }}">
                         <input type="password" name="password" placeholder="Parole">
                         <div id="remember-password-checkbox">
                             <input type="checkbox" name="remember-password" id="remember-password" value="1">

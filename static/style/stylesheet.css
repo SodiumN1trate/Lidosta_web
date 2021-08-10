@@ -849,6 +849,7 @@ form:first-child input{
 }
 
 form > a, form > p{
+    margin-top: 3%;
     text-align: center;
 }
 
@@ -857,18 +858,7 @@ form > a, form > p{
 }
 
 
-.submit-button{
-    background-color: #f1f1f1;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.125); /* Nevar pārkonvertēt uz HEX*/ 
-    border-radius: 5px;
-    color: #8f8f8f;
-    outline: none;
-    border: none;
-    height: 40px;
-    width: 100px;
-}
-
-.submit-button:hover, #remove-person > img:hover, #add-person > img:hover{
+.submit-button:hover, #remove-person > img:hover, #add-person > img:hover, .admin-panel-content-frame > div:hover, .admin-search-top-bar > img:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -1322,6 +1312,8 @@ form > a, form > p{
     height: 100%;
     top:0;
     z-index: 1;
+    left: 0;
+    right: 0;
 }
 
 #pop-up-form{
@@ -1490,8 +1482,19 @@ img.profile-image {
 }
 
 .admin-panel-content-frame {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.admin-panel-content-frame > a{
+    width: 100%;
+    text-align: center;
+    margin: 1% auto;
+}
+
+.admin-panel-content-frame > a > button{
     width: 90%;
-    margin: 13px auto;
 }
 
 .admin-panel-button {
@@ -1539,13 +1542,15 @@ img.profile-image {
     font-size: 20px;
 }
 
+.admin-search-top-bar > img {
+    width: 35px;
+}
+
 .admin-search-content-frame {
-    display: flex;
+    display: table;
     width: calc(97% - 6px);
-    height: 316px;
+    min-height: 316px;
     margin: 8px auto;
-    flex-direction: column;
-    justify-content: flex-start;
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
@@ -1553,15 +1558,28 @@ img.profile-image {
 .admin-search-content-result {
     display: flex;
     border-radius: 9px;
-    height: 43px;
+    min-height: 43px;
     background-color: #F8F8F8;
     box-shadow: 0px 1px 3px 0 #e1e1e1;
-    margin-block: 4px;
-    line-height: 40px;
     color: #c7c7c7;
     font-size: 16px;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    margin-top: 2%;
+    align-items: center;
+    animation-name: scale-down;
+    animation-duration: 3s;
+}
+
+.admin-search-content-result  > div {
+    margin: 1%;
+}
+
+.admin-search-content-result:hover {
+    animation-name: scale-up;
+    animation-duration: 5s;
+    cursor: pointer;
+    animation-iteration-count: inherit;
 }
 
 .admin-data-display {
@@ -1668,6 +1686,28 @@ div#admin-pannel-search-bar {
     border-left-style: solid;
 }
 
+/* Admin popups */
+
+.admin-popup-background, .admin-editing-popup-background {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-color:  rgba(168, 168, 168, 0.52);
+    z-index: 1;
+}  
+
+.admin-popup {
+    width: 400px;
+    margin: 7% auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Dievs vien zin */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -1737,7 +1777,7 @@ div#admin-pannel-search-bar {
     width: 200px;
 }
 
-#profile-sidebar-buttons > button{
+#profile-sidebar-buttons > a > button, #profile-sidebar-buttons > button{
     margin: 3% auto;
     width: 100%;
 }
@@ -1786,4 +1826,25 @@ div#admin-pannel-search-bar {
 .error{
     text-align: center;
     color: #c01111;
+}
+
+
+@keyframes scale-up {
+    from{
+        transform: scale(1.0);
+    }
+    to{
+        transform: scale(1.03);
+        box-shadow: 1px 2px 10px #e1e1e1;
+    }
+}
+
+@keyframes scale-down {
+    from{
+        transform: scale(1.03);
+    }
+    to{
+        transform: scale(1.0);
+        box-shadow: 1px 1px 10px #e1e1e1;
+    }
 }

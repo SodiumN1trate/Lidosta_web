@@ -2,7 +2,12 @@
 
 Flask == 2.0.1
 
+
+Flask_Mail == 0.9.1
+
+
 Flask_Migrate == 3.0.1
+
 
 Flask_ReCaptcha == 0.4.2
 

@@ -11,13 +11,21 @@
                     </div>
                     <div id="article-content">
                         <img src="static/images/ProfileImages/ProfileImage.png" id="profile-image">
-                        <div id="username"><span id="name">Gundars</span> <span id="lastname">Melders</span></div>
-                        <div id="user-role">Lietotājs</div>
+                        <div id="username"><span id="name">{{ name }}</span> <span id="lastname">{{ lastname }}</span></div>
+                        {% if role == 1 %}
+                            <div id="user-role">Administrators</div>
+                        {% else %}
+                            <div id="user-role">Lietotājs</div>
+                        {% endif %}
                         <div id="profile-sidebar-buttons">
                             <div id="wallet">Jūsu kontā: <span id="wallet-sum">0.24$</span></div>
                             <button class="submit-button">Papildināt kontu</button>
                             <button class="submit-button">Pieprasīt datu dzēšanu</button>
                             <button class="submit-button">Lejuplādēt datus</button>
+                            <a href="/leave"><button class="submit-button">Iziet</button></a>
+                            {% if role == 1 %}
+                                <a href="/admin"><button class="submit-button">Vadības panelis</button></a>
+                            {% endif %}
                         </div>
                     </div>
                 </article>
@@ -27,97 +35,25 @@
                         <span id="article-name">Rezervētās biļetes</span>
                     </div>
                     <div id="article-content">
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
+                        {% if reserved_tickets %}
+                            {% for reserved_ticket in reserved_tickets %}
+                                <div class="ticket-info">
+                                    <span id="departure-country-name">{{ reserved_ticket.departure }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="arrive-country-name">{{ reserved_ticket.arrive }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="departure-date-info">{{ reserved_ticket.departure_time }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="arrive-date-info">{{ reserved_ticket.arrive_time }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="flight-number">Nr.<span id="number">{{ reserved_ticket.flight_id }}</span></span>
+                                    <span id="vl-info"></span>
+                                    <span id="flight-sum"><span id="number">{{ reserved_ticket.sum }}</span>$</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                                Nav vel nekas rezervēts!
+                        {% endif %}
                     </div>
                 </article>
 
@@ -126,115 +62,25 @@
                         <span id="article-name">Biļešu pirkšanas vēsture</span>
                     </div>
                     <div id="article-content">
-                        <div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div><div class="ticket-info">
-                            <span id="departure-country-name">Latvija(Rīga)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-country-name">Vācija(Berlīne)</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-time-info">00:00</span>
-                            <span id="vl-info"></span>
-                            <span id="arrive-date-info">00/00/2021</span>
-                            <span id="vl-info"></span>
-                            <span id="flight-number">Nr.<span id="number"></span></span>
-                            <span id="vl-info"></span>
-                            <span id="flight-sum"><span id="number"></span>$</span>
-                        </div>
+                        {% if buyed_tickets %}
+                            {% for buyed_ticket in buyed_tickets %}
+                            <div class="ticket-info">
+                                <span id="departure-country-name">{{ buyed_ticket.departure }}</span>
+                                <span id="vl-info"></span>
+                                <span id="arrive-country-name">{{ buyed_ticket.arrive }}</span>
+                                <span id="vl-info"></span>
+                                <span id="departure-date-info">{{ buyed_ticket.departure_time }}</span>
+                                <span id="vl-info"></span>
+                                <span id="arrive-date-info">{{ buyed_ticket.arrive_time }}</span>
+                                <span id="vl-info"></span>
+                                <span id="flight-number">Nr.<span id="number">{{ buyed_ticket.flight_id }}</span></span>
+                                <span id="vl-info"></span>
+                                <span id="flight-sum"><span id="number">{{ buyed_ticket.sum }}</span>$</span>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            Nav vel nekas nopirkts!
+                        {% endif %}
                     </div>
                 </article>
             </div>

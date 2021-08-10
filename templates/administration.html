@@ -1,0 +1,45 @@
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename = 'style/stylesheet.css') }}" type="text/css" rel="stylesheet">
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <title>Lidosta</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1014.0" data-gr-ext-installed="">
+    {% block add_popup %}
+    {% endblock %}
+    {% block edit_popup %}
+    {% endblock %}
+    <div id="navigation-bar">
+        <!-- header -->
+        <a href="/"><img src="{{ url_for('static', filename = 'images/Logo.png') }}" id="navigation-bar-logo"></a>
+    </div>
+    <div class="wrapper">
+        <!-- Content -->
+        <div class="admin-panel">
+            <div class="admin-left-side">
+                <div class="admin-panel-top-bar">
+                    <span class="admin-panel-top-bar-text">Izvēlne</span>
+                </div>
+                <div class="admin-panel-content-frame">
+                    <a href="/admin/flights"><button class="submit-button">Reisi</button></a>
+                    <a href="/admin/airports"><button class="submit-button">Lidostas</button></a>
+                    <a href="/admin/airplanes"><button class="submit-button">Lidmašīnas</button></a>
+                    <div id="seperating-line"></div>
+                    <a href="/"><button class="submit-button">Exportēt visus datus</button></a>
+                </div>
+            </div>
+            <div class="admin-right-side">
+                <div class="admin-search-frame">
+                    {% block content %}
+                        Oops, notikusi kļūda!
+                    {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for ('static', filename = 'scripts/admin_adding_popups.js') }}"></script>
+    <script src="{{ url_for ('static', filename = 'scripts/admin_edit_delete_popup.js') }}"></script>
+</body>
+</html>
