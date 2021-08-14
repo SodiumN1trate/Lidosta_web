@@ -11,7 +11,6 @@ from models import Airport, Ticket, db, User, UserTicket, Flight, Airplane
 import datetime
 from flask_mail import Mail, Message
 
-
 #Mail settings
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -55,17 +54,17 @@ Tiek atgriests 1 jeb True kad izdevās aizsūtīt kodu uz e-pastu. Tiek atgriest
 Funkcija verifikācijas kodu saglabā sesijā
 '''
 def send_verification_email(receiver_email):
-    # try:
-    varification_code = str(randint(10000, 100000))
-    message_to_sent = f"Verifikācijas kods: {varification_code}"
-    message = Message("E-pasta verifikācija \"Lidosta\"",
-                        sender='lidostainfo@gmail.com', recipients=[receiver_email])
-    message.body = message_to_sent
-    mail.send(message)
-    session["verification_code"] = varification_code
-    return 1
-    # except:
-    #     return 0
+    try:
+        verification_code = str(randint(10000, 100000))
+        message_to_sent = f"Verifikācijas kods: {verification_code}"
+        message = Message("E-pasta verifikācija \"Lidosta\"",
+                            sender='lidostainfo@gmail.com', recipients=[receiver_email])
+        message.body = message_to_sent
+        mail.send(message)
+        session["verification_code"] = verification_code
+        return 1
+    except:
+        return 0
 
 
 '''
@@ -75,7 +74,6 @@ def verify_email_logic():
     if request.method == "POST":
         user_typed_verification_code = request.form
         if user_typed_verification_code['ver_code'] == session["verification_code"]:
-            session["input-values"] = None
             session["verification_code"] = None
             session["message"] = None
             return 1
@@ -109,22 +107,28 @@ def user_register_logic():
                         create_message("Lietotājs ar tādu e-pastu ir jau reģistrēts!", "error")
                     else:  # Ja visas pārbaudes ir izietas tad tiek pārbaudīts e-pasts.
                         if send_verification_email(data['email']) == 1: # Ja uz e-pastu var aizsūtīt verifikācijas kodu, tad e-pasts eksistē.
-                            # Visi iepriekš ievadītie dati tiek saglabāti sesijā tālākai apstrādei
-                            data = session['input-values']
-                            user = User(name=data['name'], lastname=data['lastname'],
-                                        email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now())
-                            db.session.add(user)
-                            db.session.commit()
-                            print("1 Id:", user.id)
-                            session["user_data"] = {'name':user.name, 'lastname':user.lastname, 'email':user.email, 'id': user.id, 'role':user.role}
+                            print("E-pasts aizsūtīts!")
                             return 1 # Tiek atgriests 1 jeb True, lai views.py (routers) lietotāju varētu pārnest uz lapu kur jāieraksta kods.
                         else: # Ja nav izdevies aizsūtīt e-pastu tad tiek atgriezta kļuda ar paziņojumu
                             create_message("Ievadītais e-pasts neēksistē!", "error")
        
             else:  # Ja recaptcha nav apstiprināts
                 create_message("Atzīmējat ka nēsat robots!", "error")
-
-
+    return 0
+def register_new_user_to_db():
+    try:
+        data = session['input-values']
+        user = User(name=data['name'], lastname=data['lastname'],
+                    email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now())
+        db.session.add(user)
+        db.session.commit()
+        session["user_data"] = {'name': user.name, 'lastname': user.lastname,
+                                'email': user.email, 'id': user.id, 'role': user.role}
+        session['data'] = None
+        return 1
+    except:
+        return 0
+        
 def user_login_logic():
     if request.method == "POST":
         data = request.form
@@ -141,12 +145,20 @@ def user_login_logic():
         create_message("Kļūda! Pārbaudiet vai ievadītais e-pasts un/vai parole ir ievadīta pareizi!", "error")
     return 0
 
-
+def get_user_data(id):
+    try:
+        find_user = User.query.filter_by(id=id).first()
+        session["user_data"] = {'name': find_user.name, 'lastname': find_user.lastname,
+                                'email': find_user.email, 'id': find_user.id, 'role': find_user.role}
+        return 1
+    except:
+        return 0
 def user_profile_logic():
     try:
-        user_data = session["user_data"]
-        print(user_data)
-        return 1
+        if get_user_data(session["user_data"]['id']) == 1:
+            return 1
+        else:
+            return 0
     except:
         return 0
 
@@ -269,4 +281,17 @@ def update_airport(data):
     airport.abbreviation = data['airport_abbreviation']
     airport.address = data['airport_address']
     db.session.add(airport)
+    db.session.commit()
+
+
+def delete_flight(id):
+    db.session.delete(Flight.query.filter(Flight.id == id).first())
+    db.session.commit()
+
+def delete_airplane(id):
+    db.session.delete(Airplane.query.filter(Airplane.id == id).first())
+    db.session.commit()
+
+def delete_airport(id):
+    db.session.delete(Airport.query.filter(Airport.id == id).first())
     db.session.commit()

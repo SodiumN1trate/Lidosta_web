@@ -54,13 +54,10 @@ Kad un kā veidot migrāciju?
 
         Kapēc jādzēš rindiņa "op.drop_table('sqlite_sequence')"?
             -Tas ir tāpēc ka šis table datubāzē man personīgi nav izveidojies, viss visādas metodes mēģināju nesanāca.
-            Tāpēc man tas ir jādžēš ārā, ja jums ir tāds table tad jums nevajaga droši vien dzēst to rindiņu ārā.
+            Tāpēc man tas ir jādzēš ārā, ja jums ir tāds table tad jums nevajaga droši vien dzēst to rindiņu ārā.
 
 
 Ja kādas problēmas rakstiet: SodiumNitrate#2007
-
-
-Datubāzēs fails githubā stāvēs līdz 18/06/2021
 
 
 User roles:

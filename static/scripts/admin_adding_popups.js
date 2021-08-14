@@ -27,6 +27,7 @@ for (let index = 0; index < document.querySelectorAll("#close-popup").length; in
     document.querySelectorAll("#close-popup")[index].addEventListener('click', (e) =>{
         document.querySelector(".admin-popup-background").style.display = "none";
         document.querySelector(".admin-editing-popup-background").style.display = "none";
+        document.querySelector("#delete-button-pop-up").style.display = "none";
     })    
 }
 
@@ -64,8 +65,13 @@ document.querySelector("#submit-popup").addEventListener("click", (e)=>{
             "title": document.querySelector("form").id
         });
     }
-    raise_add_popup();
-    document.cookie = `data=${JSON.stringify(data)}`;
+    if(check_on_gaps(data[0]) === 1){
+        alert("Aizpildiet visus laukumus!");
+    }
+    else{
+        raise_add_popup();
+        document.cookie = `data=${JSON.stringify(data)}`;
+    }
 })
 
 function close_popup() {
@@ -74,7 +80,6 @@ function close_popup() {
 
 //raise second pop up
 function raise_add_popup() {
-    console.log("Tests");
     document.querySelectorAll("#pop-up-passangers-info-data-accept")[0].style.display = "block";
     document.querySelectorAll("#continue-button").forEach(element => {
         element.addEventListener("click", (e)=>{
@@ -84,3 +89,21 @@ function raise_add_popup() {
         }); 
     });
 };
+
+// Check dictionary on gaps
+function check_on_gaps(obj) {
+    let gap = 0;
+    Object.values(obj).forEach(element => {
+        if(element === ""){
+            gap += 1;
+        }
+    });
+    if(gap > 0){
+        gap = 0;
+        return 1;
+    }
+    else{
+        gap = 0;
+        return 0;
+    }
+}

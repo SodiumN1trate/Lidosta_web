@@ -70,8 +70,13 @@ document.querySelectorAll("#submit-popup")[1].addEventListener("click", (e)=>{
             "id": last_opened_content_id
         });
     }
-    raise_popup();
-    document.cookie = `edited_data=${JSON.stringify(data)}`;
+    if(check_on_gaps(data[0]) === 1){
+        alert("Aizpildiet visus laukumus!");
+    }
+    else{
+        raise_popup();
+        document.cookie = `edited_data=${JSON.stringify(data)}`;
+    }
 })
 
 function close_popup() {
@@ -91,4 +96,40 @@ function raise_popup() {
             };
         }); 
     });
+};
+
+
+// Delete button
+document.getElementById("delete-button").addEventListener("click", (e) =>{
+    document.getElementById("delete-button-pop-up").style.display = "block";
+    document.querySelectorAll("#continue-button").forEach(element => {
+        element.addEventListener("click", (e)=>{
+            if( e.target.innerHTML === "Nē"){
+                document.getElementById("delete-button-pop-up").style.display = "none";
+            }
+            else if(  e.target.innerHTML === "Jā"){
+                document.getElementById("delete_row_button").setAttribute("href", `/admin/delete_row/${ document.querySelectorAll("form")[1].id }-${ last_opened_content_id }`);
+                alert("Veiksmīgi tika izdzēsts!");
+            }
+        }); 
+    });
+});
+
+
+// Check dictionary on gaps
+function check_on_gaps(obj) {
+    let gap = 0;
+    Object.values(obj).forEach(element => {
+        if(element === ""){
+            gap += 1;
+        }
+    });
+    if(gap > 0){
+        gap = 0;
+        return 1;
+    }
+    else{
+        gap = 0;
+        return 0;
+    };
 };

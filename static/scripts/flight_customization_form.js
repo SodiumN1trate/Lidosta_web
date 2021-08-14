@@ -34,7 +34,6 @@ document.querySelector("#continue-button > .submit-button").addEventListener("cl
             flight_customization.push(document.querySelectorAll("#dropdown-box")[index].children[0].innerHTML);
         }
     }
-    console.log("Tests");
     if(gap === true){
         alert("Aizpildiet visus dotos laukus!")
     }

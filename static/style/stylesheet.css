@@ -1304,7 +1304,7 @@ form > a, form > p{
     margin-right: 5%;
 }
 
-#pop-up-passangers-info-data-accept{
+#pop-up-passangers-info-data-accept, #delete-button-pop-up{
     display: none;
     position: fixed;
     background-color:  rgba(168, 168, 168, 0.52);
@@ -1670,7 +1670,6 @@ div#admin-pannel-search-bar {
 
 .admin-pannel-search-content {
     width: -webkit-fill-available;
-    padding-left: 12px;
     border: #e3e3e3 2px;
     border-left-style: solid;
 }

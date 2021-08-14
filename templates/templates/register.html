@@ -22,10 +22,11 @@
                         {% if message_value != "" %}
                             <div class="{{ message_type }}">{{ message_value }}</div>
                         {% endif %}
-                        <button class="submit-button" type="submit">Reģistrēties</button>
+                        <button id="anti-spam-button" class="submit-button" type="submit">Reģistrēties</button>
                     </form>
                 </div>
             </article>
         </div>
     </div>
+    <script src="static/scripts/anti_spam_for_button.js" ></script>
 {% endblock %}

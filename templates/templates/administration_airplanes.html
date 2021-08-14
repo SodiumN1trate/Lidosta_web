@@ -21,7 +21,7 @@
             </div>
             {% endfor %}
         {% else %}
-        <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
+        <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidmašīnu!</span>
         {% endif %}
     </div>
 
@@ -74,7 +74,7 @@
 <div class="admin-editing-popup-background">
     <div class="admin-popup">
         <div id="article-header">
-            <span id="article-name">Lidmašīnas pievienošana</span>
+            <span id="article-name">Lidmašīnas labošana</span>
         </div>
         <div id="article-content">
             <form id="airplanes">
@@ -89,14 +89,26 @@
                 </div>
             </form>
             <div id="continue-button">
-                <button id="submit-popup" class="submit-button">Pievienot</button>
+                <button id="submit-popup" class="submit-button">Labot</button>
                 <button id="close-popup" class="submit-button">Aizvērt</button>
+                <button id="delete-button" class="submit-button">Dzēst</button>
             </div>
             <div id="pop-up-passangers-info-data-accept">
                 <div id="pop-up-form">
                     <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
                     <div id="continue-button">
                         <a href="/admin/edit_row"><button class="submit-button">Jā</button></a>
+                    </div>
+                    <div id="continue-button">
+                        <a><button class="submit-button" id="return">Nē</button></a>
+                    </div>
+                </div>
+            </div>
+            <div id="delete-button-pop-up">
+                <div id="pop-up-form">
+                    <div>Vai Jūs patiešām vēlaties dzēst šo lidmašīnu?</div>
+                    <div id="continue-button">
+                        <a id="delete_row_button"><button class="submit-button">Jā</button></a>
                     </div>
                     <div id="continue-button">
                         <a><button class="submit-button" id="return">Nē</button></a>

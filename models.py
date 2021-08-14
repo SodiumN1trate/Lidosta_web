@@ -1,11 +1,24 @@
+from sqlalchemy.orm import backref
 from settings import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import MetaData
 
-# Databse
+# Database
+
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+
+_metadata = MetaData(naming_convention=convention)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lidosta_db.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+db = SQLAlchemy(app, metadata=_metadata)
 
 # Migrate
 migrate = Migrate(app, db, render_as_batch=True)
@@ -64,10 +77,10 @@ class Airport(db.Model):
     name = db.Column(db.String(80), nullable=False)
     abbreviation = db.Column(db.String(6), nullable=False)
     address = db.Column(db.String(80), nullable=False)
-    children = db.relationship("Airplane")
+    children = db.relationship("Airplane", cascade="all, delete")
 
     def __repr__(self):
-        return '<UserTicket %r>' % self.name
+        return '<Airport %r>' % self.name
 
 
 class Airplane(db.Model):
@@ -77,7 +90,7 @@ class Airplane(db.Model):
     manufacture_year = db.Column(db.Integer, nullable=False)
     seats_count = db.Column(db.Integer, nullable=False)
     airport_id = db.Column(db.Integer, db.ForeignKey("airport.id"))
-    children = db.relationship("Flight")
+    children = db.relationship("Flight", cascade="all, delete")
 
     def __repr__(self):
         return '<Airplane %r>' % self.model_name

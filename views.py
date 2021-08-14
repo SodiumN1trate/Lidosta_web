@@ -4,7 +4,7 @@ import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, get_booked_tickets_list, get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport
+from business_logic import user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport
 
 @app.route("/")
 def index():
@@ -110,24 +110,15 @@ def admin_airplanes():
 @app.route("/register_user", methods=["POST"])
 def register_user():
     if user_register_logic() == 1:
-       return redirect(url_for('verify_email'))
+        return render_template('templates/email_verify.html')
     else:
-        return redirect(url_for('register'))
-
-# Verify email
-@app.route("/verify_email")
-def verify_email():
-    try:
-        data = session['input-values']
-        verification_code = session['verification_code']
-        return render_template("templates/email_verify.html")
-    except:
         return redirect(url_for('register'))
 
 
 @app.route("/verify_email_checker", methods=["POST"])
 def verify_email_checker():
     if verify_email_logic() == 1:
+        register_new_user_to_db()
         return redirect(url_for('profile'))
     else:
         return redirect(url_for('register'))
@@ -158,7 +149,7 @@ def leave():
 
 # Admin add flight
 @app.route("/admin/add_row")
-def add_flight():
+def add_row():
     data = json.loads(request.cookies.get('data'))[0]
     print(data)
 
@@ -173,11 +164,11 @@ def add_flight():
     elif data["title"]  == "airports":
         add_airport_to_db(data)
         return redirect(url_for('admin_airports'))
-    return request.cookies.get('data')
+    return 404
 
 
 @app.route("/admin/edit_row")
-def edit_flight():
+def edit_row():
     data = json.loads(request.cookies.get('edited_data'))[0]
     print(data)
     if data["title"] == "flights":
@@ -191,7 +182,21 @@ def edit_flight():
     elif data["title"] == "airports":
         update_airport(data)
         return redirect(url_for('admin_airports'))
-    return data
+    return 404
 
+@app.route("/admin/delete_row/<title>-<id>")
+def delete_row(title, id):
+    if title == "flights":
+        delete_flight(id)
+        return redirect(url_for('admin_flights'))
+        
+    elif title == "airplanes":
+        delete_airplane(id)
+        return redirect(url_for('admin_airplanes'))
+
+    elif title == "airports":
+        delete_airport(id)
+        return redirect(url_for('admin_airports'))
+    return 404
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
