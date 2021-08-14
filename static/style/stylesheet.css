@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url();
+
 
 * {
     margin: 0;
@@ -401,7 +403,7 @@ footer {
     gap: 10px 20px;
     grid-template-areas:
         "Header Header Header Header Header"
-        "Left Field1 Field2 Field3 Right"
+        "Left Field1 Field1 Field1 Right"
         "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
     justify-content: center;
     padding-top: 10px;
@@ -466,14 +468,14 @@ footer {
     user-select: text;
 }
 
-.Right {
+.right {
     grid-area: Right;
     align-self: center;
     cursor: pointer;
     user-select: none;
 }
 
-.Left {
+.left {
     grid-area: Left;
     align-self: center;
     cursor: pointer;
@@ -491,6 +493,12 @@ footer {
 }
 
 .NavDirectionButton {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     stroke: #dcdcdc;
     stroke-width: 10;
     stroke-linecap: round;
@@ -1041,6 +1049,8 @@ form > a, form > p{
     grid-area: Field1;
     width: 350px;
     height: 218px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .Field2 {
@@ -1073,12 +1083,6 @@ form > a, form > p{
     justify-content: center;
     align-items: flex-start;
     padding-top: 3px;
-}
-
-.NavDirectionButton {
-    stroke: #dcdcdc;
-    stroke-width: 10;
-    stroke-linecap: round;
 }
 
 .MoveRightButton {
@@ -1821,12 +1825,80 @@ div#admin-pannel-search-bar {
     margin: 0;
 }
 
-
 .error{
     text-align: center;
     color: #c01111;
 }
 
+.child {
+    padding: 20 0 0 0;
+    height: auto;
+    position: relative;
+}
+
+.carousel-controler.right {
+    right: -5%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    color: #f0f0f0;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.carousel-controler.left {
+    left: -5%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    color: #f0f0f0;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+}
+
+.carousel-indicators {
+    position: absolute;
+    left: 49.1%;
+    bottom: -9%;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+}
+
+.carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: #e8e8e8;
+}
+
+.container {
+    width: 1190px;
+    border: 20px;
+    padding-right: 43px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col-sm-4 {
+    position: relative;
+    min-height: 1px;
+    padding: 18px;
+}
+
+.carousel-inner>.item.active, .carousel-inner>.item.next.left, .carousel-inner>.item.prev.right {
+    padding-left: 18px;
+    padding-right: 18px;
+}
 
 @keyframes scale-up {
     from{

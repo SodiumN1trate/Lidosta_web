@@ -4,40 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename = 'style/stylesheet.css') }}" type="text/css" rel="stylesheet"> 
-    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
-    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
     <title>Lidosta</title>
+
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename = 'style/stylesheet.css') }}" type="text/css" rel="stylesheet"> 
+
 </head>
-<body data-new-gr-c-s-check-loaded="14.1014.0" data-gr-ext-installed="">
+<body data-new-gr-c-s-check-loaded="14.1026.0" data-gr-ext-installed="">
     <div id="navigation-bar">
-        <a href="/"><img src="{{ url_for('static', filename = 'images/Logo.png') }}" id="navigation-bar-logo"></a>
+        <a href="/"><img src="/static/images/Logo.png" id="navigation-bar-logo"></a>
             <div id="navigation-bar-right-side">
-                {% if session['user_data'] %}
-                    <div id="login-button"><a href="/profile">Profils</a></div>
-                {% else %}
-                    <div id="login-button"><a href="/login">Ienākt</a></div>
-                {% endif %}
+                <div id="login-button"><a href="/login">Ienākt</a></div>
             </div>
         </div>
-    </div>
     <header>
         <div id="banner">
-            <img src="{{ url_for('static', filename = 'Vector/HeaderBannerLidostaLogo.svg') }}" id="banner-logo">
+            <img src="/static/Vector/HeaderBannerLidostaLogo.svg" id="banner-logo">
             <div id="motivation-text">Nemocies meklējot lētāko lidojumu. Apskati tos visus šeit!</div>
             <div id="choose-trip-box">
                 <div id="departure-country-input">
                     <span name="departure-country-input-value" id="departure-country-input-value">No kurienes</span>
                     <div id="select-departure-countries">
-                        {% if flights %}
-                            {% for flight in flights %}
-                                <option class="select-country">{{ flight.departure }}</option>
-                                <span style="margin-left: 1%;">{{ flight.airplane_id }}</span>
-                                <hr>
-                            {% endfor %}
-                        {% else %}
-                            <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
-                        {% endif %}
+                        <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
                     </div>
                 </div>
                 <span class="vl"></span>
@@ -64,113 +57,198 @@
         </div>
     </header>
     <div id="wrapper">
-        {% block content %}
-            <div class="three-field-grid">
-                <div class="Header">Jaunākie galamērķi</div>
-                <div class="Field1">
-                    <div class="Card">
-                        <div class="CardHeader">
-                            <div class="CardDestination">Ņujorka</div>
-                            <div class="CardCost">359$</div>
-                        </div>
-                        <div class="CardInformationField">
-                            <div class="CardLeftField">
-                                <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                <div class="CardParameters">
+        <div class="container wrapper">
+            <div class="row">
+              <div class="col-12-xs child">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators hidden-xs">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                    <!--    <li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+                  </ol>
+      
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner hidden-xs" role="listbox">
+                    <div class="item active">
+                      <div class="row">
+                        <div class="col-sm-4">
+                        <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
                                     <div class="CardParametersFlightDate">14.05.2021</div>
                                     <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
                                 </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
                             </div>
-                            <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                          </div>
                         </div>
-                    </div>
-                </div>
-                <div class="Field2">
-                    <div class="Card">
-                        <div class="CardHeader">
-                            <div class="CardDestination">Ņujorka</div>
-                            <div class="CardCost">359$</div>
-                        </div>
-                        <div class="CardInformationField">
-                            <div class="CardLeftField">
-                                <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                <div class="CardParameters">
+                        <div class="col-sm-4">
+                          <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
                                     <div class="CardParametersFlightDate">14.05.2021</div>
                                     <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
                                 </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
                             </div>
-                            <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                          </div>
                         </div>
-                    </div>
-                </div>
-                <div class="Field3">
-                    <div class="Card">
-                        <div class="CardHeader">
-                            <div class="CardDestination">Ņujorka</div>
-                            <div class="CardCost">359$</div>
-                        </div>
-                        <div class="CardInformationField">
-                            <div class="CardLeftField">
-                                <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                <div class="CardParameters">
+                        <div class="col-sm-4">
+                          <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
                                     <div class="CardParametersFlightDate">14.05.2021</div>
                                     <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
                                 </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
                             </div>
-                            <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                          </div>
                         </div>
+                      </div>
                     </div>
-                </div>
-                <div class="Right"><img class="MoveRightButton">
-                    <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
-                        <line x1="5" y1="5" x2="105" y2="105"></line>
-                        <line x1="105" y1="105" x2="5" y2="200"></line>
-                    </svg>
-                </div>
-                <div class="Left"><img class="MoveLeftButton">
+                    <div class="item">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
+                                    <div class="CardParametersFlightDate">14.05.2021</div>
+                                    <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
+                                </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
+                                    <div class="CardParametersFlightDate">14.05.2021</div>
+                                    <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
+                                </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="Field1">
+                            <div class="Card">
+                              <div class="CardHeader">
+                                <div class="CardDestination">Ņujorka</div>
+                                <div class="CardCost">359$</div>
+                              </div>
+                              <div class="CardInformationField">
+                                <div class="CardLeftField">
+                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
+                                  <div class="CardParameters">
+                                    <div class="CardParametersFlightDate">14.05.2021</div>
+                                    <div class="CardParametersFlightTime">20:20</div>
+                                  </div>
+                                </div>
+                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Controls -->
+                  <a class="left carousel-controler" href="#carousel-example-generic" role="button" data-slide="prev">
                     <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
                         <line x1="105" y1="5" x2="5" y2="105"></line>
                         <line x1="5" y1="105" x2="105" y2="200"></line>
                     </svg>
+                  </a>
+                  <a class="right carousel-controler" href="#carousel-example-generic" role="button" data-slide="next">
+                    <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
+                        <line x1="5" y1="5" x2="105" y2="105"></line>
+                        <line x1="105" y1="105" x2="5" y2="200"></line>
+                    </svg>
+                  </a>
                 </div>
-                <div class="NavigationButtons">
-                    <div class="NavButtonOff"></div>
-                    <div class="NavButtonOn"></div>
-                    <div class="NavButtonOff"></div>
-                    <div class="NavButtonOff"></div>
-                </div>
-            </div>
-            <div class="NewsLayoutGrid">
-                <div class="Description1">
-                    <div class="NewsHeader">
-                        Lidostas “Rīga” darbinieki aktīvi izmanto iespēju vakcinēties
-                    </div>
-                    <div class="NewsDescription">
-                        Daudzi lidostā strādājošie jau ir izmantojuši iespēju pret Covid-19 vakcinēties citur, tomēr, ņemot vērā  lielo interesi, lidosta  “Rīga” piedāvā saviem darbiniekiem iespēju vakcinēties arī darba vietā.
-                        <br>
-                        <br>
-                        Divās vakcinēšanās dienās 8. un 14.maijā  pirmo vakcīnas devu ir saņēmuši 242 jeb 26% lidostas darbinieku...
-                    </div>
-                </div>
-                <div class="Description2">
-                    <div class="NewsHeader">
-                        RIX Internacionālajā lidostā pazaudēta jau trešā kravas lidmašīna
-                    </div>
-                    <div class="NewsDescription">
-                        Kā ir iespējams pazaudēt lidmašīnu? Tā nemaz nav maza, un lidostās ir 24 stundu apsardze. Vai lidostās drošībai vajadzētu būt stingrākai?
-                        <br>
-                        <br>
-                        Aizvakar RIX izsludināja lūgumu atgriezt jau trešo zagto 41 tonnu smago kravas pārvadāšanai pārveidoto Boeing 737, tomēt tie vēl nav saņēmuši nekādu ziņu par zudušās lidmašīnas atrasšanās vietu, tomēr valsts policija turpina izmeklējumu...
-                    </div>
-                </div>
-                <div class="Photo1">
-                    <img src="static\images\Story\StoryImage1.jpg" alt="Bilde1">
-                </div>
-                <div class="Photo2">
-                    <img src="static\images\Story\StoryImage2.jpg" alt="Bilde2">
-                </div>
+              </div>
             </div>
         </div>
+
+        <div class="NewsLayoutGrid">
+            <div class="Description1">
+                <div class="NewsHeader">
+                    Lidostas “Rīga” darbinieki aktīvi izmanto iespēju vakcinēties
+                </div>
+                <div class="NewsDescription">
+                    Daudzi lidostā strādājošie jau ir izmantojuši iespēju pret Covid-19 vakcinēties citur, tomēr, ņemot vērā  lielo interesi, lidosta  “Rīga” piedāvā saviem darbiniekiem iespēju vakcinēties arī darba vietā.
+                    <br>
+                    <br>
+                    Divās vakcinēšanās dienās 8. un 14.maijā  pirmo vakcīnas devu ir saņēmuši 242 jeb 26% lidostas darbinieku...
+                </div>
+            </div>
+            <div class="Description2">
+                <div class="NewsHeader">
+                    RIX Internacionālajā lidostā pazaudēta jau trešā kravas lidmašīna
+                </div>
+                <div class="NewsDescription">
+                    Kā ir iespējams pazaudēt lidmašīnu? Tā nemaz nav maza, un lidostās ir 24 stundu apsardze. Vai lidostās drošībai vajadzētu būt stingrākai?
+                    <br>
+                    <br>
+                    Aizvakar RIX izsludināja lūgumu atgriezt jau trešo zagto 41 tonnu smago kravas pārvadāšanai pārveidoto Boeing 737, tomēt tie vēl nav saņēmuši nekādu ziņu par zudušās lidmašīnas atrasšanās vietu, tomēr valsts policija turpina izmeklējumu...
+                </div>
+            </div>
+            <div class="Photo1">
+                <img src="static\images\Story\StoryImage1.jpg" alt="Bilde1">
+            </div>
+            <div class="Photo2">
+                <img src="static\images\Story\StoryImage2.jpg" alt="Bilde2">
+            </div>
+        </div>
+
         <div id="wrapper">
             <div class="LargeInformationBubble">
                 <div class="MainSquare">
@@ -268,22 +346,22 @@
                     <div class="NavButtonOff"></div>
                 </div>
             </div>
-        {% endblock %}
+        </div>
     </div> <!-- Atbilstoši wrapper end -->
+
     <footer>
         <div id="bottom-navigation">
             <div>
                 <div id="bottom-left">
                     <div id="bottom-navigation-text-position">
                         <span><a href="/about_us" class="bottom-navigation-text">Par mums</a></span>
-                        <span><a href class="bottom-navigation-text">Palīdzība</a></span>
-                        <span><a href class="bottom-navigation-text">Klientu atbalsts</a></span>
-                        <span><a href class="bottom-navigation-text">Informācija</a></span>
-                        <span><a href class="bottom-navigation-text">Kompānijas</a></span>
+                        <span><a href="" class="bottom-navigation-text">Palīdzība</a></span>
+                        <span><a href="" class="bottom-navigation-text">Klientu atbalsts</a></span>
+                        <span><a href="" class="bottom-navigation-text">Informācija</a></span>
+                        <span><a href="" class="bottom-navigation-text">Kompānijas</a></span>
                         <div id="footer-search-bar">
                             <input type="text" class="bottom-navigation-input-search-bar">
-                            <img src="static/images/Footer search bar check mark.png"
-                                class="bottom-navigation-input-button">
+                            <img src="static/images/Footer search bar check mark.png" class="bottom-navigation-input-button">
                         </div>
                     </div>
                 </div>
@@ -299,8 +377,6 @@
         </div>
     </footer>
     <script src="static/scripts/main_header.js"></script>
-</body>
-
 
 <!-- atbilstoši SVG un attēli atradīsies elements folderī -->
 <!-- atbilstoši pašlaik ir pievienoti tikai SVG un attēli no galvenas lapas-->
