@@ -20,7 +20,8 @@ body {
 #wrapper {
     max-width: 100%;
     width: 1150px;
-    margin: 0 auto
+    margin: 0 auto;
+    margin-bottom: 143px;
 }
 
 #navigation-bar {
@@ -179,10 +180,12 @@ body {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     float: left;
-    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 8px 9px 3px rgb(0 0 0 / 25%);
     display: none;
     line-height: 25px;
+    z-index: 2147483647; /* lai parklātu visus elementus (specifiski kartīšu karuseli) */
 }
+
 #select-departure-countries, #select-arrival-countries {
     width: 96%;
 }
@@ -415,7 +418,7 @@ footer {
     gap: 10px 20px;
     grid-template-areas:
         "Header Header Header Header Header"
-        "Left Field1 Field2 Field3 Right"
+        "Left Field1 Field1 Field1 Right"
         "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
     justify-content: center;
     padding-top: 10px;
@@ -468,14 +471,14 @@ footer {
     user-select: text;
 }
 
-.right {
+.right-card-controler {
     grid-area: Right;
     align-self: center;
     cursor: pointer;
     user-select: none;
 }
 
-.left {
+.left-card-controler {
     grid-area: Left;
     align-self: center;
     cursor: pointer;
@@ -494,7 +497,7 @@ footer {
 
 .NavDirectionButton {
     position: relative;
-    width: 40%;
+    width: 30%;
     height: 100%;
     display: block;
     margin-left: auto;
@@ -579,7 +582,7 @@ footer {
 .LargeInformationBubble {
     display: flex;
     width: 800px;
-    height: 250px;
+    height: 310px;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
@@ -1030,7 +1033,7 @@ form > a, form > p{
     gap: 10px 20px;
     grid-template-areas:
         "Header Header Header Header Header"
-        "Left Field1 Field2 Field3 Right"
+        "Left Field1 Field1 Field1 Right"
         "NavigationButtons NavigationButtons NavigationButtons NavigationButtons NavigationButtons";
     justify-content: center;
     padding-top: 5px;
@@ -1045,24 +1048,17 @@ form > a, form > p{
     color: #7D7D7D;
 }
 
-.Field1 {
+.card-carousel-field {
     grid-area: Field1;
     width: 350px;
-    height: 218px;
+    height: 200px;
     cursor: pointer;
     user-select: none;
 }
 
-.Field2 {
-    grid-area: Field2;
+.comment-carousel-field {
+    grid-area: Field1;
     width: 350px;
-    height: 218px;
-}
-
-.Field3 {
-    grid-area: Field3;
-    width: 350px;
-    height: 218px;
 }
 
 .Right {
@@ -1830,13 +1826,19 @@ div#admin-pannel-search-bar {
     color: #c01111;
 }
 
-.child {
+.card-child {
     padding: 20 0 0 0;
     height: auto;
     position: relative;
 }
 
-.carousel-controler.right {
+.comment-child {
+    padding: 34 0 0 0;
+    height: auto;
+    position: relative;
+}
+
+.carousel-controler.right-card-controler {
     right: -5%;
     position: absolute;
     top: 0;
@@ -1846,7 +1848,7 @@ div#admin-pannel-search-bar {
     text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
 }
 
-.carousel-controler.left {
+.carousel-controler.left-card-controler {
     left: -5%;
     position: absolute;
     top: 0;
@@ -1859,7 +1861,7 @@ div#admin-pannel-search-bar {
 .carousel-indicators {
     position: absolute;
     left: 49.1%;
-    bottom: -9%;
+    bottom: -28px;
 }
 
 .carousel-indicators li {
