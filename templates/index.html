@@ -55,6 +55,9 @@
         </div>
     </header>
     <div id="wrapper">
+      {% block content %}
+      <a href="standart_flights" class="flights-link">Pieejami lidojumi</a>
+
         <!-- CARD CAROUSEL START -->
         <div class="container wrapper">
             <div class="row">
@@ -419,7 +422,7 @@
             <!-- COMMENT CAROUSEL END -->
         </div>
     </div> <!-- Atbilstoši wrapper end -->
-
+    {% endblock %}
     <footer>
         <div id="bottom-navigation">
             <div>
