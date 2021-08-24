@@ -21,6 +21,7 @@
                     <div class="admin-pannel-search-content field-7">{{ airplane.model_name }}</div>
                     {% endif %}
                 {% endfor %}
+                <div class="admin-pannel-search-content field-8">{{ flight.flight_price }}</div>
             </div>
             {% endfor %}
         {% else %}
@@ -75,7 +76,9 @@
                     <input style="margin-top: 0;" type="text" id="departure_time" placeholder="Izlidošanas laiks">
                     <span id="date-text">Ielidošanas laiks (piem.: 18:21):</span>
                     <input style="margin-top: 0;" type="text" id="arrive_time" placeholder="Ielidošanas laiks">
-                    
+                    <span id="date-text">Cena par personu (Economy klasē):</span>
+                    <input style="margin-top: 0;" type="text" id="price" placeholder="Cena">
+
                     <div id="dropdown-box">
                         <div id="dropdown-box-value">Lidmašīna:</div>
                         <div id="dropdown-box-select">
@@ -153,6 +156,8 @@
                     <input style="margin-top: 0;" type="text" id="departure_time" placeholder="Izlidošanas laiks">
                     <span id="date-text">Ielidošanas laiks (piem.: 18:21):</span>
                     <input style="margin-top: 0;" type="text" id="arrive_time" placeholder="Ielidošanas laiks">
+                    <span id="date-text">Cena par personu (Economy klasē):</span>
+                    <input style="margin-top: 0;" type="text" id="price" placeholder="Cena">
     
                     <div id="dropdown-box">
                         <div id="dropdown-box-value"></div>

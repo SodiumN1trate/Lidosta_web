@@ -218,7 +218,8 @@ def add_flight_to_db(data):
         arrive_date = data["arrive_date"],
         departure_time = data["departure_time"],
         arrive_time = data["arrive_time"],
-        airplane_id = airplane_id  # To do
+        flight_price = data["price"],
+        airplane_id = airplane_id 
     )
     db.session.add(flight)
     db.session.commit()
@@ -264,6 +265,7 @@ def update_flight(data):
     flight.arrive_date = data['arrive_date']
     flight.departure_time = data['departure_time']
     flight.arrive_time = data['arrive_time']
+    flight.flight_price = data['price']
     db.session.add(flight)
     db.session.commit()
 
@@ -295,3 +297,19 @@ def delete_airplane(id):
 def delete_airport(id):
     db.session.delete(Airport.query.filter(Airport.id == id).first())
     db.session.commit()
+
+
+def is_flight_real(data):
+    flight_is_real = Flight.query.filter(
+        Flight.departure == data['departure'],
+        Flight.arrive == data['arrive'],
+        Flight.departure_date == data['departure_date'],
+        Flight.arrive_date == data['arrive_date'],
+        Flight.departure_time == data['departure_time'],
+        Flight.arrive_time == data['arrive_time'],
+        Flight.flight_price == data['price']
+    ).first()
+    if flight_is_real == None:
+        return 0
+    else:
+        return 1

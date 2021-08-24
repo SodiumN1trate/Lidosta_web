@@ -1,15 +1,18 @@
+from re import L
 from flask import render_template, redirect, request, session
 from flask.helpers import url_for
 import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport
+from business_logic import is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport
 
 @app.route("/")
 def index():
-    return render_template("index.html", flights=get_all_flights())
-
+    try:
+        return render_template("index.html", flights=get_all_flights(), message_value=session['message']['message_value'], message_type=session['message']['message_type'])
+    except:
+        return render_template("index.html", flights=get_all_flights())
 @app.route("/about_us")
 def about_us():
     return render_template("templates/about_us.html")
@@ -35,8 +38,15 @@ def register():
 @app.route("/flight_customization")
 def flight_customization():
     try:
-        user_data = session["user_data"]
-        return render_template("templates/flight_customization.html")
+        try:
+            data = json.loads(request.cookies.get('flight_data'))
+            if data == 0:
+                return redirect(url_for("index"))
+            else:
+                user_data = session["user_data"]
+                return render_template("templates/flight_customization.html", data=data[0])
+        except:
+            return redirect(url_for("index"))
     except:
         create_message("Nepieciešams sākumā ielogoties!", "error")
         return redirect(url_for("login"))
@@ -54,7 +64,7 @@ def booking_overview():
     try:
         persons = json.loads(pybase64.b64decode(request.cookies.get('persons')).decode("utf-8"))
         flight_customization = json.loads(pybase64.b64decode(request.cookies.get('flight_customization')).decode("utf-8"))
-        return render_template("templates/booking_overview.html", departure_country=flight_customization[0], arrive_country=flight_customization[1], flight_class=flight_customization[2], passengers=len(persons), departure_time=flight_customization[3], arrive_time=flight_customization[4], flight_number=randint(1000, 10000), sum_of_all=len(persons)*int(flight_customization[5]))
+        return render_template("templates/booking_overview.html", departure_country=flight_customization[0], arrive_country=flight_customization[1], flight_class=flight_customization[4], passengers=len(persons), departure_time=flight_customization[2], arrive_time=flight_customization[3], flight_number=randint(1000, 10000), sum_of_all=len(persons)*int(flight_customization[5]))
     except:
         return redirect(url_for("flight_customization"))
 
@@ -197,6 +207,21 @@ def delete_row(title, id):
     elif title == "airports":
         delete_airport(id)
         return redirect(url_for('admin_airports'))
-    return 404
+    return "404"
+
+@app.route("/check_flight")
+def check_flight():
+    data = json.loads(request.cookies.get('flight_data'))
+    if str(data) == "0":
+        create_message("Atzīmētais lidojums neēksistē!", "error")
+        return redirect(url_for('index'))
+    else:
+        if is_flight_real(data[0]):
+            session['message'] = ""
+            return redirect(url_for('flight_customization'))
+        else:
+            create_message("Atzīmētais lidojums neēksistē!", "error")
+            return redirect(url_for('index'))
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+create_message

@@ -44,7 +44,7 @@ class Ticket(db.Model):
     departure = db.Column(db.String(80), nullable=False)
     arrive = db.Column(db.String(80), nullable=False)
     departure_time = db.Column(db.String(80), nullable=False)
-    flight_class = db.Column(db.String(80), nullable=True)
+    flight_class = db.Column(db.String(80), nullable=False)
     arrive_time = db.Column(db.String(80), nullable=False)
     people_count = db.Column(db.Integer, nullable=False)
     sum = db.Column(db.Integer, nullable=False)
@@ -102,9 +102,10 @@ class Flight(db.Model):
     arrive = db.Column(db.String(80), nullable=False)
     departure_date = db.Column(db.String(80), nullable=False)
     arrive_date = db.Column(db.String(80), nullable=False)
-    departure_time = db.Column(db.String(80), nullable=True)
-    arrive_time = db.Column(db.String(80), nullable=True)
+    departure_time = db.Column(db.String(80), nullable=False)
+    arrive_time = db.Column(db.String(80), nullable=False)
     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+    flight_price = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f'<Flight {self.departure} -> {self.arrive} >'

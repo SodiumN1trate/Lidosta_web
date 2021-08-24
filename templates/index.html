@@ -19,41 +19,40 @@
     <div id="navigation-bar">
         <a href="/"><img src="/static/images/Logo.png" id="navigation-bar-logo"></a>
             <div id="navigation-bar-right-side">
+              {% if session['user_data']['role']%}
+                <div id="login-button"><a href="/profile">Profils</a></div>
+              {% else %}
                 <div id="login-button"><a href="/login">Ienākt</a></div>
+              {% endif %}
             </div>
         </div>
     <header>
         <div id="banner">
             <img src="/static/Vector/HeaderBannerLidostaLogo.svg" id="banner-logo">
             <div id="motivation-text">Nemocies meklējot lētāko lidojumu. Apskati tos visus šeit!</div>
+            {% if message_type == "error" %}
+              <h4 style="color: red; text-align: center; font-weight: bold;">{{ message_value }}</h4>
+            {% endif %}
             <div id="choose-trip-box">
                 <div id="departure-country-input">
-                    <span name="departure-country-input-value" id="departure-country-input-value">No kurienes</span>
+                    <span name="departure-country-input-value" id="departure-country-input-value">Uz kurieni lidojam?</span>
                     <div id="select-departure-countries">
+                      {% if flights %}
+                        {% for flight in flights %}
+                          <div class="select-flight"><div class="trip-departure-arrive-block"><span id="flight-departure">{{ flight.departure }}</span> -> <span id="flight-arrive">{{ flight.arrive }}</span></div><div class="trip-departure-date-block">Izlidošana: <span id="flight-departure-date">{{ flight.departure_date }}</span>. <span id="departure-time">{{ flight.departure_time }}</span></div><div class="trip-arrive-date-block">Ielidošana: <span id="flight-arrive-date">{{ flight.arrive_date }}</span>.<span id="arrive-time">{{ flight.arrive_time }}</span></div><div class="flight-price-block">Cena par cilvēku: <span id="flight-price">{{ flight.flight_price }}</span>$</div></div>
+                          <hr>
+                        {% endfor %}
+                      {% else %}
                         <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
-                    </div>
-                </div>
-                <span class="vl"></span>
-                <div id="arrival-country-input">
-                    <span name="trip-to-input-value" id="arrival-country-input-value">Uz kurieni</span>
-                    <div id="select-arrival-countries">
-                        <option class="select-country">Latvija, Rīga</option>
-                        <hr>
-                        <option class="select-country">Vācija, Berlīne</option>
-                        <hr>
-                        <option class="select-country">Tests</option>
-                        <hr>
-                        <option class="select-country">Tests</option>
-                        <hr>
-                        <option class="select-country">Tests</option>
-                        <hr>
-                        <option class="select-country">Tests</option>
+                      {% endif %}
                     </div>
                 </div>
             </div>
-            <div id="trip-search-button">
-                <span>Meklēt</span>
-            </div>
+            <form action="/check_flight">
+              <button id="trip-search-button">
+                  Rezervēt
+              </button>
+            </form>
         </div>
     </header>
     <div id="wrapper">

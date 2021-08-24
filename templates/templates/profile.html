@@ -37,7 +37,7 @@
                     <div id="article-content">
                         {% if reserved_tickets %}
                             {% for reserved_ticket in reserved_tickets %}
-                                <div class="ticket-info">
+                                <div class="ticket-info" id="">
                                     <span id="departure-country-name">{{ reserved_ticket.departure }}</span>
                                     <span id="vl-info"></span>
                                     <span id="arrive-country-name">{{ reserved_ticket.arrive }}</span>

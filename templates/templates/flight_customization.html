@@ -7,7 +7,7 @@
         <div id="status-bar">
             <div id="status-position">
                 <span id="active-section">1. Lidojuma kustomizācija</span>
-                <span id="closed-section">2. Pasažiera inormācija</span>
+                <span id="closed-section">2. Pasažiera informācija</span>
                 <span id="closed-section">3. Kopskats un rezervēšana</span>
             </div>
         </div>
@@ -18,49 +18,20 @@
                 </div>
                 <div id="article-content">
                     <form>
-                        <div id="dropdown-box">
-                            <div id="dropdown-box-value">No:</div>
-                            <div id="dropdown-box-select">
-                                <option class="select-country">Latvija(Rīga)</option>
-                                <hr>
-                                <option class="select-country">Vācija(Berlīne)</option>
-                                <hr>
-                                <option class="select-country">Francija(Parīze)</option>
-                            </div>
-                        </div>
-                        <div id="dropdown-box">
-                            <div id="dropdown-box-value">Uz:</div>
-                            <div id="dropdown-box-select">
-                                <option class="select-country">Latvija(Rīga)</option>
-                                <hr>
-                                <option class="select-country">Vācija(Berlīne)</option>
-                                <hr>
-                                <option class="select-country">Francija(Parīze)</option>
-                            </div>
-                        </div>
+                        <div id="booking-info-container">No: <span id="flight-info">{{ data['departure'] }}</span></div>
+                        <div id="booking-info-container">Uz: <span id="flight-info">{{ data['arrive']}}</span></div>
                         <div id="dropdown-box">
                             <div id="dropdown-box-value">Izvēlēties lidojuma klasi</div>
                             <div id="dropdown-box-select">
-                                <option class="select-country">Standarta klase</option>
+                                <option class="select-country">Ekonomiskā klase</option>
                                 <hr>
-                                <option class="select-country">Komforta klase</option>
-                                <hr>
-                                <option class="select-country">VIP klase</option>
+                                <option class="select-country">Biznesa klase</option>
                             </div>
                         </div>
-                        <div id="dropdown-box">
-                            <div id="dropdown-box-value">Izvēlēties izlidošanas datumu</div>
-                            <div id="dropdown-box-select">
-                                <option class="select-country">12.maijs 2021.gads</option>
-                                <hr>
-                                <option class="select-country">19.maijs 2021.gads</option>
-                                <hr>
-                                <option class="select-country">21.maijs 2021.gads</option>
-                            </div>
-                        </div>
-                        <div id="booking-info-container" >Ielidošanas laiks: <span id="arrive-date">25.maijs 2021.gads</span></div><br>
+                        <div id="booking-info-container">Izlidošanas laiks: <span id="flight-info">{{ data['departure_date'] }} - {{ data['departure_time'] }}</span></div>
+                        <div id="booking-info-container" >Ielidošanas laiks: <span id="flight-info">{{ data['arrive_date'] }} - {{ data['arrive_time'] }}</span></div><br>
                         <p>Summa par cilvēku:</p>
-                        <div id="sum-of-all-conatiner"><span id="sum-of-all">100</span> $</div>
+                        <div id="sum-of-all-conatiner"><span id="sum-of-all">{{ data['price'] }}</span> $</div>
                     </form>
                 </div>
             </article>
@@ -79,7 +50,7 @@
     </div>
     <br>
     <div id="continue-button">
-        <button class="submit-button">Turpināt</button>
+        <button class="submit-button" style="margin-top: 10%;">Turpināt</button>
     </div>
     <script type="text/javascript" charset="UTF-8" src="static/scripts/flight_customization_form.js"></script>
 {% endblock %}

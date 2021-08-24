@@ -16,7 +16,6 @@ body {
 
 
 /* ======= Header ======= */
-
 #wrapper {
     max-width: 100%;
     width: 1150px;
@@ -138,22 +137,12 @@ body {
     border-radius: 20px;
 }
 
-#departure-country-input, #arrival-country-input {
-    line-height: 40px;
+#departure-country-input{
+    line-height: 42px;
     color: #D7D7D7;
-    font-size: 13px;
     user-select: none;
     cursor: pointer;
-    width: 50%;
-}
-
-.vl { /* Vertical line */ 
-    position: absolute;
-    border-left: 1px solid #D7D7D7;
-    height: 40px;
-}
-
-#departure-country-input {
+    width: 90%;
     padding-left:10px;
 }
 
@@ -168,33 +157,54 @@ body {
     text-align: center;
     line-height: 30px;
     border-radius: 15px;
-    font-weight: 10;
     cursor: pointer;
 }
 
-#select-departure-countries, #select-arrival-countries {
+#select-departure-countries{
     position: relative;
     background-color: #FEFEFE;
-    margin: 0 auto;
+    margin: -0.5% auto;
     border-top: 1px solid #D7D7D7;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     float: left;
     box-shadow: 0px 8px 9px 3px rgb(0 0 0 / 25%);
     display: none;
-    line-height: 25px;
     z-index: 2147483647; /* lai parklātu visus elementus (specifiski kartīšu karuseli) */
-}
-
-#select-departure-countries, #select-arrival-countries {
     width: 96%;
+    padding-bottom: 5%;
 }
 
-.select-country {
-    font-size: 13px;
+#select-departure-countries > hr:last-child {
+    display: none;
+}
+.select-flight {
     padding-left: 2%;
- }
+    font-weight: bold;
+    margin-top: -5%;
+    margin-bottom: -4%;
+    color: #5a5a5a;
+    box-shadow: none;
+    font-size: 15px;
+}
 
+.select-flight:first-child {
+    margin-top: -0.5%;
+}
+
+.trip-departure-arrive-block {
+    margin-bottom: -4%;
+    font-size: 17px;
+}
+
+.flight-price-block {
+    margin-top: -4%;
+    font-size: 13px;
+}
+
+.trip-arrive-date-block {
+    margin-top: -4%;
+}
 
 /* ========Article======= */
 article {
@@ -1569,6 +1579,7 @@ img.profile-image {
     align-items: center;
     animation-name: scale-down;
     animation-duration: 3s;
+    text-align: center;
 }
 
 .admin-search-content-result  > div {

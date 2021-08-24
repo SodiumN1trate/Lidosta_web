@@ -10,6 +10,7 @@ for (let index = 0; index < document.querySelectorAll(".admin-search-content-res
             document.querySelectorAll("#arrive_date")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[7].innerHTML;
             document.querySelectorAll("#departure_time")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[9].innerHTML;
             document.querySelectorAll("#arrive_time")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[11].innerHTML;
+            document.querySelectorAll("#price")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[15].innerHTML;
             last_opened_content_id = document.querySelectorAll(".admin-search-content-result")[index].id;
         }
 
@@ -48,6 +49,7 @@ document.querySelectorAll("#submit-popup")[1].addEventListener("click", (e)=>{
             "arrive_time": document.querySelectorAll("#arrive_time")[1].value,
             "airplane": document.querySelectorAll("#dropdown-box-value")[5].innerHTML,
             "title": document.querySelectorAll("form")[1].id,
+            "price":  document.querySelectorAll("#price")[1].value,
             "id": last_opened_content_id
         });
     }

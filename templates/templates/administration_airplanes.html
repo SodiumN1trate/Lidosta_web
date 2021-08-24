@@ -42,10 +42,14 @@
                     <div id="dropdown-box">
                         <div id="dropdown-box-value">Lidosta:</div>
                         <div id="dropdown-box-select">
+                        {% if airports %}
                             {% for airport in airports %}
                                 <option class="select-country">{{ airport.name }}</option>
                                 <hr>
                             {% endfor %}
+                        {% else %}
+                            <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidostu!</span>
+                        {% endif %}
                         </div>
                     </div>
                 </form>
