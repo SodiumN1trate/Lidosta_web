@@ -38,7 +38,8 @@ for (let index = 0; index < document.querySelectorAll(".admin-search-content-res
             document.querySelectorAll("#name")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[1].innerHTML;
             document.querySelectorAll("#lastaname")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[3].innerHTML;
             document.querySelectorAll("#email")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[5].innerHTML;
-            document.querySelectorAll("#dropdown-box-value")[1].innerHTML = document.querySelectorAll(".admin-search-content-result")[index].childNodes[7].innerHTML;
+            document.querySelectorAll("#wallet")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[7].innerHTML;
+            document.querySelectorAll("#dropdown-box-value")[1].innerHTML = document.querySelectorAll(".admin-search-content-result")[index].childNodes[9].innerHTML;
             last_opened_content_id = document.querySelectorAll(".admin-search-content-result")[index].id;
         }
     }) 
@@ -87,6 +88,7 @@ document.querySelectorAll("#submit-popup")[1].addEventListener("click", (e)=>{
             "lastname": document.querySelectorAll("#lastaname")[1].value,
             "email": document.querySelectorAll("#email")[1].value,
             "role": document.querySelectorAll("#dropdown-box-value")[1].innerHTML,
+            "wallet": document.querySelectorAll("#wallet")[1].value,
             "title": document.querySelector("form").id,
             "id": last_opened_content_id
         });

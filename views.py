@@ -73,7 +73,7 @@ def profile():
     if user_profile_logic() == 1:
         list_with_booked_tickets_for_user = get_booked_tickets_list()
         list_with_buyed_tickets_for_use = get_buyed_tickets_list()
-        return render_template("templates/profile.html", name=session['user_data']['name'], lastname=session['user_data']['lastname'], email=session['user_data']['email'], role=session['user_data']['role'], reserved_tickets=list_with_booked_tickets_for_user, buyed_tickets=list_with_buyed_tickets_for_use)
+        return render_template("templates/profile.html", name=session['user_data']['name'], lastname=session['user_data']['lastname'], email=session['user_data']['email'], wallet=session['user_data']['wallet'], role=session['user_data']['role'], reserved_tickets=list_with_booked_tickets_for_user, buyed_tickets=list_with_buyed_tickets_for_use)
     else:
         return redirect(url_for('login'))
 

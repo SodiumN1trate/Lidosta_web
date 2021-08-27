@@ -31,6 +31,7 @@ class User(db.Model):
     email = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(50), nullable=False)
     register_date = db.Column(db.String(50), nullable=True)
+    wallet = db.Column(db.Float, default=0)
     role = db.Column(db.Integer, default=0) 
     ticket = db.relationship("Ticket", cascade="all, delete")
 

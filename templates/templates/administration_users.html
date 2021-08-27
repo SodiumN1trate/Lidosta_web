@@ -13,12 +13,13 @@
                 <div class="admin-pannel-search-content field-1">{{ user.name }}</div>
                 <div class="admin-pannel-search-content field-2">{{ user.lastname }}</div>
                 <div class="admin-pannel-search-content field-3">{{ user.email }}</div>
+                <div class="admin-pannel-search-content field-4">{{ user.wallet }}</div>
                 {% if user.role == 0 %}
-                    <div class="admin-pannel-search-content field-4">Lietotājs</div>
+                    <div class="admin-pannel-search-content field-5">Lietotājs</div>
                 {% elif user.role == 1 %}
-                    <div class="admin-pannel-search-content field-4">Administrators</div>
+                    <div class="admin-pannel-search-content field-5">Administrators</div>
                 {% else %}
-                    <div class="admin-pannel-search-content field-4">Nav</div>
+                    <div class="admin-pannel-search-content field-5">Nav</div>
                 {% endif %}    
             </div>
         {% endfor %}
@@ -45,6 +46,8 @@
                 <input style="margin-top: 0;" type="text" id="password" placeholder="Parole">
                 <span id="date-text">E-pasts:</span>
                 <input style="margin-top: 0;" type="text" id="email" placeholder="E-pasts">
+                <span id="date-text">Maks:</span>
+                <input style="margin-top: 0;" type="text" id="wallet" placeholder="Maks">
                 <div id="dropdown-box">
                     <div id="dropdown-box-value">Status</div>
                     <div id="dropdown-box-select">
@@ -89,6 +92,8 @@
                 <input style="margin-top: 0;" type="text" id="lastaname" placeholder="Uzvārds">
                 <span id="date-text">E-pasts:</span>
                 <input style="margin-top: 0;" type="text" id="email" placeholder="E-pasts">
+                <span id="date-text">Maks:</span>
+                <input style="margin-top: 0;" type="text" id="wallet" placeholder="Maks">
                 <div id="dropdown-box">
                     <div id="dropdown-box-value">Status</div>
                     <div id="dropdown-box-select">

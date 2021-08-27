@@ -72,6 +72,7 @@ document.querySelector("#submit-popup").addEventListener("click", (e)=>{
             "lastname": document.getElementById("lastaname").value,
             "password": document.getElementById("password").value,
             "email": document.getElementById("email").value,
+            "wallet": document.getElementById("wallet").value,
             "role": document.querySelectorAll("#dropdown-box-value")[0].innerHTML,
             "title": document.querySelector("form").id
         });

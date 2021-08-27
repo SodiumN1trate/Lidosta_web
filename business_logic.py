@@ -119,11 +119,12 @@ def register_new_user_to_db():
     try:
         data = session['input-values']
         user = User(name=data['name'], lastname=data['lastname'],
-                    email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now())
+                    email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now(), wallet=100.0)
         db.session.add(user)
         db.session.commit()
         session["user_data"] = {'name': user.name, 'lastname': user.lastname,
-                                'email': user.email, 'id': user.id, 'role': user.role}
+                                'email': user.email, 'id': user.id, 'role': user.role, 'wallet': float(user.wallet)}
+        print(session["user_data"])
         session['data'] = None
         return 1
     except:
@@ -139,7 +140,7 @@ def user_login_logic():
                 session["input-values"] = None
                 session["verification_code"] = None
                 session["message"] = None
-                session["user_data"] = {'name': find_user.name, 'lastname': find_user.lastname, 'email': find_user.email, 'id':find_user.id, 'role':find_user.role}
+                session["user_data"] = {'name': find_user.name, 'lastname': find_user.lastname, 'email': find_user.email, 'id':find_user.id, 'role':find_user.role, 'wallet':float(find_user.wallet)}
                 return 1
         
         create_message("Kļūda! Pārbaudiet vai ievadītais e-pasts un/vai parole ir ievadīta pareizi!", "error")
@@ -149,10 +150,11 @@ def get_user_data(id):
     try:
         find_user = User.query.filter_by(id=id).first()
         session["user_data"] = {'name': find_user.name, 'lastname': find_user.lastname,
-                                'email': find_user.email, 'id': find_user.id, 'role': find_user.role}
+                                'email': find_user.email, 'id': find_user.id, 'role': find_user.role, 'wallet': float(find_user.wallet)}
         return 1
     except:
         return 0
+
 def user_profile_logic():
     try:
         if get_user_data(session["user_data"]['id']) == 1:
@@ -252,6 +254,7 @@ def admin_add_user_to_db(data):
         email = data["email"],
         password= pybase64.standard_b64encode(bytes(data['password'], "utf-8")),
         register_date = "Admin registred",
+        wallet = data["wallet"],
         role = 1 if data["role"] == "Administrators" else  0
     )
     db.session.add(user)
@@ -306,6 +309,7 @@ def admin_update_user(data):
     user.name = data['name']
     user.lastname = data['lastname']
     user.email = data['email']
+    user.wallet = data['wallet']
     user.role = 1 if data["role"] == "Administrators" else 0
     db.session.add(user)
     db.session.commit()
