@@ -25,9 +25,10 @@
                     <span class="admin-panel-top-bar-text">Izvēlne</span>
                 </div>
                 <div class="admin-panel-content-frame">
-                    <a href="/admin/flights"><button class="submit-button">Reisi</button></a>
                     <a href="/admin/airports"><button class="submit-button">Lidostas</button></a>
                     <a href="/admin/airplanes"><button class="submit-button">Lidmašīnas</button></a>
+                    <a href="/admin/flights"><button class="submit-button">Reisi</button></a>
+                    <a href="/admin/users"><button class="submit-button">Lietotāji</button></a>
                     <div id="seperating-line"></div>
                     <a href="/"><button class="submit-button">Exportēt visus datus</button></a>
                 </div>
@@ -42,5 +43,6 @@
     </div>
     <script src="{{ url_for ('static', filename = 'scripts/admin_adding_popups.js') }}"></script>
     <script src="{{ url_for ('static', filename = 'scripts/admin_edit_delete_popup.js') }}"></script>
+
 </body>
 </html>

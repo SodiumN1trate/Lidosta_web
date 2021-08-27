@@ -19,7 +19,7 @@
     <div id="navigation-bar">
         <a href="/"><img src="/static/images/Logo.png" id="navigation-bar-logo"></a>
             <div id="navigation-bar-right-side">
-              {% if session['user_data']['role']%}
+              {% if session['user_data'] %}
                 <div id="login-button"><a href="/profile">Profils</a></div>
               {% else %}
                 <div id="login-button"><a href="/login">Ienākt</a></div>
@@ -56,6 +56,7 @@
         </div>
     </header>
     <div id="wrapper">
+      {% block content %}
         <!-- CARD CAROUSEL START -->
         <div class="container wrapper">
             <div class="row">
@@ -419,6 +420,7 @@
             </div>
             <!-- COMMENT CAROUSEL END -->
         </div>
+      {% endblock %}
     </div> <!-- Atbilstoši wrapper end -->
 
     <footer>

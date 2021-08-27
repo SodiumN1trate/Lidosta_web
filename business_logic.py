@@ -245,6 +245,18 @@ def add_airport_to_db(data):
     db.session.commit()
 
 
+def admin_add_user_to_db(data):
+    user = User(
+        name = data["name"],
+        lastname = data["lastname"],
+        email = data["email"],
+        password= pybase64.standard_b64encode(bytes(data['password'], "utf-8")),
+        register_date = "Admin registred",
+        role = 1 if data["role"] == "Administrators" else  0
+    )
+    db.session.add(user)
+    db.session.commit()
+
 def get_all_airports():
     return Airport.query.all()
     
@@ -255,6 +267,9 @@ def get_all_airplanes():
 
 def get_all_flights():
     return Flight.query.all()
+
+def get_all_users():
+    return User.query.all()
 
 
 def update_flight(data):
@@ -286,6 +301,16 @@ def update_airport(data):
     db.session.commit()
 
 
+def admin_update_user(data):
+    user = User.query.filter(User.id == data['id']).first()
+    user.name = data['name']
+    user.lastname = data['lastname']
+    user.email = data['email']
+    user.role = 1 if data["role"] == "Administrators" else 0
+    db.session.add(user)
+    db.session.commit()
+
+
 def delete_flight(id):
     db.session.delete(Flight.query.filter(Flight.id == id).first())
     db.session.commit()
@@ -298,6 +323,9 @@ def delete_airport(id):
     db.session.delete(Airport.query.filter(Airport.id == id).first())
     db.session.commit()
 
+def admin_delete_user(id):
+    db.session.delete(User.query.filter(User.id == id).first())
+    db.session.commit()
 
 def is_flight_real(data):
     flight_is_real = Flight.query.filter(
@@ -313,3 +341,6 @@ def is_flight_real(data):
         return 0
     else:
         return 1
+
+def is_admin(data):
+        return True if data['role'] == 1 else False

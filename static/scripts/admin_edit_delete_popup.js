@@ -32,6 +32,15 @@ for (let index = 0; index < document.querySelectorAll(".admin-search-content-res
             document.querySelectorAll("#airport_address")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[5].innerHTML;
             last_opened_content_id = document.querySelectorAll(".admin-search-content-result")[index].id;
         }
+        else if(document.querySelectorAll("form")[1].id === "users"){
+            document.querySelector(".admin-editing-popup-background").style.display = "table";
+            console.log(document.querySelectorAll(".admin-search-content-result")[index].childNodes[1].innerHTML);
+            document.querySelectorAll("#name")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[1].innerHTML;
+            document.querySelectorAll("#lastaname")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[3].innerHTML;
+            document.querySelectorAll("#email")[1].value = document.querySelectorAll(".admin-search-content-result")[index].childNodes[5].innerHTML;
+            document.querySelectorAll("#dropdown-box-value")[1].innerHTML = document.querySelectorAll(".admin-search-content-result")[index].childNodes[7].innerHTML;
+            last_opened_content_id = document.querySelectorAll(".admin-search-content-result")[index].id;
+        }
     }) 
 }
 
@@ -72,6 +81,17 @@ document.querySelectorAll("#submit-popup")[1].addEventListener("click", (e)=>{
             "id": last_opened_content_id
         });
     }
+    else if(document.querySelector("form").id === "users"){
+        data.push({
+            "name":  document.querySelectorAll("#name")[1].value,
+            "lastname": document.querySelectorAll("#lastaname")[1].value,
+            "email": document.querySelectorAll("#email")[1].value,
+            "role": document.querySelectorAll("#dropdown-box-value")[1].innerHTML,
+            "title": document.querySelector("form").id,
+            "id": last_opened_content_id
+        });
+    }
+
     if(check_on_gaps(data[0]) === 1){
         alert("Aizpildiet visus laukumus!");
     }

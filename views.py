@@ -5,7 +5,7 @@ import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport
+from business_logic import is_admin, admin_delete_user , admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
 
 @app.route("/")
 def index():
@@ -116,6 +116,14 @@ def admin_airplanes():
     else:
         return redirect(url_for('login'))
 
+
+@app.route("/admin/users")
+def admin_users():
+    if session['user_data']['role'] == 1:
+        return render_template("templates/administration_users.html", users=get_all_users())
+    else:
+        return redirect(url_for('login'))
+
 # User register
 @app.route("/register_user", methods=["POST"])
 def register_user():
@@ -160,55 +168,73 @@ def leave():
 # Admin add flight
 @app.route("/admin/add_row")
 def add_row():
-    data = json.loads(request.cookies.get('data'))[0]
-    print(data)
+    if session['user_data'] and is_admin(session['user_data']):
+        data = json.loads(request.cookies.get('data'))[0]
+        print(data)
 
-    if data["title"] == "flights":
-        add_flight_to_db(data)
-        return redirect(url_for('admin_flights'))
+        if data["title"] == "flights":
+            add_flight_to_db(data)
+            return redirect(url_for('admin_flights'))
 
-    elif data["title"] == "airplanes":
-        add_airplane_to_db(data)
-        return redirect(url_for('admin_airplanes'))
+        elif data["title"] == "airplanes":
+            add_airplane_to_db(data)
+            return redirect(url_for('admin_airplanes'))
 
-    elif data["title"]  == "airports":
-        add_airport_to_db(data)
-        return redirect(url_for('admin_airports'))
-    return 404
+        elif data["title"]  == "airports":
+            add_airport_to_db(data)
+            return redirect(url_for('admin_airports'))
+        
+        elif data["title"] == "users":
+            admin_add_user_to_db(data)
+            return redirect(url_for('admin_users'))
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/admin/edit_row")
 def edit_row():
-    data = json.loads(request.cookies.get('edited_data'))[0]
-    print(data)
-    if data["title"] == "flights":
-        update_flight(data)
-        return redirect(url_for('admin_flights'))
+    if session['user_data'] and is_admin(session['user_data']):
+        data = json.loads(request.cookies.get('edited_data'))[0]
+        print(data)
+        if data["title"] == "flights":
+            update_flight(data)
+            return redirect(url_for('admin_flights'))
 
-    elif data["title"] == "airplanes":
-        update_airplane(data)
-        return redirect(url_for('admin_airplanes'))
+        elif data["title"] == "airplanes":
+            update_airplane(data)
+            return redirect(url_for('admin_airplanes'))
 
-    elif data["title"] == "airports":
-        update_airport(data)
-        return redirect(url_for('admin_airports'))
-    return 404
+        elif data["title"] == "airports":
+            update_airport(data)
+            return redirect(url_for('admin_airports'))
+        
+        elif data["title"] == "users":
+            admin_update_user(data)
+            return redirect(url_for('admin_users'))
+    else:
+        return redirect(url_for("login"))
 
 @app.route("/admin/delete_row/<title>-<id>")
 def delete_row(title, id):
-    if title == "flights":
-        delete_flight(id)
-        return redirect(url_for('admin_flights'))
+    if session['user_data'] and is_admin(session['user_data']):
+        if title == "flights":
+            delete_flight(id)
+            return redirect(url_for('admin_flights'))
+            
+        elif title == "airplanes":
+            delete_airplane(id)
+            return redirect(url_for('admin_airplanes'))
+
+        elif title == "airports":
+            delete_airport(id)
+            return redirect(url_for('admin_airports'))
+
+        elif title == "users":
+            admin_delete_user(id)
+            return redirect(url_for('admin_users'))
+    else:
+        return redirect(url_for("login"))
         
-    elif title == "airplanes":
-        delete_airplane(id)
-        return redirect(url_for('admin_airplanes'))
-
-    elif title == "airports":
-        delete_airport(id)
-        return redirect(url_for('admin_airports'))
-    return "404"
-
 @app.route("/check_flight")
 def check_flight():
     data = json.loads(request.cookies.get('flight_data'))
@@ -222,6 +248,7 @@ def check_flight():
         else:
             create_message("Atzīmētais lidojums neēksistē!", "error")
             return redirect(url_for('index'))
+            
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 create_message

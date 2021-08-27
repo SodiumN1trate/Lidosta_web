@@ -66,6 +66,16 @@ document.querySelector("#submit-popup").addEventListener("click", (e)=>{
             "title": document.querySelector("form").id
         });
     }
+    else if(document.querySelector("form").id === "users"){
+        data.push({
+            "name":  document.getElementById("name").value,
+            "lastname": document.getElementById("lastaname").value,
+            "password": document.getElementById("password").value,
+            "email": document.getElementById("email").value,
+            "role": document.querySelectorAll("#dropdown-box-value")[0].innerHTML,
+            "title": document.querySelector("form").id
+        });
+    }
     if(check_on_gaps(data[0]) === 1){
         alert("Aizpildiet visus laukumus!");
     }
