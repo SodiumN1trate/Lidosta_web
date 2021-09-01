@@ -1,18 +1,17 @@
+from models import Ticket
 from re import L
 from flask import render_template, redirect, request, session
-from flask.helpers import url_for
+from flask.helpers import flash, make_response, url_for
 import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import is_admin, admin_delete_user , admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
+from business_logic import buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
 
 @app.route("/")
 def index():
-    try:
-        return render_template("index.html", flights=get_all_flights(), message_value=session['message']['message_value'], message_type=session['message']['message_type'])
-    except:
-        return render_template("index.html", flights=get_all_flights())
+    return render_template("index.html", flights=get_all_flights())
+
 @app.route("/about_us")
 def about_us():
     return render_template("templates/about_us.html")
@@ -71,9 +70,21 @@ def booking_overview():
 @app.route("/profile")
 def profile():
     if user_profile_logic() == 1:
+        message_type = session['message']['message_type'] if session['message'] else 0,
+        message_value = session['message']['message_value'] if session['message'] else 0
         list_with_booked_tickets_for_user = get_booked_tickets_list()
         list_with_buyed_tickets_for_use = get_buyed_tickets_list()
-        return render_template("templates/profile.html", name=session['user_data']['name'], lastname=session['user_data']['lastname'], email=session['user_data']['email'], wallet=session['user_data']['wallet'], role=session['user_data']['role'], reserved_tickets=list_with_booked_tickets_for_user, buyed_tickets=list_with_buyed_tickets_for_use)
+        return render_template("templates/profile.html",
+                                                name=session['user_data']['name'],
+                                                lastname=session['user_data']['lastname'],
+                                                email=session['user_data']['email'],
+                                                wallet=session['user_data']['wallet'],
+                                                role=session['user_data']['role'],
+                                                reserved_tickets=list_with_booked_tickets_for_user,
+                                                buyed_tickets=list_with_buyed_tickets_for_use,
+                                                message_type=message_type[0],
+                                                message_value=message_value
+        )
     else:
         return redirect(url_for('login'))
 
@@ -248,7 +259,19 @@ def check_flight():
         else:
             create_message("Atzīmētais lidojums neēksistē!", "error")
             return redirect(url_for('index'))
-            
+    
+@app.route("/buy-ticket/<ticket_id>")
+def buy_ticket(ticket_id):
+    ticket = buy_ticket_logic(ticket_id)
+    if ticket == 1:
+        flash("Paldies! Veiksmīgi tika iegādāta biļete.")
+    else:
+        flash(ticket)
+
+
+    return redirect(url_for("profile"))
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 create_message

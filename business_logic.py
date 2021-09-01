@@ -173,13 +173,13 @@ def make_reservation_logic():
     ticket = Ticket(owner_id=user_data['id'],
                     departure=flight_customization[0],
                     arrive=flight_customization[1],
-                    flight_class=flight_customization[2],
-                    departure_time=flight_customization[3],
-                    arrive_time=flight_customization[4],
+                    flight_class=flight_customization[4],
+                    departure_time=flight_customization[2],
+                    arrive_time=flight_customization[3],
                     people_count=len(persons),
                     sum=int(flight_customization[5]) * len(persons),
                     flight_id=randint(1000, 10000),
-                    company_name="To:do",
+                    company_name="Lidosta",
                     reserved_status=0
                     )
     db.session.add(ticket)
@@ -348,3 +348,21 @@ def is_flight_real(data):
 
 def is_admin(data):
         return True if data['role'] == 1 else False
+
+
+def buy_ticket_logic(id):
+    ticket = Ticket.query.filter(Ticket.id == id, Ticket.owner_id == session['user_data']['id'], Ticket.reserved_status == 0).first()
+    if ticket == None:
+        return "Tādas biļetes nav"
+    else:
+        if ticket.sum <= session['user_data']['wallet']:
+            # Buy ticket
+            ticket.reserved_status = 1
+            db.session.add(ticket)
+            user = User.query.filter(User.id == session['user_data']['id']).first()
+            user.wallet -= ticket.sum
+            db.session.add(user)
+            db.session.commit()
+            return 1
+        else:
+            return "Nepietiek līdzekļu"

@@ -1446,6 +1446,9 @@ img.profile-image {
     border-radius: 10vmax;
     margin-left: 2px;
 }
+#profile-popup > .admin-editing-popup-background {
+    height: 120vh;
+}
 
 .comment-part {
     width: 212px;

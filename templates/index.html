@@ -30,9 +30,15 @@
         <div id="banner">
             <img src="/static/Vector/HeaderBannerLidostaLogo.svg" id="banner-logo">
             <div id="motivation-text">Nemocies meklējot lētāko lidojumu. Apskati tos visus šeit!</div>
-            {% if message_type == "error" %}
-              <h4 style="color: red; text-align: center; font-weight: bold;">{{ message_value }}</h4>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+              {% for message in messages %}
+              <div style="color: rgb(46, 46, 46);">{{ message }}</div>
+              {% endfor %}
+            </ul>
             {% endif %}
+            {% endwith %}
             <div id="choose-trip-box">
                 <div id="departure-country-input">
                     <span name="departure-country-input-value" id="departure-country-input-value">Uz kurieni lidojam?</span>
