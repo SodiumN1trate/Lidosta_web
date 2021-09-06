@@ -1,5 +1,5 @@
 from email import message
-from flask import Flask, request, session
+from flask import Flask, request, session, render_template
 from flask.helpers import flash, url_for
 from flask_sqlalchemy import model
 import pybase64
@@ -59,7 +59,8 @@ def send_verification_email(receiver_email):
         message_to_sent = f"Verifikācijas kods: {verification_code}"
         message = Message("E-pasta verifikācija \"Lidosta\"",
                             sender='lidostainfo@gmail.com', recipients=[receiver_email])
-        message.body = message_to_sent
+        message.html = render_template(
+            "mail_templates/verification_code.html", verification_code=verification_code)
         mail.send(message)
         session["verification_code"] = verification_code
         return 1
