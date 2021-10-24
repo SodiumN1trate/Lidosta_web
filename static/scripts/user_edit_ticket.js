@@ -1,35 +1,6 @@
+console.log("aa");
 // Add person
 remove_button_render();
-
-const ADD_PERSON_BUTTON = document.getElementById("add-person");
-
-ADD_PERSON_BUTTON.addEventListener("click", (e) =>{
-    let blank = `<article id="login">
-                    <div id="article-header">
-                        <span id="article-name">Pasažiera informācija</span>
-                    </div>
-                    <div id="article-content">
-                        <form>
-                            <input type="text" name="name" placeholder="Vārds" id="name">
-                            <input type="text" name="lastname" placeholder="Uzvārds" id="lastname">
-                            <span id="date-text">Dzimšanas datums:</span>
-                            <div id="form-for-birthday-date">
-                                <input type="text" name="year" placeholder="Gads" id="birth-year" maxlength="4">
-                                <input type="text" name="month" placeholder="Mēnesis" id="birth-month" maxlength="2">
-                                <input type="text" name="date" placeholder="Diena" id="birth-day" maxlength="2">
-                            </div>
-                            <input type="text" name="person_id" placeholder="Personas kods" id="person-id">
-                            <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number">
-                            <div id="remove-person">
-                                <img src="static/Vector/RemoveSign.svg">
-                                Noņemt cilvēku
-                            </div>
-                        </form>
-                    </div>
-                </article>`;
-    document.getElementById("form-container").innerHTML += blank;
-    remove_button_render();
-});
 
 // Remove person button render
 function remove_button_render() {

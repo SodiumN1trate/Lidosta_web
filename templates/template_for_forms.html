@@ -22,7 +22,7 @@
         <div id="navigation-bar-right-side">
             <div id="search-bar">
                 <div><input type="text" name="search-bar-input" id="search-bar-input" placeholder="Meklēt..."></div>
-                <img src="static/Vector/SpyGlass.svg" id="search-bar-search-icon">
+                <img src="{{ url_for('static', filename = 'Vector/SpyGlass.svg') }}" id="search-bar-search-icon">
             </div>
             {% if session['user_data'] %}
                 <div id="login-button"><a href="/profile">Profils</a></div>

@@ -1,0 +1,68 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Biļetes rediģēšana{% endblock %}
+
+{% block content %}
+<div id="form-banner-background">
+    <div id="form-container">
+        <article id="login">
+            <div id="article-header">
+                <span id="article-name">Lidojuma informācija</span>
+            </div>
+            <div id="article-content">
+                <div id="booking-info-container">No: <span id="departure-country">{{ flight_main_data.departure }}</span></div>
+                <div id="booking-info-container">Uz: <span id="arrive-country">{{ flight_main_data.arrive }}</span></div>
+                <div id="booking-info-container">Lidojuma klase: <span id="flight_class">{{ flight_main_data.flight_class }}</span></div>
+                <div id="booking-info-container">Cilvēku skaits: <span id="people-count">{{ flight_main_data.people_count }}</span></div>
+                <div id="booking-info-container">Izlidošanas laiks: <span id="departure-date">{{ flight_main_data.departure_time }}</span></div>
+                <div id="booking-info-container">Ielidošanas laiks: <span id="arrive-date">{{ flight_main_data.arrive_time }}</span></div>
+                <div id="booking-info-container">Lidojuma numurs: <span id="fly-number">{{ flight_main_data.flight_id }}</span></div>
+                <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all">{{ flight_main_data.sum }}</span> $</div>
+            </div>
+        </article>
+    </div>
+</div>
+<div id="form-container">
+    {% for user in users_data %}
+        <article id="login">
+            <div id="article-header">
+                <span id="article-name">Pasažiera informācija</span>
+            </div>
+            <div id="article-content">
+                <form>
+                    <input type="text" name="name" placeholder="Vārds" id="name" value="{{ user.name }}">
+                    <input type="text" name="lastname" placeholder="Uzvārds" id="lastname" value="{{ user.lastname }}" >
+                    <span id="date-text">Dzimšanas datums:</span>
+                    <div id="form-for-birthday-date">
+                        <input type="text" name="year" placeholder="Gads" id="birth-year" maxlength="4" value="{{ user.birth_year }}"> 
+                        <input type="text" name="month" placeholder="Mēnesis" id="birth-month" maxlength="2" value="{{ user.birth_month }}">
+                        <input type="text" name="date" placeholder="Diena" id="birth-day" maxlength="2" value="{{ user.birth_year }}" >
+                    </div>
+                    <input type="text" name="person_id" placeholder="Personas kods" id="person-id" value="{{ user.person_id }}">
+                    <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number" value="{{ user.telephone_number }}">
+                    <div id="remove-person">
+                        <img src="{{ url_for('static', filename = 'Vector/RemoveSign.svg') }}">
+                        Noņemt cilvēku
+                    </div>
+                </form>
+            </div>
+        </article>
+    {% endfor %}
+</div>
+<div id="pop-up-passangers-info-data-accept">
+    <div id="pop-up-form">
+        <div>Vai vēlaties biļeti rezervēt? Pēc rezervācijas biļeti var iegādāties pārejot uz profilu un pie nodaļas
+            "Rezervētās biļetes" nospiest uz biļetes kuru vēlaties iegādāties.</div>
+        <div id="continue-button">
+            <a href="/"></a><button class="submit-button" type="submit">Jā</button></a>
+        </div>
+        <div id="continue-button">
+            <a><button class="submit-button" id="return" type="button">Nē</button></a>
+        </div>
+    </div>
+</div>
+<div id="continue-button">
+    <button class="submit-button">Turpināt</button>
+</div>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static', filename = 'scripts/user_edit_ticket.js') }}"></script>
+{% endblock %}

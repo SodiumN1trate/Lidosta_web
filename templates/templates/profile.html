@@ -116,7 +116,7 @@
                         <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all"></span>{{ reserved_ticket.sum }} $</div>
                     </form>
                     <div id="continue-button">
-                        <button id="submit-popup" class="submit-button">Labot</button>
+                        <a href="/edit_ticket/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="submit-popup" class="submit-button">Labot</button></a>
                         <a href="/buy-ticket/{{ reserved_ticket.id }}"><button id="buy-button" class="submit-button">Pirkt</button></a>
                         <button id="delete-button" class="submit-button">Dzēst</button>
                         <button id="close-popup" class="submit-button">Aizvērt</button>

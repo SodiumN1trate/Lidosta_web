@@ -125,7 +125,6 @@ def register_new_user_to_db():
         db.session.commit()
         session["user_data"] = {'name': user.name, 'lastname': user.lastname,
                                 'email': user.email, 'id': user.id, 'role': user.role, 'wallet': float(user.wallet)}
-        print(session["user_data"])
         session['data'] = None
         return 1
     except:
@@ -367,3 +366,13 @@ def buy_ticket_logic(id):
             return 1
         else:
             return "Nepietiek līdzekļu"
+
+
+def is_ticket_owner(ticket_id, owner_id):
+    ticket = Ticket.query.filter(Ticket.id==ticket_id, Ticket.owner_id==owner_id).first()
+    if ticket == None:
+        return 0
+    else:
+        all_users = UserTicket.query.filter(UserTicket.ticket_id == ticket_id)
+        data = {"ticket":ticket, 'all_users':all_users}
+        return data

@@ -29,7 +29,7 @@
                         <input type="text" name="person_id" placeholder="Personas kods" id="person-id">
                         <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number">
                         <div id="remove-person">
-                            <img src="static/Vector/RemoveSign.svg">
+                            <img src="{{ url_for('static', filename = 'Vector/RemoveSign.svg') }}">
                             Noņemt cilvēku
                         </div>
                     </form>
