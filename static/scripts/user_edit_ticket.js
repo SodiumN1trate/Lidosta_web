@@ -1,4 +1,4 @@
-console.log("aa");
+console.log(document);
 // Add person
 remove_button_render();
 
@@ -7,17 +7,22 @@ function remove_button_render() {
     const REMOVE_PERSON_BUTTON = document.querySelectorAll("#remove-person > img");
     for (let index = 0; index < REMOVE_PERSON_BUTTON.length; index++) {
         REMOVE_PERSON_BUTTON[index].addEventListener("click", (e) => {
-        e.target.parentNode.parentNode.parentNode.parentNode.remove();
-    });     
-    }  
+            e.target.parentNode.parentNode.parentNode.parentNode.remove();
+        });     
+    }
+    console.log("All user remove buttons have been rendered!");
+
 };
 
 
 
 
 // Get data from user inputs
+console.log(1);
 let persons = [];
+console.log(2);
 let gaps = false;
+console.log(3);
 document.querySelector("#continue-button > .submit-button").addEventListener("click", (e) =>{
     console.log("aa");
     for (let index = 0; index < document.querySelectorAll('#login').length; index++) {
