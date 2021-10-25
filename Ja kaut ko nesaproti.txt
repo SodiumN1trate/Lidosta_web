@@ -57,6 +57,9 @@ Kad un kā veidot migrāciju?
             Tāpēc man tas ir jādzēš ārā, ja jums ir tāds table tad jums nevajaga droši vien dzēst to rindiņu ārā.
 
 
+
+JA SERVERIS NESTRĀDĀ, JAUTĀ MAN SodiumNitrate#2007 DATUBĀZI!!!
+
 Ja kādas problēmas rakstiet: SodiumNitrate#2007
 
 
