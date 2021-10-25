@@ -24,7 +24,7 @@
 </div>
 <div id="form-container">
     {% for user in users_data %}
-        <article id="login">
+        <article id="login" class="ticket_user_info">
             <div id="article-header">
                 <span id="article-name">Pasažiera informācija</span>
             </div>
@@ -36,14 +36,10 @@
                     <div id="form-for-birthday-date">
                         <input type="text" name="year" placeholder="Gads" id="birth-year" maxlength="4" value="{{ user.birth_year }}"> 
                         <input type="text" name="month" placeholder="Mēnesis" id="birth-month" maxlength="2" value="{{ user.birth_month }}">
-                        <input type="text" name="date" placeholder="Diena" id="birth-day" maxlength="2" value="{{ user.birth_year }}" >
+                        <input type="text" name="date" placeholder="Diena" id="birth-day" maxlength="2" value="{{ user.birth_day }}" >
                     </div>
                     <input type="text" name="person_id" placeholder="Personas kods" id="person-id" value="{{ user.person_id }}">
-                    <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number" value="{{ user.telephone_number }}">
-                    <div id="remove-person">
-                        <img src="{{ url_for('static', filename = 'Vector/RemoveSign.svg') }}">
-                        Noņemt cilvēku
-                    </div>
+                    <input type="text" name="telephone_number" placeholder="Tālr.:" id="telephone-number" value="{{ user.mobile_number }}">
                 </form>
             </div>
         </article>
@@ -54,7 +50,7 @@
         <div>Vai vēlaties biļeti rezervēt? Pēc rezervācijas biļeti var iegādāties pārejot uz profilu un pie nodaļas
             "Rezervētās biļetes" nospiest uz biļetes kuru vēlaties iegādāties.</div>
         <div id="continue-button">
-            <a href="/"></a><button class="submit-button" type="submit">Jā</button></a>
+            <a href="/edit_ticket/save/{{ ticket_id }}"><button class="submit-button" type="submit">Jā</button></a>
         </div>
         <div id="continue-button">
             <a><button class="submit-button" id="return" type="button">Nē</button></a>
@@ -62,7 +58,7 @@
     </div>
 </div>
 <div id="continue-button">
-    <button class="submit-button">Turpināt</button>
+    <button id="submit-button" class="submit-button">Turpināt</button>
 </div>
 <script src="{{ url_for('static', filename = 'scripts/user_edit_ticket.js') }}"></script>
 {% endblock %}

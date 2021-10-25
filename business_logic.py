@@ -315,6 +315,26 @@ def admin_update_user(data):
     db.session.commit()
 
 
+def update_user_ticket_users(data, ticket_id):
+    try:
+        id = 0
+        for user_ticket in data:
+            if id < len(data):
+                print(id)
+                user = UserTicket.query.filter(UserTicket.ticket_id == int(ticket_id)).all()
+                user[id].name = user_ticket['name']
+                user[id].lastname = user_ticket['lastname']
+                user[id].person_id = user_ticket['person-id']
+                user[id].birth_day = user_ticket['birth-day']
+                user[id].birth_month = user_ticket['birth-month']
+                user[id].birth_year = user_ticket['birth-year']
+                user[id].mobile_number = user_ticket['telephone-number']
+                db.session.add(user[id])
+                db.session.commit()
+                id += 1
+        return 1
+    except:
+        return 0
 def delete_flight(id):
     db.session.delete(Flight.query.filter(Flight.id == id).first())
     db.session.commit()

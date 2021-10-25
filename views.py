@@ -6,7 +6,7 @@ import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import is_ticket_owner, buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
+from business_logic import update_user_ticket_users, is_ticket_owner, buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
 
 
 @app.route("/")
@@ -289,7 +289,17 @@ def edit_ticket(ticket_id, owner_id):
         print("Not valid data")
         return redirect(url_for("index"))
     else:
-        return render_template("templates/user_edit_ticket.html", flight_main_data=data['ticket'], users_data=data['all_users'])
+        return render_template("templates/user_edit_ticket.html", flight_main_data=data['ticket'], users_data=data['all_users'], ticket_id=ticket_id)
+
+
+@app.route("/edit_ticket/save/<ticket_id>")
+def edit_ticket_save(ticket_id):
+    persons = json.loads(pybase64.b64decode(request.cookies.get('persons')).decode("utf-8"))
+    if update_user_ticket_users(persons, ticket_id) == 1:
+        flash("Veiksmīgi tika veiktais izmaiņas rezervācijā!")
+        return redirect(url_for('profile'))
+    else:
+        return "Error"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
