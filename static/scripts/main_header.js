@@ -36,6 +36,7 @@ for (let index = 0; index < DEPARTURE_COUNTRIES_OPTIONS.length; index++) {
         arrive_date = document.querySelectorAll("#flight-arrive-date")[index].innerHTML;
         departure_time = document.querySelectorAll("#departure-time")[index].innerHTML;
         arrive_time = document.querySelectorAll("#arrive-time")[index].innerHTML;
+        airplane_model = document.querySelectorAll("#airplane-model")[index].innerHTML;
         price = document.querySelectorAll("#flight-price")[index].innerHTML;
         console.log(departure, arrive, departure_date, arrive_date, departure_time, arrive_time, price);
         let msg = `${departure} -> ${arrive} | ${price}$`;
@@ -58,6 +59,7 @@ document.getElementById("trip-search-button").addEventListener("click", (e)=>{
             "arrive_date": arrive_date,
             "departure_time": departure_time,
             "arrive_time": arrive_time, 
+            "airplane_model": airplane_model,
             "price": price
         });
     }

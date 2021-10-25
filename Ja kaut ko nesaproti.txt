@@ -36,14 +36,6 @@ Kur var atrast datubāzes table struktūras?
     - To var atrast models.py.
     - Projektā mēs neizmantosim parastos SQL requestus, bet gan izmantosim ORM "SQLAlchemy".
     - Dokomentācija kā to lietot: 
-    
-
-
-
-
-
-
-    
 
 Kas ir migrācija?
     - Migrācija ir datu pārsūtīšana

@@ -1,18 +1,18 @@
-from models import Ticket
+from models import Ticket, User
 from re import L
 from flask import render_template, redirect, request, session
-from flask.helpers import flash, make_response, url_for
+from flask.helpers import flash, make_response, send_file, send_from_directory, url_for
 import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import update_user_ticket_users, is_ticket_owner, buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
-
+from business_logic import delete_user_reservation, update_user_ticket_users, is_ticket_owner, buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
+import os
 
 @app.route("/")
 def index():
     print(1)
-    return render_template("index.html", flights=get_all_flights())
+    return render_template("index.html", flights=get_all_flights(), airplanes=get_all_airplanes())
 
 @app.route("/about_us")
 def about_us():
@@ -39,15 +39,12 @@ def register():
 @app.route("/flight_customization")
 def flight_customization():
     try:
-        print(1)
         try:
-            print(2)
             data = json.loads(request.cookies.get('flight_data'))
             if data == 0:
                 print("Not valid user data")
                 return redirect(url_for("index"))
             else:
-                print(3)
                 user_data = session["user_data"]
                 return render_template("templates/flight_customization.html", data=data[0])
         except:
@@ -70,7 +67,7 @@ def booking_overview():
     try:
         persons = json.loads(pybase64.b64decode(request.cookies.get('persons')).decode("utf-8"))
         flight_customization = json.loads(pybase64.b64decode(request.cookies.get('flight_customization')).decode("utf-8"))
-        return render_template("templates/booking_overview.html", departure_country=flight_customization[0], arrive_country=flight_customization[1], flight_class=flight_customization[4], passengers=len(persons), departure_time=flight_customization[2], arrive_time=flight_customization[3], flight_number=randint(1000, 10000), sum_of_all=len(persons)*int(flight_customization[5]))
+        return render_template("templates/booking_overview.html", departure_country=flight_customization[0], arrive_country=flight_customization[1], airplane_model = flight_customization[2], flight_class=flight_customization[5], passengers=len(persons), departure_time=flight_customization[3], arrive_time=flight_customization[4], flight_number=randint(1000, 10000), sum_of_all=len(persons)*int(flight_customization[6]))
     except:
         return redirect(url_for("flight_customization"))
 
@@ -301,5 +298,75 @@ def edit_ticket_save(ticket_id):
     else:
         return "Error"
 
+@app.route("/upload/<ticket_id>-<owner_id>")
+def upload_reservation(ticket_id, owner_id):
+    data = is_ticket_owner(ticket_id, owner_id)
+    if data == 0:
+        return redirect(url_for("profile"))
+    else:
+        html_content = f'''
+            <table>
+                <tr>
+                    <th>{data["owner"].name + " " + data["owner"].lastname}</th>
+                    <th>Rez. Nr. {1}</th>
+                </tr>
+                <tr>
+                    <th>Lidojums</th>
+                    <th>{data["ticket"].departure + "-" + data["ticket"].arrive}</th>
+                </tr>
+                <tr>
+                    <th>Izlidošana</th>
+                    <th>{data["ticket"].departure_time}</th>
+                </tr>
+                <tr>
+                    <th>Izlidošana</th>
+                    <th>{data["ticket"].arrive_time}</th>
+                </tr>
+                <tr>
+                    <th>Lidmašīna</th>
+                    <th>{data["ticket"].airplane_name}</th>
+                </tr>
+            </table>
+        
+        '''
+        html_text = '''
+            <!DOCTYPE html>
+            <html lang="lv">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                    <style>
+                        table, th{
+                            text-align: left;
+                            border: 1px solid black;
+                            border-collapse: collapse;
+                        }
+                        th{
+                            width: 300px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ''' + html_content + '''
+                </body>
+            </html>
+        '''
+        path = os.getcwd()
+        file = open(path+f"\media\{ data['owner'].name }_reserved_ticket.html", "w",  encoding="utf-8")
+        file.write(html_text)
+        file.close()
+        return send_file(path+f"\media\\{data['owner'].name}_reserved_ticket.html", as_attachment=True)
+
+@app.route("/delete/<ticket_id>-<owner_id>")
+def delete_reservation(ticket_id, owner_id):
+    data = is_ticket_owner(ticket_id, owner_id)
+    if data == 0:
+        return redirect(url_for("index"))
+    else:
+        delete_user_reservation(ticket_id, owner_id)
+        flash("Veiksmīgi tika dzēsta rezervācijā!")
+        return redirect(url_for('profile'))
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

@@ -167,20 +167,20 @@ def user_profile_logic():
 
 def make_reservation_logic():
     user_data = session["user_data"]
-    print("Id:", user_data["id"])
     persons = json.loads(pybase64.b64decode(request.cookies.get('persons')).decode("utf-8"))
     flight_customization = json.loads(pybase64.b64decode(request.cookies.get('flight_customization')).decode("utf-8"))
     ticket = Ticket(owner_id=user_data['id'],
                     departure=flight_customization[0],
                     arrive=flight_customization[1],
-                    flight_class=flight_customization[4],
-                    departure_time=flight_customization[2],
-                    arrive_time=flight_customization[3],
+                    flight_class=flight_customization[5],
+                    departure_time=flight_customization[3],
+                    arrive_time=flight_customization[4],
                     people_count=len(persons),
-                    sum=int(flight_customization[5]) * len(persons),
+                    sum=int(flight_customization[6]) * len(persons),
                     flight_id=randint(1000, 10000),
                     company_name="Lidosta",
-                    reserved_status=0
+                    reserved_status=0,
+                    airplane_name = flight_customization[2]
                     )
     db.session.add(ticket)
     db.session.commit()
@@ -351,6 +351,11 @@ def admin_delete_user(id):
     db.session.delete(User.query.filter(User.id == id).first())
     db.session.commit()
 
+
+def delete_user_reservation(ticket_id, owner_id):
+    db.session.delete(Ticket.query.filter(Ticket.id == ticket_id, Ticket.owner_id == owner_id).first())
+    db.session.commit()
+
 def is_flight_real(data):
     flight_is_real = Flight.query.filter(
         Flight.departure == data['departure'],
@@ -394,5 +399,6 @@ def is_ticket_owner(ticket_id, owner_id):
         return 0
     else:
         all_users = UserTicket.query.filter(UserTicket.ticket_id == ticket_id)
-        data = {"ticket":ticket, 'all_users':all_users}
+        owner = User.query.filter(User.id == owner_id).first()
+        data = {"ticket":ticket, "all_users":all_users, "owner":owner}
         return data

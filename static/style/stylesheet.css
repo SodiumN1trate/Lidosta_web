@@ -196,6 +196,11 @@ body {
     font-size: 17px;
 }
 
+.airplane-model-block {
+    margin-top: -4%;
+    font-size: 14px;
+}
+
 .flight-price-block {
     margin-top: -4%;
     font-size: 13px;

@@ -28,6 +28,7 @@
                                 <option class="select-country">Biznesa klase</option>
                             </div>
                         </div>
+                        <div id="booking-info-container">Lidmašinas modelis: <span id="flight-info">{{ data["airplane_model"] }}</span></div>
                         <div id="booking-info-container">Izlidošanas laiks: <span id="flight-info">{{ data['departure_date'] }} - {{ data['departure_time'] }}</span></div>
                         <div id="booking-info-container" >Ielidošanas laiks: <span id="flight-info">{{ data['arrive_date'] }} - {{ data['arrive_time'] }}</span></div><br>
                         <p>Summa par cilvēku:</p>
@@ -50,7 +51,7 @@
     </div>
     <br>
     <div id="continue-button">
-        <button class="submit-button" style="margin-top: 10%;">Turpināt</button>
+        <button class="submit-button" style="margin-top: 15%;">Turpināt</button>
     </div>
     <script type="text/javascript" charset="UTF-8" src="static/scripts/flight_customization_form.js"></script>
 {% endblock %}

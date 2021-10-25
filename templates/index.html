@@ -45,7 +45,27 @@
                     <div id="select-departure-countries">
                       {% if flights %}
                         {% for flight in flights %}
-                          <div class="select-flight"><div class="trip-departure-arrive-block"><span id="flight-departure">{{ flight.departure }}</span> -> <span id="flight-arrive">{{ flight.arrive }}</span></div><div class="trip-departure-date-block">Izlidošana: <span id="flight-departure-date">{{ flight.departure_date }}</span>. <span id="departure-time">{{ flight.departure_time }}</span></div><div class="trip-arrive-date-block">Ielidošana: <span id="flight-arrive-date">{{ flight.arrive_date }}</span>.<span id="arrive-time">{{ flight.arrive_time }}</span></div><div class="flight-price-block">Cena par cilvēku: <span id="flight-price">{{ flight.flight_price }}</span>$</div></div>
+                          <div class="select-flight">
+                            <div class="trip-departure-arrive-block">
+                              <span id="flight-departure">{{ flight.departure }}</span> -> <span id="flight-arrive">{{ flight.arrive }}</span>
+                            </div>
+                            <div class="trip-departure-date-block">
+                              Izlidošana: <span id="flight-departure-date">{{ flight.departure_date }}</span>. <span id="departure-time">{{ flight.departure_time }}</span>
+                            </div>
+                            <div class="trip-arrive-date-block">
+                              Ielidošana: <span id="flight-arrive-date">{{ flight.arrive_date }}</span>.<span id="arrive-time">{{ flight.arrive_time }}</span>
+                            </div>
+                            <div class="airplane-model-block">
+                              {% for airplane in airplanes %}
+                                {% if airplane.id == flight.airplane_id %}
+                                  Lidmašīnas modelis: <span id="airplane-model">{{ airplane.model_name }}</span>
+                                {% endif %}
+                              {% endfor %}
+                            </div>
+                            <div class="flight-price-block">
+                              Cena par cilvēku: <span id="flight-price">{{ flight.flight_price }}</span>$
+                            </div>
+                          </div>
                           <hr>
                         {% endfor %}
                       {% else %}

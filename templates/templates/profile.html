@@ -118,7 +118,8 @@
                     <div id="continue-button">
                         <a href="/edit_ticket/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="submit-popup" class="submit-button">Labot</button></a>
                         <a href="/buy-ticket/{{ reserved_ticket.id }}"><button id="buy-button" class="submit-button">Pirkt</button></a>
-                        <button id="delete-button" class="submit-button">Dzēst</button>
+                        <a href="/upload/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="buy-button" class="submit-button">Drukāt</button></a>
+                        <a href="/delete/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="delete-button" class="submit-button">Dzēst</button></a>
                         <button id="close-popup" class="submit-button">Aizvērt</button>
                     </div>
                     <div id="pop-up-passangers-info-data-accept">

@@ -56,6 +56,7 @@ document.querySelector("#continue-button > .submit-button").addEventListener("cl
         console.log(flight_customization);
         document.cookie = `flight_customization=${Base64.encode(JSON.stringify(flight_customization))}`;
     }
+    console.log(flight_customization);
     gap = false;
 });
 

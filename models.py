@@ -52,6 +52,7 @@ class Ticket(db.Model):
     flight_id = db.Column(db.Integer, nullable=False)
     company_name = db.Column(db.String(80), nullable=False)
     reserved_status = db.Column(db.Integer, default=0)
+    airplane_name = db.Column(db.String(80), nullable=True)
     user_ticket = db.relationship("UserTicket", cascade="all, delete")
 
     def __repr__(self):
