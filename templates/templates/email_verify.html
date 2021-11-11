@@ -1,0 +1,25 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Reģistrēties{% endblock %}
+
+{% block content %}
+<div id="form-banner-background">
+    <div id="form-container">
+        <article id="login">
+            <div id="article-header">
+                <span id="article-name">E-pasta apstiprināšana</span>
+            </div>
+            <div id="article-content">
+                <form action="/verify_email_checker" method="POST">
+                    <p>Uz Jūsu e-pastu aizsūtīts verifikācijas kods, lūdzu ievadiet to šeit:</p>
+                    <input type="text" name="ver_code" placeholder="Kods">
+                    {% if message_value != "" %}
+                    <div class="{{ message_type }}">{{ message_value }}</div>
+                    {% endif %}
+                    <button class="submit-button" type="submit">Apstipriniāt</button>
+                </form>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

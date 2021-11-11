@@ -1,0 +1,196 @@
+{% extends "administration.html" %} 
+
+
+{% block content %}
+    <div class="admin-search-top-bar">
+        <span class="admin-search-top-bar-text">Reisi</span>
+        <img src="{{ url_for ('static', filename = 'Vector/AddSign.svg') }}">
+    </div>
+    <div class="admin-search-content-frame">
+        {% if flights %}
+            {% for flight in flights %}
+            <div id="{{ flight.id }}" class="admin-search-content-result">
+                <div class="admin-pannel-search-content field-1">{{ flight.departure }}</div>
+                <div class="admin-pannel-search-content field-2">{{ flight.arrive }}</div>
+                <div class="admin-pannel-search-content field-3">{{ flight.departure_date }}</div>
+                <div class="admin-pannel-search-content field-4">{{ flight.arrive_date }}</div>
+                <div class="admin-pannel-search-content field-5">{{ flight.departure_time }}</div>
+                <div class="admin-pannel-search-content field-6">{{ flight.arrive_time }}</div>
+                {% for airplane in airplanes %}
+                    {% if airplane.id == flight.airplane_id %}
+                    <div class="admin-pannel-search-content field-7">{{ airplane.model_name }}</div>
+                    {% endif %}
+                {% endfor %}
+                <div class="admin-pannel-search-content field-8">{{ flight.flight_price }}</div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+{% block add_popup %}
+    <div class="admin-popup-background">
+        <div class="admin-popup">
+            <div id="article-header">
+                <span id="article-name">Reisa pievienošana</span>
+            </div>
+            <div id="article-content">
+                <form id="flights">
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value">No:</div>
+                        <div id="dropdown-box-select">
+                            {% if airports %}
+                                {% for airport in airports %}
+                                <option class="select-country">{{ airport.address }}, {{ airport.abbreviation }}</option>
+                                <hr>
+                                {% endfor %}
+                            {% else %}
+                                <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidostu!</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value">Uz:</div>
+                        <div id="dropdown-box-select">
+                            {% if airports %}
+                                {% for airport in airports %}
+                                <option class="select-country">{{ airport.address }}, {{ airport.abbreviation }}</option>
+                                <hr>
+                                {% endfor %}
+                            {% else %}
+                                <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidostu!</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <span id="date-text">Izlidošanas datums (piem.: 21.maijs 2021.gads):</span>
+                    <input style="margin-top: 0;" type="text" id="departure_date" placeholder="Izlidošanas datums">
+                    <span id="date-text">Ielidošanas datums (piem.: 21.maijs 2021.gads):</span>
+                    <input style="margin-top: 0;" type="text" id="arrive_date" placeholder="Ielidošanas datums">
+                    <span id="date-text">Izlidošanas laiks (piem.: 16:00):</span>
+                    <input style="margin-top: 0;" type="text" id="departure_time" placeholder="Izlidošanas laiks">
+                    <span id="date-text">Ielidošanas laiks (piem.: 18:21):</span>
+                    <input style="margin-top: 0;" type="text" id="arrive_time" placeholder="Ielidošanas laiks">
+                    <span id="date-text">Cena par personu (Economy klasē):</span>
+                    <input style="margin-top: 0;" type="text" id="price" placeholder="Cena">
+
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value">Lidmašīna:</div>
+                        <div id="dropdown-box-select">
+                            {% if airplanes %}
+                                {% for airplane in airplanes %}
+                                    <option class="select-country">{{ airplane.model_name }}</option>
+                                    <hr>
+                                {% endfor %}
+                            {% else %}
+                                <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidmašīnu!</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+                <div id="continue-button">
+                    <button id="submit-popup" class="submit-button">Pievienot</button>
+                    <button id="close-popup" class="submit-button">Aizvērt</button>
+                </div>
+                <div id="pop-up-passangers-info-data-accept">
+                    <div id="pop-up-form">
+                        <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                        <div id="continue-button">
+                            <a href="/admin/add_row"><button class="submit-button">Jā</button></a>
+                        </div>
+                        <div id="continue-button">
+                            <a><button class="submit-button" id="return">Nē</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block edit_popup %}
+    <div class="admin-editing-popup-background">
+        <div class="admin-popup">
+            <div id="article-header">
+                <span id="article-name">Reisa labošana</span>
+            </div>
+            <div id="article-content">
+                <form id="flights">
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value">cx</div>
+                        <div id="dropdown-box-select">
+                            {% if airports %}
+                            {% for airport in airports %}
+                            <option class="select-country">{{ airport.address }}, {{ airport.abbreviation }}</option>
+                            <hr>
+                            {% endfor %}
+                            {% else %}
+                            <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidostu!</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value">Uz:</div>
+                        <div id="dropdown-box-select">
+                            {% if airports %}
+                            {% for airport in airports %}
+                            <option class="select-country">{{ airport.address }}, {{ airport.abbreviation }}</option>
+                            <hr>
+                            {% endfor %}
+                            {% else %}
+                            <span style="display: flex; justify-content: center;">Pagaidām nav nevienu lidostu!</span>
+                            {% endif %}
+                        </div>
+                    </div>
+    
+                    <span id="date-text">Izlidošanas datums (piem.: 21.maijs 2021.gads):</span>
+                    <input style="margin-top: 0;" type="text" id="departure_date" placeholder="Izlidošanas datums">
+                    <span id="date-text">Ielidošanas datums (piem.: 21.maijs 2021.gads):</span>
+                    <input style="margin-top: 0;" type="text" id="arrive_date" placeholder="Ielidošanas datums">
+                    <span id="date-text">Izlidošanas laiks (piem.: 16:00):</span>
+                    <input style="margin-top: 0;" type="text" id="departure_time" placeholder="Izlidošanas laiks">
+                    <span id="date-text">Ielidošanas laiks (piem.: 18:21):</span>
+                    <input style="margin-top: 0;" type="text" id="arrive_time" placeholder="Ielidošanas laiks">
+                    <span id="date-text">Cena par personu (Economy klasē):</span>
+                    <input style="margin-top: 0;" type="text" id="price" placeholder="Cena">
+    
+                    <div id="dropdown-box">
+                        <div id="dropdown-box-value"></div>
+                    </div>
+                </form>
+                <div id="continue-button">
+                    <button id="submit-popup" class="submit-button">Labot</button>
+                    <button id="close-popup" class="submit-button">Aizvērt</button>
+                    <button id="delete-button" class="submit-button">Dzēst</button>
+                </div>
+                <div id="pop-up-passangers-info-data-accept">
+                    <div id="pop-up-form">
+                        <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                        <div id="continue-button">
+                            <a href="/admin/edit_row"><button class="submit-button">Jā</button></a>
+                        </div>
+                        <div id="continue-button">
+                            <a><button class="submit-button" id="return">Nē</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="delete-button-pop-up">
+                    <div id="pop-up-form">
+                        <div>Vai Jūs patiešām vēlaties dzēst šo reisu?</div>
+                        <div id="continue-button">
+                            <a id="delete_row_button"><button class="submit-button">Jā</button></a>
+                        </div>
+                        <div id="continue-button">
+                            <a><button class="submit-button" id="return">Nē</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

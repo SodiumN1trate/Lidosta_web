@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #verification-code {
+            color: rgb(104, 104, 104);
+            font-size: 17px;
+            font-weight: bolder;
+        }
+    </style>
+    <!-- Šeit raksti visu ko redzēs lietotājs.
+        Ja vajaga likt iekšā bildes, lieto linkus (piemērs ar logo).
+    -->
+    <img src="https://media.discordapp.net/attachments/745611207272300597/884430729151406140/Logo.png" id="navigation-bar-logo" width="150px"> <!-- Logo -->
+    <hr>
+    <span>
+        Sveiki!<br>
+        Nosūtijām Jums verifikācijas kodu.
+        <div>Verifikācijas kods: <span id="verification-code">{{ verification_code }}</span></div>
+        Ar cieņu<br>
+        "Lidosta"
+    </span>
+</body>
+</html>

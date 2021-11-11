@@ -1,0 +1,151 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Profils{% endblock %}
+
+{% block content %}
+        <div id="form-banner-background">
+            <div id="profile-grid">
+                <article id="profile-sidebar">
+                    <div id="article-header">
+                        <span id="article-name">Profils</span>
+                    </div>
+                    <div id="article-content">
+                        <img src="{{ url_for('static', filename = 'images/ProfileImages/ProfileImage.png') }}" id="profile-image">
+                        <div id="username"><span id="name">{{ name }}</span> <span id="lastname">{{ lastname }}</span></div>
+                        {% if role == 1 %}
+                            <div id="user-role">Administrators</div>
+                        {% else %}
+                            <div id="user-role">Lietotājs</div>
+                        {% endif %}
+                        <div id="profile-sidebar-buttons">
+                            <div id="wallet">Jūsu kontā: <span id="wallet-sum">{{ wallet }}$</span></div>
+                            <button class="submit-button">Papildināt kontu</button>
+                            <button class="submit-button">Pieprasīt datu dzēšanu</button>
+                            <button class="submit-button">Lejuplādēt datus</button>
+                            <a href="/leave"><button class="submit-button">Iziet</button></a>
+                            {% if role == 1 %}
+                                <a href="/admin"><button class="submit-button">Vadības panelis</button></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
+
+                <article id="reserved-tickets">
+                    <div id="article-header">
+                        <span id="article-name">Rezervētās biļetes</span>
+                    </div>
+                    <div id="article-content">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <div style="color: rgb(46, 46, 46);">{{ message }}</div>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                        {% if reserved_tickets %}
+                            {% for reserved_ticket in reserved_tickets %}
+                                <div class="ticket-info" id="{{ reserved_ticket.id }}">
+                                    <span id="departure-country-name">{{ reserved_ticket.departure }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="arrive-country-name">{{ reserved_ticket.arrive }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="departure-date-info">{{ reserved_ticket.departure_time }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="arrive-date-info">{{ reserved_ticket.arrive_time }}</span>
+                                    <span id="vl-info"></span>
+                                    <span id="flight-number">Nr.<span id="number">{{ reserved_ticket.flight_id }}</span></span>
+                                    <span id="vl-info"></span>
+                                    <span id="flight-sum"><span id="number">{{ reserved_ticket.sum }}</span>$</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                                Nav vel nekas rezervēts!
+                        {% endif %}
+                    </div>
+                </article>
+
+                <article id="ticket-purchase-history">
+                    <div id="article-header">
+                        <span id="article-name">Biļešu pirkšanas vēsture</span>
+                    </div>
+                    <div id="article-content">
+                        {% if buyed_tickets %}
+                            {% for buyed_ticket in buyed_tickets %}
+                            <div class="ticket-info">
+                                <span id="departure-country-name">{{ buyed_ticket.departure }}</span>
+                                <span id="vl-info"></span>
+                                <span id="arrive-country-name">{{ buyed_ticket.arrive }}</span>
+                                <span id="vl-info"></span>
+                                <span id="departure-date-info">{{ buyed_ticket.departure_time }}</span>
+                                <span id="vl-info"></span>
+                                <span id="arrive-date-info">{{ buyed_ticket.arrive_time }}</span>
+                                <span id="vl-info"></span>
+                                <span id="flight-number">Nr.<span id="number">{{ buyed_ticket.flight_id }}</span></span>
+                                <span id="vl-info"></span>
+                                <span id="flight-sum"><span id="number">{{ buyed_ticket.sum }}</span>$</span>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            Nav vel nekas nopirkts!
+                        {% endif %}
+                    </div>
+                </article>
+            </div>
+        </div>
+{% endblock %}
+
+
+{% block ticket_management_popup %}
+    {% for reserved_ticket in reserved_tickets  %}
+        <div class="admin-editing-popup-background" id="{{ reserved_ticket.id }}">
+            <div class="admin-popup">
+                <div id="article-header">
+                    <span id="article-name">Rezervācijas pārvaldīšana</span>
+                </div>
+                <div id="article-content">
+                    <form id="airports">
+                        <div id="booking-info-container">No: <span id="departure-country">{{ reserved_ticket.departure }}</span></div>
+                        <div id="booking-info-container">Uz: <span id="arrive-country">{{ reserved_ticket.arrive }}</span></div>
+                        <div id="booking-info-container">Lidojuma klase: <span id="flight_class">{{ reserved_ticket.flight_class }}</span></div>
+                        <div id="booking-info-container">Cilvēku skaits: <span id="people-count">{{ reserved_ticket.people_count }}</span></div>
+                        <div id="booking-info-container">Izlidošanas laiks: <span id="departure-date">{{ reserved_ticket.departure_time }}</span></div>
+                        <div id="booking-info-container">Ielidošanas laiks: <span id="arrive-date">{{ reserved_ticket.arrive_time }}</span></div>
+                        <div id="booking-info-container">Lidojuma numurs: <span id="fly-number">{{ reserved_ticket.flight_id }}</span></div>
+                        <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all"></span>{{ reserved_ticket.sum }} $</div>
+                    </form>
+                    <div id="continue-button">
+                        <a href="/edit_ticket/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="submit-popup" class="submit-button">Labot</button></a>
+                        <a href="/buy-ticket/{{ reserved_ticket.id }}"><button id="buy-button" class="submit-button">Pirkt</button></a>
+                        <a href="/upload/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="buy-button" class="submit-button">Drukāt</button></a>
+                        <a href="/delete/{{ reserved_ticket.id }}-{{ session['user_data']['id'] }}"><button id="delete-button" class="submit-button">Dzēst</button></a>
+                        <button id="close-popup" class="submit-button">Aizvērt</button>
+                    </div>
+                    <div id="pop-up-passangers-info-data-accept">
+                        <div id="pop-up-form">
+                            <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                            <div id="continue-button">
+                                <a href="/admin/edit_row"><button class="submit-button">Jā</button></a>
+                            </div>
+                            <div id="continue-button">
+                                <a><button class="submit-button" id="return">Nē</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="delete-button-pop-up">
+                        <div id="pop-up-form">
+                            <div>Vai Jūs patiešām vēlaties dzēst šo lidostu?</div>
+                            <div id="continue-button">
+                                <a id="delete_row_button"><button class="submit-button">Jā</button></a>
+                            </div>
+                            <div id="continue-button">
+                                <a><button class="submit-button" id="return">Nē</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

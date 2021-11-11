@@ -1,0 +1,57 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Kustomizācija{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="status-bar">
+            <div id="status-position">
+                <span id="active-section">1. Lidojuma kustomizācija</span>
+                <span id="closed-section">2. Pasažiera informācija</span>
+                <span id="closed-section">3. Kopskats un rezervēšana</span>
+            </div>
+        </div>
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Lidojuma kustomizācija</span>
+                </div>
+                <div id="article-content">
+                    <form>
+                        <div id="booking-info-container">No: <span id="flight-info">{{ data['departure'] }}</span></div>
+                        <div id="booking-info-container">Uz: <span id="flight-info">{{ data['arrive']}}</span></div>
+                        <div id="dropdown-box">
+                            <div id="dropdown-box-value">Izvēlēties lidojuma klasi</div>
+                            <div id="dropdown-box-select">
+                                <option class="select-country">Ekonomiskā klase</option>
+                                <hr>
+                                <option class="select-country">Biznesa klase</option>
+                            </div>
+                        </div>
+                        <div id="booking-info-container">Lidmašinas modelis: <span id="flight-info">{{ data["airplane_model"] }}</span></div>
+                        <div id="booking-info-container">Izlidošanas laiks: <span id="flight-info">{{ data['departure_date'] }} - {{ data['departure_time'] }}</span></div>
+                        <div id="booking-info-container" >Ielidošanas laiks: <span id="flight-info">{{ data['arrive_date'] }} - {{ data['arrive_time'] }}</span></div><br>
+                        <p>Summa par cilvēku:</p>
+                        <div id="sum-of-all-conatiner"><span id="sum-of-all">{{ data['price'] }}</span> $</div>
+                    </form>
+                </div>
+            </article>
+        </div>
+        <div id="pop-up-passangers-info-data-accept">
+            <div id="pop-up-form">
+                <div>Vai Jūs esat pārliecināti ka visi dati ir ievadīti pareizi?</div>
+                <div id="continue-button">
+                    <a href="/passanger_info"><button class="submit-button">Jā</button></a>
+                </div>
+                <div id="continue-button">
+                    <a><button class="submit-button" id="return">Nē</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="continue-button">
+        <button class="submit-button" style="margin-top: 15%;">Turpināt</button>
+    </div>
+    <script type="text/javascript" charset="UTF-8" src="static/scripts/flight_customization_form.js"></script>
+{% endblock %}

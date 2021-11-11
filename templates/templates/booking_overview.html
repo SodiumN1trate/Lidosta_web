@@ -1,0 +1,51 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Kopskats{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="status-bar">
+            <div id="status-position">
+                <span id="closed-section">1. Lidojuma kustomizācija</span>
+                <span id="closed-section">2. Pasažiera informācija</span>
+                <span id="active-section">3. Kopskats un rezervēšana</span>
+            </div>
+        </div>
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Kopskats</span>
+                </div>
+                <div id="article-content">
+                    <form action="/make_reservation">
+                        <div id="booking-info-container">No: <span id="departure-country">{{ departure_country }}</span></div>
+                        <div id="booking-info-container">Uz: <span id="arrive-country">{{ arrive_country }}</span></div>
+                        <div id="booking-info-container">Lidojuma klase: <span id="flight_class">{{ flight_class }}</span></div>
+                        <div id="booking-info-container">Cilvēku skaits: <span id="people-count">{{ passengers }}</span></div>
+                        <div id="booking-info-container">Izlidošanas laiks: <span id="departure-date">{{ departure_time }}</span></div>
+                        <div id="booking-info-container">Ielidošanas laiks: <span id="arrive-date">{{ arrive_time }}</span></div>
+                        <div id="booking-info-container">Lidmašinas modelis: <span id="fly-number">{{ airplane_model }}</span></div>
+                        <div id="booking-info-container">Lidojuma numurs: <span id="fly-number">{{ flight_number }}</span></div>
+                        <div id="booking-info-container">Kopējā lidojuma summa: <span id="sum-of-all">{{ sum_of_all }}</span> $</div>
+                        <div id="pop-up-passangers-info-data-accept">
+                            <div id="pop-up-form">
+                                <div>Vai vēlaties biļeti rezervēt? Pēc rezervācijas biļeti var iegādāties pārejot uz profilu un pie nodaļas
+                                    "Rezervētās biļetes" nospiest uz biļetes kuru vēlaties iegādāties.</div>
+                                <div id="continue-button">
+                                    <a href="/"></a><button class="submit-button" type="submit">Jā</button></a>
+                                </div>
+                                <div id="continue-button">
+                                    <a><button class="submit-button" id="return" type="button">Nē</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="book-button-container">
+                        <button id="book-button">Rezervēt</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <script src="static/scripts/booking_overview.js"></script>
+{% endblock %}

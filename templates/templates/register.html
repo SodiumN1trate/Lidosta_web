@@ -1,0 +1,32 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Reģistrēties{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Reģistrēties</span>
+                </div>
+                <div id="article-content">
+                    <form action="/register_user" method="POST">
+                        <div id="top-of-form">
+                            <input type="text" name="name" placeholder="Vārds" id="name" value="{{ name }}">
+                            <input type="text" name="lastname" placeholder="Uzvārds" id="lastname" value="{{ lastname }}">
+                        </div>
+                        <input type="email" name="email" placeholder="E-pasts" value="{{ email }}">
+                        <input type="password" name="password" placeholder="Parole">
+                        <input type="password" name="re-password" placeholder="Atkāroti parole">
+                        <div id="recaptcha">{{ recaptcha }}</div>
+                        {% if message_value != "" %}
+                            <div class="{{ message_type }}">{{ message_value }}</div>
+                        {% endif %}
+                        <button id="anti-spam-button" class="submit-button" type="submit">Reģistrēties</button>
+                    </form>
+                </div>
+            </article>
+        </div>
+    </div>
+    <script src="static/scripts/anti_spam_for_button.js" ></script>
+{% endblock %}

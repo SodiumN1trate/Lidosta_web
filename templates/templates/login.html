@@ -1,0 +1,36 @@
+{% extends "template_for_forms.html" %}
+
+{% block title %}Ieiet{% endblock %}
+
+{% block content %}
+    <div id="form-banner-background">
+        <div id="form-container">
+            <article id="login">
+                <div id="article-header">
+                    <span id="article-name">Ieiet</span>
+                </div>
+                <div id="article-content">
+                    <form action="/login_check" method="POST">
+                        {% if message_value != "" %}
+                            <div class="{{ message_type }}">{{ message_value }}</div>
+                        {% endif %}
+                        <input type="text" name="email" placeholder="E-pasts" id="login-emai" value="{{ email }}">
+                        <input type="password" name="password" placeholder="Parole">
+                        <div id="remember-password-checkbox">
+                            <input type="checkbox" name="remember-password" id="remember-password" value="1">
+                            <label for="remember-password">Atcerēties mani</label>
+                        </div>
+                        <button class="submit-button">Pieslēgties</button>
+                        <a href="#">Aizmirsāt paroli?</a><br>
+                        <p>Neēsat reģistrējušies?</p>
+                    </form>
+                    <div id="continue-button">
+                        <a href="/register">
+                            <button class="submit-button">Reģistrēties</button>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
