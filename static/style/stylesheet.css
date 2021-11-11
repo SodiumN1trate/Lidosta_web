@@ -132,17 +132,31 @@ body {
     height: 40px;
     margin: 0 auto;
     margin-top: 18px;
-    background-color: white;
     border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(45deg, rgb(112 107 255 / 50%) 0%, rgb(237 124 255 / 50%) 26%, rgb(65 207 240 / 50%) 49%, rgba(255,255,255,1) 50%);
+    background-size: 212% 100%;
+    transition:all 2s ease;
+    background-position:right bottom;
+}
+
+#choose-trip-box:hover {
+    background: linear-gradient(45deg, rgb(112 107 255 / 50%) 0%, rgb(237 124 255 / 50%) 26%, rgb(65 207 240 / 50%) 49%, rgba(255,255,255,1) 50%);
+    background-position:left bottom;
+    background-size: 212% 100%;
 }
 
 #departure-country-input{
-    line-height: 42px;
-    color: #D7D7D7;
+    line-height: 40px;
+    color: #697884;
     user-select: none;
     cursor: pointer;
-    width: 90%;
-    padding-left:10px;
+    width: 100%;
+    padding-left: 16px;
+    border-radius: 999px;
+    border-color: #ffffff00;
+    border: wheat;
+    outline: none;
 }
 
 #trip-search-button {
