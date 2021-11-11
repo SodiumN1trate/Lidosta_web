@@ -30,48 +30,44 @@
         <div id="banner">
             <img src="/static/Vector/HeaderBannerLidostaLogo.svg" id="banner-logo">
             <div id="motivation-text">Nemocies meklējot lētāko lidojumu. Apskati tos visus šeit!</div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
             <ul class=flashes>
-              {% for message in messages %}
-              <div style="color: rgb(46, 46, 46);">{{ message }}</div>
+              {% for message in get_flashed_messages() %}
+              <div style="text-align: center; color: red;">{{ message }}</div>
               {% endfor %}
             </ul>
-            {% endif %}
-            {% endwith %}
             <div id="choose-trip-box">
-                <div id="departure-country-input">
-                    <span name="departure-country-input-value" id="departure-country-input-value">Uz kurieni lidojam?</span>
-                    <div id="select-departure-countries">
-                      {% if flights %}
-                        {% for flight in flights %}
-                          <div class="select-flight">
-                            <div class="trip-departure-arrive-block">
-                              <span id="flight-departure">{{ flight.departure }}</span> -> <span id="flight-arrive">{{ flight.arrive }}</span>
-                            </div>
-                            <div class="trip-departure-date-block">
-                              Izlidošana: <span id="flight-departure-date">{{ flight.departure_date }}</span>. <span id="departure-time">{{ flight.departure_time }}</span>
-                            </div>
-                            <div class="trip-arrive-date-block">
-                              Ielidošana: <span id="flight-arrive-date">{{ flight.arrive_date }}</span>.<span id="arrive-time">{{ flight.arrive_time }}</span>
-                            </div>
-                            <div class="airplane-model-block">
-                              {% for airplane in airplanes %}
-                                {% if airplane.id == flight.airplane_id %}
-                                  Lidmašīnas modelis: <span id="airplane-model">{{ airplane.model_name }}</span>
-                                {% endif %}
-                              {% endfor %}
-                            </div>
-                            <div class="flight-price-block">
-                              Cena par cilvēku: <span id="flight-price">{{ flight.flight_price }}</span>$
-                            </div>
-                          </div>
-                          <hr>
-                        {% endfor %}
-                      {% else %}
-                        <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
-                      {% endif %}
-                    </div>
+                <input id="departure-country-input">
+                    <span name="departure-country-input-value" id="departure-country-input-value"></span>
+                </input>
+                <div id="select-departure-countries">
+                  {% if flights %}
+                    {% for flight in flights %}
+                      <div class="select-flight">
+                        <div class="trip-departure-arrive-block">
+                          <span id="flight-departure">{{ flight.departure }}</span> -> <span id="flight-arrive">{{ flight.arrive }}</span>
+                        </div>
+                        <div class="trip-departure-date-block">
+                          Izlidošana: <span id="flight-departure-date">{{ flight.departure_date }}</span>. <span id="departure-time">{{ flight.departure_time }}</span>
+                        </div>
+                        <div class="trip-arrive-date-block">
+                          Ielidošana: <span id="flight-arrive-date">{{ flight.arrive_date }}</span>.<span id="arrive-time">{{ flight.arrive_time }}</span>
+                        </div>
+                        <div class="airplane-model-block">
+                          {% for airplane in airplanes %}
+                            {% if airplane.id == flight.airplane_id %}
+                              Lidmašīnas modelis: <span id="airplane-model">{{ airplane.model_name }}</span>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                        <div class="flight-price-block">
+                          Cena par cilvēku: <span id="flight-price">{{ flight.flight_price }}</span>$
+                        </div>
+                      </div>
+                      <hr>
+                    {% endfor %}
+                  {% else %}
+                    <span style="display: flex; justify-content: center;">Pagaidām nav nevienu reisu!</span>
+                  {% endif %}
                 </div>
             </div>
             <form action="/check_flight">
@@ -243,7 +239,7 @@
               </div>
             </div>
         </div>
-        <!-- CARD CAROUSEL END -->
+        <!-- CARD CAROUSEL END!!! -->
 
         <div class="NewsLayoutGrid">
             <div class="Description1">

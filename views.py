@@ -18,10 +18,6 @@ def index():
 def about_us():
     return render_template("templates/about_us.html")
 
-@app.route("/travel_info")
-def travel_info():
-    return render_template("templates/travel_info.html")
-
 @app.route("/login")
 def login():
     try:
@@ -369,4 +365,5 @@ def delete_reservation(ticket_id, owner_id):
         flash("Veiksmīgi tika dzēsta rezervācijā!")
         return redirect(url_for('profile'))
 if __name__ == "__main__":
+    app.debug = True
     app.run(host="0.0.0.0", port=8080)
