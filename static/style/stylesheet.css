@@ -19,7 +19,8 @@ body {
     max-width: 100%;
     width: 1150px;
     margin: 0 auto;
-    margin-bottom: 143px;
+    margin-bottom: 90px;
+    margin-top: 25px;
 }
 
 #navigation-bar {
@@ -101,7 +102,8 @@ body {
 
 
 #banner {
-    background-image: url(../images/Banner.png);
+    box-shadow: 0px 7px 10px #75757559;
+    background-image: url(../images/misc/BackgroundCloudsSmall.png);
     background-position-x: center;
     background-size: cover;
     height: 400px;
@@ -240,6 +242,7 @@ article {
     background-image: linear-gradient(to right, rgb(187, 203, 210, 0.50) , #F8F8F8);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 24%);
 }
 
 #article-name {
@@ -256,16 +259,15 @@ article {
     font-size: 15px;
 }
 
-
 footer {
     display: flex;
+    position: fixed;
     justify-content: center;
     bottom: 0;
-    position: fixed;
+    left: 0;
     width: 100%;
     z-index: 8;
     margin-top: 5%;
-    position: fixed;
 }
 
 #bottom-navigation {
@@ -580,7 +582,7 @@ footer {
 .Photo1 { grid-area: Photo1; }
 .Photo2 { grid-area: Photo2; }
 
-.Photo1 img {
+.Photo1 {
     object-fit: cover;
     width: 400px;
     height: 250px;
@@ -588,7 +590,8 @@ footer {
     box-shadow: 0px 0px 18px 0px #80808096;
 }
 
-.Photo2 img {
+.Photo2 {
+    transition: 0.2s;
     object-fit: cover;
     width: 400px;
     height: 250px;
@@ -674,15 +677,17 @@ footer {
 /* About us */
 
 #about-us-container {
+    padding-top: 14px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 7%;
+    margin-bottom: 130px;
 }
 
 /* About us article */
 #about-us-article {
     flex: 50%;
+    overflow: hidden;
 }
 
 /* History article */
@@ -1770,11 +1775,13 @@ div#admin-pannel-search-bar {
 #profile-sidebar, #ticket-purchase-history, #reserved-tickets{
     width:100%;
     margin: 0;
+    overflow: hidden;
 }
 
 #profile-sidebar{
     grid-row: 1 / 5;
     display: table;
+    overflow: hidden;
 }
 
 #ticket-purchase-history{
@@ -1792,11 +1799,10 @@ div#admin-pannel-search-bar {
 
 
 #profile-image{
-    width: 150px;
+    width: 175px;
     height: 175px;
     display: block;
-    margin: 0 auto;
-    margin-top: 30px;
+    margin: 25px auto 10px auto;
     border-radius: 5px;
     box-shadow: 0px 2px 6px rgb(0 0 0 / 25%);
 }
@@ -1804,8 +1810,8 @@ div#admin-pannel-search-bar {
 #profile-sidebar-buttons{
     display: flex;
     flex-direction: column;
-    margin: 3% auto;
-    width: 200px;
+    margin: 0px auto 11px auto;
+    width: 250px;
 }
 
 #profile-sidebar-buttons > a > button, #profile-sidebar-buttons > button{
@@ -1822,8 +1828,7 @@ div#admin-pannel-search-bar {
 #username{
     text-align: center;
     margin: 4%;
-    font-weight: 600;
-    font-size: 20px;
+    font-size: 23px;
 }
 
 #user-role{
@@ -1835,13 +1840,12 @@ div#admin-pannel-search-bar {
 .ticket-info{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
-    padding: 0.5%;
-    margin-top: 2%;
+    padding: 4px;
     background-color: #eeeeee;
-    box-shadow: 0px 2px 6px rgb(0 0 0 / 25%);
-    width: 100%;
+    box-shadow: 0px 2px 3px rgb(0 0 0 / 16%);
     height: 30px;
-    line-height: 30px;
+    line-height: 33px;
+    border-radius: 7px;
 }
 
 #vl-info{
@@ -1859,7 +1863,7 @@ div#admin-pannel-search-bar {
 }
 
 .card-child {
-    padding: 20 0 0 0;
+    margin-top: -5px;
     height: auto;
     position: relative;
 }
@@ -1917,6 +1921,7 @@ div#admin-pannel-search-bar {
 
 .container {
     width: 1190px;
+    height: 236px;
     border: 20px;
     padding-right: 43px;
     margin-right: auto;
@@ -1924,14 +1929,35 @@ div#admin-pannel-search-bar {
 }
 
 .col-sm-4 {
+    transition: 0.2s;
     position: relative;
     min-height: 1px;
     padding: 18px;
 }
 
+.col-sm-4:hover {
+    transition: 0.2s;
+    padding: 12px;
+}
+
 .carousel-inner>.item.active, .carousel-inner>.item.next.left, .carousel-inner>.item.prev.right {
     padding-left: 18px;
     padding-right: 18px;
+}
+
+.flights-link {
+    transition: 0.5s;
+    text-decoration: none !important;
+    font-size: 29px;
+    padding-left: 25px;
+    color: #7D7D7D;
+}
+
+.flights-link:hover {
+    transition: 0.5s;
+    font-size: 32px;
+    padding-left: 26px;
+    color: #636363;
 }
 
 @keyframes scale-up {
