@@ -1,5 +1,5 @@
 Nosaukums: Lidosta  
-Grupa: DP1-3  
+Grupa: DP2-3  
 Autori:  
 Renārs Gausiņš  
 Gustavs Krasnikovs  

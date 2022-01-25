@@ -46,6 +46,8 @@ document.querySelector("#submit-popup").addEventListener("click", (e)=>{
             "arrive_time": document.getElementById("arrive_time").value,
             "airplane": document.querySelectorAll("#dropdown-box-value")[2].innerHTML,
             "price":  document.getElementById("price").value,
+            "description":  document.getElementById("description").value,
+            "image_link": document.getElementById("image_link").value,
             "title": document.querySelector("form").id
         });
     }

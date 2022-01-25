@@ -36,13 +36,10 @@ function remove_button_render() {
     const REMOVE_PERSON_BUTTON = document.querySelectorAll("#remove-person > img");
     for (let index = 0; index < REMOVE_PERSON_BUTTON.length; index++) {
         REMOVE_PERSON_BUTTON[index].addEventListener("click", (e) => {
-        e.target.parentNode.parentNode.parentNode.parentNode.remove();
-    });     
+            e.target.parentNode.parentNode.parentNode.parentNode.remove();
+        });     
     }  
 };
-
-
-
 
 // Get data from user inputs
 let persons = [];

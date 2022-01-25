@@ -63,6 +63,7 @@ document.querySelectorAll("#submit-popup")[1].addEventListener("click", (e)=>{
             "id": last_opened_content_id
         });
     }
+    
     else if(document.querySelector("form").id === "airports"){
         data.push({
             "airport_name":  document.querySelectorAll("#airport_name")[1].value,

@@ -1,4 +1,3 @@
-from models import Ticket, User
 from re import L
 from flask import render_template, redirect, request, session
 from flask.helpers import flash, make_response, send_file, send_from_directory, url_for
@@ -6,13 +5,16 @@ import pybase64
 import json
 from random import randint
 from settings import app
-from business_logic import delete_user_reservation, update_user_ticket_users, is_ticket_owner, buy_ticket_logic, is_admin, admin_delete_user, admin_update_user, is_admin, is_flight_real, user_register_logic, verify_email_logic, user_login_logic, user_profile_logic, make_reservation_logic, create_message, register_new_user_to_db, get_booked_tickets_list,  get_buyed_tickets_list, leave_profile_logic, add_flight_to_db, add_airplane_to_db, add_airport_to_db, get_all_airports, get_all_airplanes, get_all_flights, update_flight, update_airplane, update_airport, delete_flight, delete_airplane, delete_airport, get_all_users, admin_add_user_to_db
+from business_logic import *
 import os
 
 @app.route("/")
 def index():
-    print(1)
-    return render_template("index.html", flights=get_all_flights(), airplanes=get_all_airplanes())
+    cards = get_all_flight_cards()
+    pages = len(cards) // 3 if len(cards) % 3 == 0 else len(cards) // 3 + 1
+    response = make_response(render_template("index.html", flights=get_all_flights(), pages=pages, flight_cards=cards, airplanes=get_all_airplanes()))
+    response.set_cookie("cards", json.dumps(set_all_cards_in_cookies()))
+    return response
 
 @app.route("/about_us")
 def about_us():
@@ -43,12 +45,14 @@ def flight_customization():
             data = json.loads(request.cookies.get('flight_data'))
             if data == 0:
                 print("Not valid user data")
+                flash("Neeksistē norādītais lidojums")
                 return redirect(url_for("index"))
             else:
                 user_data = session["user_data"]
                 return render_template("templates/flight_customization.html", data=data[0])
         except:
             print("Cant receive user data")
+            flash("Nepieciešams reģistrēties vai ieiet profilā")
             return redirect(url_for("index"))
     except:
         create_message("Nepieciešams sākumā ielogoties!", "error")
@@ -79,15 +83,15 @@ def profile():
         list_with_booked_tickets_for_user = get_booked_tickets_list()
         list_with_buyed_tickets_for_use = get_buyed_tickets_list()
         return render_template("templates/profile.html",
-                                                name=session['user_data']['name'],
-                                                lastname=session['user_data']['lastname'],
-                                                email=session['user_data']['email'],
-                                                wallet=session['user_data']['wallet'],
-                                                role=session['user_data']['role'],
-                                                reserved_tickets=list_with_booked_tickets_for_user,
-                                                buyed_tickets=list_with_buyed_tickets_for_use,
-                                                message_type=message_type[0],
-                                                message_value=message_value
+            name=session['user_data']['name'],
+            lastname=session['user_data']['lastname'],
+            email=session['user_data']['email'],
+            wallet=session['user_data']['wallet'],
+            role=session['user_data']['role'],
+            reserved_tickets=list_with_booked_tickets_for_user,
+            buyed_tickets=list_with_buyed_tickets_for_use,
+            message_type=message_type[0],
+            message_value=message_value
         )
     else:
         return redirect(url_for('login'))
@@ -157,7 +161,6 @@ def verify_email_checker():
         return redirect(url_for('register'))
 
 
-
 # Route's kas pārbauda lietotāja ievadīto informāciju
 @app.route("/login_check", methods=["POST"])
 def login_check():
@@ -165,7 +168,6 @@ def login_check():
         return redirect(url_for('profile'))
     else:
         return redirect(url_for('login'))
-
 
 # Route's kas aizsūta datus uz datubāzi un redirecto uz profile ar message 
 @app.route("/make_reservation")
@@ -178,7 +180,6 @@ def make_reservation():
 def leave():
     leave_profile_logic()
     return redirect(url_for('login'))
-
 
 # Admin add flight
 @app.route("/admin/add_row")
@@ -253,6 +254,7 @@ def delete_row(title, id):
 @app.route("/check_flight")
 def check_flight():
     data = json.loads(request.cookies.get('flight_data'))
+    print(data)
     if str(data) == "0":
         create_message("Atzīmētais lidojums neēksistē!", "error")
         print("Selected flight doesn't exist 1")

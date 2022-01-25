@@ -30,15 +30,11 @@
         <div id="banner">
             <img src="/static/Vector/HeaderBannerLidostaLogo.svg" id="banner-logo">
             <div id="motivation-text">Nemocies meklējot lētāko lidojumu. Apskati tos visus šeit!</div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
             <ul class=flashes>
-              {% for message in messages %}
-              <div style="color: rgb(46, 46, 46);">{{ message }}</div>
+              {% for message in get_flashed_messages() %}
+              <div style="text-align: center; color: red;">{{ message }}</div>
               {% endfor %}
             </ul>
-            {% endif %}
-            {% endwith %}
             <div id="choose-trip-box">
                 <div id="departure-country-input">
                     <span name="departure-country-input-value" id="departure-country-input-value">Uz kurieni lidojam?</span>
@@ -75,176 +71,109 @@
                 </div>
             </div>
             <form action="/check_flight">
-              <button id="trip-search-button">
-                  Rezervēt
-              </button>
+              <button id="trip-search-button">Rezervēt</button>
             </form>
         </div>
     </header>
     <div id="wrapper">
       {% block content %}
-        <!-- CARD CAROUSEL START -->
+      {% if flight_cards %}
         <div class="container wrapper">
-            <div class="row">
-              <div class="col-12-xs card-child">
-                <div id="card-carousel" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  <ol class="carousel-indicators hidden-xs">
-                    <li data-target="#card-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#card-carousel" data-slide-to="1" class=""></li>
-                  </ol>
-      
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner hidden-xs" role="listbox">
-                    <div class="item active">
-                      <div class="row">
-                        <div class="col-sm-4">
-                        <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
+          <div class="row">
+            <div class="col-12-xs card-child">
+              <div id="card-carousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators hidden-xs">
+                  {% for index in range(pages) %}
+                  {% if index == 0 %}
+                  <li data-target="#card-carousel" data-slide-to="{{ index }}" class="active"></li>
+                  {% else %}
+                  <li data-target="#card-carousel" data-slide-to="{{ index }}" class=""></li>
+                  {% endif %}
+                  {% endfor %}
+                </ol>
+        
+                <div class="carousel-inner hidden-xs" role="listbox">
+                  <div class="item active">
+                    <div class="row">
+                      {% for card_index in range(3) %}
+                        {% if flight_cards|length - card_index > 0 %}
+                          <div class="col-sm-4">
+                            <div class="card-carousel-field">
+                              <div class="Card">
+                                <div class="CardHeader">
+                                  <div class="CardDestination">{{ flight_cards[card_index].name }}</div>
+                                  <div class="CardCost">{{ flight_cards[card_index].price }}$</div>
                                 </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
+                                <div class="CardInformationField">
+                                  <div class="CardLeftField">
+                                    <div class="CardDescription">{{ flight_cards[card_index].description }}</div>
+                                    <div class="CardParameters">
+                                      <div class="CardParametersFlightDate">{{ flight_cards[card_index].departure_date }}</div>
+                                      <div class="CardParametersFlightTime">{{ flight_cards[card_index].departure_time }}</div>
+                                    </div>
+                                  </div>
+                                  <img class="CardDestinationImage" src="{{ flight_cards[card_index].image_link }}" alt="{{ flight_cards[card_index].name }}">
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
-                                </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
-                                </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item">
-                      <div class="row">
-                        <div class="col-sm-4">
-                          <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
-                                </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
-                                </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="card-carousel-field">
-                            <div class="Card">
-                              <div class="CardHeader">
-                                <div class="CardDestination">Ņujorka</div>
-                                <div class="CardCost">359$</div>
-                              </div>
-                              <div class="CardInformationField">
-                                <div class="CardLeftField">
-                                  <div class="CardDescription">Ņujorkas pilsēta ir viena no populārākajām pilsētām amērikā un tai ir ļoti bagāta kultūra.</div>
-                                  <div class="CardParameters">
-                                    <div class="CardParametersFlightDate">14.05.2021</div>
-                                    <div class="CardParametersFlightTime">20:20</div>
-                                  </div>
-                                </div>
-                                <img class="CardDestinationImage" src="static\images\Destinations\Newyork.jpg" alt="Ņujorka">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        {% endif %}
+                      {% endfor %}
                     </div>
                   </div>
-      
-                  <!-- Controls -->
-                  <a class="left-card-controler carousel-controler" href="#card-carousel" role="button" data-slide="prev">
-                    <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
-                        <line x1="105" y1="5" x2="5" y2="105"></line>
-                        <line x1="5" y1="105" x2="105" y2="200"></line>
-                    </svg>
-                  </a>
-                  <a class="right-card-controler carousel-controler" href="#card-carousel" role="button" data-slide="next">
-                    <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
-                        <line x1="5" y1="5" x2="105" y2="105"></line>
-                        <line x1="105" y1="105" x2="5" y2="200"></line>
-                    </svg>
-                  </a>
+                  {% for card_index in range(3, flight_cards|length, 3) %}
+                    <div class="item">
+                      <div class="row">
+                          {% for three_card_index in range(card_index, card_index+3) %}
+                            {% if flight_cards|length - three_card_index > 0 %}
+                              <div class="col-sm-4">
+                                <div class="card-carousel-field">
+                                  <a href="/check_flight">
+                                    <div class="Card">
+                                      <div class="CardHeader">
+                                        <div class="CardDestination">{{ flight_cards[three_card_index].name }}</div>
+                                        <div class="CardCost">{{ flight_cards[three_card_index].price }}$</div>
+                                      </div>
+                                      <div class="CardInformationField">
+                                        <div class="CardLeftField">
+                                          <div class="CardDescription">{{ flight_cards[three_card_index].description }}</div>
+                                          <div class="CardParameters">
+                                            <div class="CardParametersFlightDate">{{ flight_cards[three_card_index].departure_date }}</div>
+                                            <div class="CardParametersFlightTime">{{ flight_cards[three_card_index].departure_time }}</div>
+                                          </div>
+                                        </div>
+                                        <img class="CardDestinationImage" src="{{ flight_cards[card_index].image_link }}" alt="{{ flight_cards[card_index].name }}">
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                      </div>
+                    </div>
+                  {% endfor %}
                 </div>
+        
+                <!-- Controls -->
+                <a class="left-card-controler carousel-controler" href="#card-carousel" role="button" data-slide="prev">
+                  <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
+                    <line x1="105" y1="5" x2="5" y2="105"></line>
+                    <line x1="5" y1="105" x2="105" y2="200"></line>
+                  </svg>
+                </a>
+                <a class="right-card-controler carousel-controler" href="#card-carousel" role="button" data-slide="next">
+                  <svg class="NavDirectionButton" height="30" width="15" viewBox="0 0 110 210">
+                    <line x1="5" y1="5" x2="105" y2="105"></line>
+                    <line x1="105" y1="105" x2="5" y2="200"></line>
+                  </svg>
+                </a>
               </div>
             </div>
+          </div>
         </div>
-        <!-- CARD CAROUSEL END -->
-
+      {% endif %}
         <div class="NewsLayoutGrid">
             <div class="Description1">
                 <div class="NewsHeader">

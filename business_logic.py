@@ -4,8 +4,10 @@ from flask.helpers import flash, url_for
 from flask_sqlalchemy import model
 import pybase64
 import json
+import re
 from random import randint
 from flask_recaptcha import ReCaptcha
+from sqlalchemy.orm import query
 from settings import app
 from models import Airport, Ticket, db, User, UserTicket, Flight, Airplane
 import datetime
@@ -18,7 +20,6 @@ app.config['MAIL_USERNAME'] = 'lidostainfo@gmail.com'
 app.config['MAIL_PASSWORD'] = 'lidostainfo123'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
-
 mail = Mail(app)
 
 # Captcha settings
@@ -88,7 +89,6 @@ def user_register_logic():
     if request.method == "POST":
         data = request.form  # Tiek iegūti ievadītie dati
         session['input-values'] = data
-
         if array_check_on_gaps(data) == 1:  # Pārbauda uz tukšajiem laukiem
             create_message("Aizpildiet visus laukus!", "error")
         else:
@@ -96,11 +96,9 @@ def user_register_logic():
                 # Pārbauda vai ievadītās paroles garums ir vismaz 8 simboli
                 if len(data['password']) < 8:
                     create_message("Parolei jābūt vismaz 8 simbolus garai!", "error")
-
                 # Pārbauda vai ievadītās paroles ir vienādas
                 elif data['password'] != data['re-password']:
                     create_message("Ievadītās paroles nesakrīt!", "error")
-
                 else:
                     email_exist = User.query.filter_by(email=data['email']).first()
 
@@ -116,15 +114,27 @@ def user_register_logic():
             else:  # Ja recaptcha nav apstiprināts
                 create_message("Atzīmējat ka nēsat robots!", "error")
     return 0
+
 def register_new_user_to_db():
     try:
         data = session['input-values']
-        user = User(name=data['name'], lastname=data['lastname'],
-                    email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now(), wallet=100.0)
+        user = User(name=data['name'],
+            lastname=data['lastname'],
+            email=data['email'],
+            password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")),
+            role=0,
+            register_date=datetime.datetime.now(),
+            wallet=100.0)
+
         db.session.add(user)
         db.session.commit()
-        session["user_data"] = {'name': user.name, 'lastname': user.lastname,
-                                'email': user.email, 'id': user.id, 'role': user.role, 'wallet': float(user.wallet)}
+        session["user_data"] = {
+            'name': user.name,
+            'lastname': user.lastname,
+            'email': user.email,
+            'id': user.id,
+            'role': user.role,
+            'wallet': float(user.wallet)}
         session['data'] = None
         return 1
     except:
@@ -169,31 +179,32 @@ def make_reservation_logic():
     user_data = session["user_data"]
     persons = json.loads(pybase64.b64decode(request.cookies.get('persons')).decode("utf-8"))
     flight_customization = json.loads(pybase64.b64decode(request.cookies.get('flight_customization')).decode("utf-8"))
-    ticket = Ticket(owner_id=user_data['id'],
-                    departure=flight_customization[0],
-                    arrive=flight_customization[1],
-                    flight_class=flight_customization[5],
-                    departure_time=flight_customization[3],
-                    arrive_time=flight_customization[4],
-                    people_count=len(persons),
-                    sum=int(flight_customization[6]) * len(persons),
-                    flight_id=randint(1000, 10000),
-                    company_name="Lidosta",
-                    reserved_status=0,
-                    airplane_name = flight_customization[2]
-                    )
+    ticket = Ticket(
+        owner_id=user_data['id'],
+        departure=flight_customization[0],
+        arrive=flight_customization[1],
+        flight_class=flight_customization[5],
+        departure_time=flight_customization[3],
+        arrive_time=flight_customization[4],
+        people_count=len(persons),
+        sum=int(flight_customization[6]) * len(persons),
+        flight_id=randint(1000, 10000),
+        company_name="Lidosta",
+        reserved_status=0,
+        airplane_name = flight_customization[2])
+
     db.session.add(ticket)
     db.session.commit()
     for person in persons:
-        ticket_for_person = UserTicket(ticket_id=ticket.id,
-                                       name=person["name"],
-                                       lastname=person["lastname"],
-                                       person_id=person["person-id"],
-                                       birth_day=person["birth-day"],
-                                       birth_month=person["birth-month"],
-                                       birth_year=person["birth-year"],
-                                       mobile_number=person["telephone-number"]
-                                      )
+        ticket_for_person = UserTicket(
+                ticket_id=ticket.id,
+                name=person["name"],
+                lastname=person["lastname"],
+                person_id=person["person-id"],
+                birth_day=person["birth-day"],
+                birth_month=person["birth-month"],
+                birth_year=person["birth-year"],
+                mobile_number=person["telephone-number"])
         db.session.add(ticket_for_person)
         db.session.commit()
 
@@ -221,6 +232,8 @@ def add_flight_to_db(data):
         departure_time = data["departure_time"],
         arrive_time = data["arrive_time"],
         flight_price = data["price"],
+        description = data["description"],
+        image_link = data["image_link"],
         airplane_id = airplane_id 
     )
     db.session.add(flight)
@@ -232,8 +245,7 @@ def add_airplane_to_db(data):
         model_name = data["airplane_model"],
         manufacture_year = data["airplane_manufacture_year"],
         seats_count = data["airplane_seats_count"],
-        airport_id = airport_id
-    )
+        airport_id = airport_id)
     db.session.add(airplane)
     db.session.commit()
 
@@ -241,8 +253,7 @@ def add_airport_to_db(data):
     airport = Airport(
         name = data['airport_name'],
         abbreviation = data['airport_abbreviation'],
-        address = data['airport_address']
-    )
+        address = data['airport_address'])
     db.session.add(airport)
     db.session.commit()
 
@@ -255,8 +266,7 @@ def admin_add_user_to_db(data):
         password= pybase64.standard_b64encode(bytes(data['password'], "utf-8")),
         register_date = "Admin registred",
         wallet = data["wallet"],
-        role = 1 if data["role"] == "Administrators" else  0
-    )
+        role = 1 if data["role"] == "Administrators" else  0)
     db.session.add(user)
     db.session.commit()
 
@@ -274,6 +284,30 @@ def get_all_flights():
 def get_all_users():
     return User.query.all()
 
+def get_all_flight_cards():
+    flights = Flight.query.all()
+    output = []
+    for flight in flights:
+        if flight.departure == "Riga(Latvia), RIX":
+            result = re.search("^[a-zA-Z]+", flight.arrive)
+            output.append({
+                "name": result.group(),
+                "price": flight.flight_price,
+                "departure_time": flight.departure_time,
+                "departure_date": flight.departure_date,
+                "description": flight.description,
+                "image_link": flight.image_link
+                })
+    return output
+
+def get_airplane_model(id):
+    return Airplane.query.filter(Airplane.id == id).first().model_name
+    
+def set_all_cards_in_cookies():
+    flights = Flight.query.all()
+    for flight in flights:
+        if flight.departure == "Riga(Latvia), RIX":
+            return [flight.arrive_date, flight.arrive_time, get_airplane_model(flight.airplane_id)]
 
 def update_flight(data):
     flight = Flight.query.filter_by(id=data['id']).first()

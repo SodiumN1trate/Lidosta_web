@@ -948,6 +948,7 @@ form > a, form > p{
     overflow: hidden;
     flex-direction: column;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .CardHeader {
@@ -1066,7 +1067,6 @@ form > a, form > p{
     grid-area: Field1;
     width: 350px;
     height: 200px;
-    cursor: pointer;
     user-select: none;
 }
 
@@ -1837,6 +1837,10 @@ div#admin-pannel-search-bar {
 
 .ticket-info:first-child{
     margin: 0;
+}
+
+.ticket-info:hover {
+    cursor: pointer;
 }
 
 .error{

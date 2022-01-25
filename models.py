@@ -108,6 +108,8 @@ class Flight(db.Model):
     arrive_time = db.Column(db.String(80), nullable=False)
     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
     flight_price = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    image_link = db.Column(db.String(200), nullable=True)
 
     def __repr__(self):
         return f'<Flight {self.departure} -> {self.arrive} >'
