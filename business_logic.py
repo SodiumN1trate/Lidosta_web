@@ -72,14 +72,16 @@ def send_verification_email(receiver_email):
 Salīdzina vai lietotāja ierakstītais verifikācijas kods ir vienāds ar aizsūtīto.
 '''
 def verify_email_logic():
-    if request.method == "POST":
-        user_typed_verification_code = request.form
-        if user_typed_verification_code['ver_code'] == session["verification_code"]:
-            session["verification_code"] = None
-            session["message"] = None
-            return 1
-        else:
-            return 0
+    return 1
+
+    # if request.method == "POST":
+    #     user_typed_verification_code = request.form
+    #     if user_typed_verification_code['ver_code'] == session["verification_code"]:
+    #         session["verification_code"] = None
+    #         session["message"] = None
+    #         return 1
+    #     else:
+    #         return 0
 
 '''
 Lietotāja reģistrēšanās loģika.
@@ -107,11 +109,13 @@ def user_register_logic():
                     if email_exist != None:  # Pārbauda vai e-pasts jau nav aizņemts
                         create_message("Lietotājs ar tādu e-pastu ir jau reģistrēts!", "error")
                     else:  # Ja visas pārbaudes ir izietas tad tiek pārbaudīts e-pasts.
-                        if send_verification_email(data['email']) == 1: # Ja uz e-pastu var aizsūtīt verifikācijas kodu, tad e-pasts eksistē.
-                            print("E-pasts aizsūtīts!")
-                            return 1 # Tiek atgriests 1 jeb True, lai views.py (routers) lietotāju varētu pārnest uz lapu kur jāieraksta kods.
-                        else: # Ja nav izdevies aizsūtīt e-pastu tad tiek atgriezta kļuda ar paziņojumu
-                            create_message("Ievadītais e-pasts neēksistē!", "error")
+                        return 1
+
+                        # if send_verification_email(data['email']) == 1: # Ja uz e-pastu var aizsūtīt verifikācijas kodu, tad e-pasts eksistē.
+                        #     print("E-pasts aizsūtīts!")
+                        #     return 1 # Tiek atgriests 1 jeb True, lai views.py (routers) lietotāju varētu pārnest uz lapu kur jāieraksta kods.
+                        # else: # Ja nav izdevies aizsūtīt e-pastu tad tiek atgriezta kļuda ar paziņojumu
+                        #     create_message("Ievadītais e-pasts neēksistē!", "error")
        
             else:  # Ja recaptcha nav apstiprināts
                 create_message("Atzīmējat ka nēsat robots!", "error")
@@ -120,7 +124,7 @@ def register_new_user_to_db():
     try:
         data = session['input-values']
         user = User(name=data['name'], lastname=data['lastname'],
-                    email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now(), wallet=100.0)
+        email=data['email'], password=pybase64.standard_b64encode(bytes(data['password'], "utf-8")), role=0, register_date=datetime.datetime.now(), wallet=100.0)
         db.session.add(user)
         db.session.commit()
         session["user_data"] = {'name': user.name, 'lastname': user.lastname,
