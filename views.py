@@ -146,7 +146,7 @@ def register_user():
 
 @app.route("/verify_email_checker", methods=["POST"])
 def verify_email_checker():
-    if verify_email_logic() == 1:
+    if verify_email_logic() == 1 & user_register_logic() == 1:
         register_new_user_to_db()
         return redirect(url_for('profile'))
     else:
