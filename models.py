@@ -38,6 +38,17 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.name
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name, 
+            'lastname': self.lastname,
+            'email': self.email,
+            'register_date': self.register_date,
+            'wallet': self.wallet,
+            'role': self.role
+        }
+
 class Ticket(db.Model):
     __tablename__ = "ticket"
     id = db.Column(db.Integer, primary_key=True)
@@ -58,6 +69,23 @@ class Ticket(db.Model):
     def __repr__(self):
         return '<Ticket %r>' % self.owner_id
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'owner_id': self.owner_id,
+            'departure': self.departure,
+            'arrive': self.arrive,
+            'departure_time': self.departure_time,
+            'flight_class': self.flight_class,
+            'arrive_time': self.arrive_time,
+            'people_count': self.departure_time,
+            'sum': self.flight_class,
+            'flight_id': self.arrive_time,
+            'company_name': self.departure_time,
+            'reserved_status': self.flight_class,
+            'airplane_name': self.arrive_time
+        }
+
 class UserTicket(db.Model):
     __tablename__ = "user_ticket"
     id = db.Column(db.Integer, primary_key=True)
@@ -72,6 +100,19 @@ class UserTicket(db.Model):
 
     def __repr__(self):
         return '<UserTicket %r>' % self.name
+    
+    def serialize(self):
+        return {
+            'id': self.id,
+            'ticket_id': self.ticket_id,
+            'name': self.name,
+            'lastname': self.lastname,
+            'person_id': self.person_id,
+            'birth_day': self.birth_day,
+            'birth_month': self.birth_month,
+            'birth_year': self.birth_year,
+            'mobile_number': self.mobile_number
+        }
 
 class Airport(db.Model):
     __tablename__ = "airport"
@@ -84,6 +125,14 @@ class Airport(db.Model):
     def __repr__(self):
         return '<Airport %r>' % self.name
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'abbreviation': self.abbreviation,
+            'address': self.address,
+            'airplanes': self.children
+        }
 
 class Airplane(db.Model):
     __tablename__ = "airplane"
@@ -96,6 +145,15 @@ class Airplane(db.Model):
 
     def __repr__(self):
         return '<Airplane %r>' % self.model_name
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'model_name': self.model_name,
+            'manufacture_year': self.manufacture_year,
+            'seats_count': self.seats_count,
+            'airport_id': self.airport_id
+        }
 
 class Flight(db.Model):
     __tablename__ = "flight"
@@ -113,3 +171,18 @@ class Flight(db.Model):
 
     def __repr__(self):
         return f'<Flight {self.departure} -> {self.arrive} >'
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'departure': self.departure,
+            'arrive': self.arrive,
+            'departure_date': self.departure_date,
+            'arrive_date': self.arrive_date,
+            'departure_time': self.departure_time,
+            'arrive_time': self.arrive_time,
+            'airplane_id': self.airplane_id,
+            'flight_price': self.flight_price,
+            'description': self.description,
+            'image_link': self.image_link
+        }

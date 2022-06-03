@@ -1,5 +1,5 @@
 from re import L
-from flask import render_template, redirect, request, session
+from flask import render_template, redirect, request, session, Response
 from flask.helpers import flash, make_response, send_file, send_from_directory, url_for
 import pybase64
 import json
@@ -147,18 +147,19 @@ def admin_users():
 @app.route("/register_user", methods=["POST"])
 def register_user():
     if user_register_logic() == 1:
-        return render_template('templates/email_verify.html')
-    else:
-        return redirect(url_for('register'))
-
-
-@app.route("/verify_email_checker", methods=["POST"])
-def verify_email_checker():
-    if verify_email_logic() == 1:
         register_new_user_to_db()
         return redirect(url_for('profile'))
     else:
         return redirect(url_for('register'))
+
+
+# @app.route("/verify_email_checker", methods=["POST"])
+# def verify_email_checker():
+#     if verify_email_logic() == 1:
+#         register_new_user_to_db()
+#         return redirect(url_for('profile'))
+#     else:
+#         return redirect(url_for('register'))
 
 
 # Route's kas pārbauda lietotāja ievadīto informāciju
@@ -370,5 +371,92 @@ def delete_reservation(ticket_id, owner_id):
         delete_user_reservation(ticket_id, owner_id)
         flash("Veiksmīgi tika dzēsta rezervācijā!")
         return redirect(url_for('profile'))
+
+@app.route('/admin/users/json')
+def user_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for user in User.query.all():
+            output.append(user.serialize())
+
+    path = os.getcwd()
+    file = open(
+        path+f"\media\\users.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\users.json", as_attachment=True)
+
+
+@app.route('/admin/tickets/json')
+def ticket_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for ticket in Ticket.query.all():
+            output.append(ticket.serialize())
+
+    path = os.getcwd()
+    file = open(
+        path+f"\media\\tickets.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\tickets.json", as_attachment=True)
+
+
+@app.route('/admin/user_ticket/json')
+def user_ticket_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for user_ticket in UserTicket.query.all():
+            output.append(user_ticket.serialize())
+    
+    path = os.getcwd()
+    file = open(
+        path+f"\media\\user_ticket.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\user_ticket.json", as_attachment=True)
+
+
+@app.route('/admin/airport/json')
+def airport_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for airport in Airport.query.all():
+            output.append(airport.serialize())
+    path = os.getcwd()
+    file = open(
+        path+f"\media\\airport.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\airport.json", as_attachment=True)
+
+
+@app.route('/admin/airplane/json')
+def airplane_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for airplane in Airplane.query.all():
+            output.append(airplane.serialize())
+    path = os.getcwd()
+    file = open(
+            path+f"\media\\airplane.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\airplane.json", as_attachment=True)
+
+
+@app.route('/admin/flight/json')
+def flight_json():
+    output = []
+    if session['user_data'] and is_admin(session['user_data']):
+        for flight in Flight.query.all():
+            output.append(flight.serialize())
+    path = os.getcwd()
+    file = open(
+        path+f"\media\\flight.json", "w",  encoding="utf-8")
+    file.write(json.dumps(output, default=str))
+    file.close()
+    return send_file(path+f"\media\\flight.json", as_attachment=True)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

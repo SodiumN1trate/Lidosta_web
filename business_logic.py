@@ -99,17 +99,19 @@ def user_register_logic():
                 # Pārbauda vai ievadītās paroles ir vienādas
                 elif data['password'] != data['re-password']:
                     create_message("Ievadītās paroles nesakrīt!", "error")
+                    print(data['password'], data['re-password'])
                 else:
                     email_exist = User.query.filter_by(email=data['email']).first()
-
                     if email_exist != None:  # Pārbauda vai e-pasts jau nav aizņemts
                         create_message("Lietotājs ar tādu e-pastu ir jau reģistrēts!", "error")
-                    else:  # Ja visas pārbaudes ir izietas tad tiek pārbaudīts e-pasts.
-                        if send_verification_email(data['email']) == 1: # Ja uz e-pastu var aizsūtīt verifikācijas kodu, tad e-pasts eksistē.
-                            print("E-pasts aizsūtīts!")
-                            return 1 # Tiek atgriests 1 jeb True, lai views.py (routers) lietotāju varētu pārnest uz lapu kur jāieraksta kods.
-                        else: # Ja nav izdevies aizsūtīt e-pastu tad tiek atgriezta kļuda ar paziņojumu
-                            create_message("Ievadītais e-pasts neēksistē!", "error")
+                    else:
+                        return 1
+                    # else:  # Ja visas pārbaudes ir izietas tad tiek pārbaudīts e-pasts.
+                    #     if send_verification_email(data['email']) == 1: # Ja uz e-pastu var aizsūtīt verifikācijas kodu, tad e-pasts eksistē.
+                    #         print("E-pasts aizsūtīts!")
+                    #         return 1 # Tiek atgriests 1 jeb True, lai views.py (routers) lietotāju varētu pārnest uz lapu kur jāieraksta kods.
+                    #     else: # Ja nav izdevies aizsūtīt e-pastu tad tiek atgriezta kļuda ar paziņojumu
+                    #         create_message("Ievadītais e-pasts neēksistē!", "error")
        
             else:  # Ja recaptcha nav apstiprināts
                 create_message("Atzīmējat ka nēsat robots!", "error")
